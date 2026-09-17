@@ -1,0 +1,9 @@
+{
+  "name": "Alaya Division",
+  "short_name": "Alaya",
+  "description": "Built on Connection",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000"
+}

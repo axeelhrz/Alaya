@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Alaya Division — Web Fase 1
 
-## Getting Started
+Sitio de marca Alaya Division (Next.js App Router + Tailwind + Vercel).
 
-First, run the development server:
+## Desarrollo
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Copia `.env.example` a `.env.local` y configura Resend:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `RESEND_API_KEY`
+- `RESEND_FROM`
+- `RESEND_TO`
+- `RESEND_AUDIENCE_ID` (opcional; si falta, la newsletter notifica por email a `RESEND_TO`)
+- `NEXT_PUBLIC_SITE_URL`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Sin `RESEND_API_KEY`, los formularios responden en modo desarrollo (log en consola).
 
-## Learn More
+## Rutas
 
-To learn more about Next.js, take a look at the following resources:
+| Ruta | Descripción |
+|------|-------------|
+| `/` | Home |
+| `/new` | Novedades |
+| `/apparel` | Coming Soon + lookbook |
+| `/surf` | Hub surf |
+| `/surf/boards` | Catálogo |
+| `/surf/shapers` | Shapers |
+| `/pide-cita` | Formulario de cita |
+| `/built-on-connection` | Blog editorial |
+| `/about` `/contact` `/aviso-legal` `/customer-service` | Footer |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Importar el repo en Vercel
+2. Añadir variables de entorno
+3. Deploy — framework Next.js detectado automáticamente
 
-## Deploy on Vercel
+## Checklist pre-lanzamiento (25·09)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [ ] Dominio + DNS
+- [ ] Env Resend en producción
+- [ ] Probar `/api/appointment` y `/api/newsletter`
+- [ ] Sustituir imágenes Unsplash por assets de marca
+- [ ] Completar datos fiscales en Aviso Legal
+- [ ] Lighthouse móvil
