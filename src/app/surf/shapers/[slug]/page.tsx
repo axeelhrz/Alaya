@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getShaper, shapers } from "../../../../../content/shapers";
-import { Button } from "@/components/ui/Button";
+import { boards } from "../../../../../content/boards";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -14,71 +15,75 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const shaper = getShaper(slug);
   if (!shaper) return { title: "Shaper" };
-  return {
-    title: shaper.name,
-    description: shaper.bio,
-  };
+  return { title: shaper.name, description: shaper.bio };
 }
 
 export default async function ShaperDetailPage({ params }: Props) {
   const { slug } = await params;
   const shaper = getShaper(slug);
   if (!shaper) notFound();
+  const related = boards.filter((b) => b.shaper === shaper.name).slice(0, 4);
 
   return (
-    <div>
-      <section className="grid md:grid-cols-2">
-        <div className="relative min-h-[50vh] md:min-h-[80vh]">
-          <Image
-            src={shaper.image}
-            alt={shaper.name}
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </div>
-        <div className="flex flex-col justify-center bg-alaya-black px-4 py-12 text-white sm:px-6 sm:py-16 md:px-12 lg:px-16">
-          <p className="section-label text-white/60">
+    <article className="lg:flex">
+      <div className="relative min-h-[42vh] bg-alaya-black lg:sticky lg:top-14 lg:h-[calc(100svh-3.5rem)] lg:w-[46%]">
+        <Image
+          src={shaper.image}
+          alt={shaper.name}
+          fill
+          priority
+          className="object-cover"
+          sizes="(max-width: 1024px) 100vw, 46vw"
+        />
+      </div>
+      <div className="lg:w-[54%]">
+        <div className="mx-auto max-w-xl px-5 py-12 sm:px-10 sm:py-16">
+          <p className="page-kicker">
             {shaper.role} · {shaper.location}
           </p>
-          <h1 className="mt-4 font-display text-4xl uppercase tracking-wide sm:text-5xl md:text-7xl">
+          <h1 className="mt-4 text-4xl font-light uppercase tracking-[0.14em] sm:text-5xl">
             {shaper.name}
           </h1>
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-white/80 md:text-base">
+          <p className="mt-6 text-sm leading-relaxed text-alaya-muted">
             {shaper.bio}
           </p>
-          <Button
+          <Link
             href={`/pide-cita?shaper=${shaper.slug}`}
-            variant="secondary"
-            className="mt-8 w-full sm:mt-10 sm:w-fit"
+            className="btn-pill mt-8 inline-flex"
           >
-            Pedir cita con {shaper.name}
-          </Button>
-        </div>
-      </section>
+            Pedir cita
+          </Link>
 
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:py-16 md:px-6 md:py-24">
-        <p className="section-label mb-3">Promodels</p>
-        <h2 className="font-display text-3xl uppercase tracking-wide sm:text-4xl md:text-5xl">
-          Signature line
-        </h2>
-        <div className="mt-8 grid gap-1 sm:mt-10 md:grid-cols-2">
-          {shaper.promodels.map((model) => (
-            <div
-              key={model.name}
-              className="border border-alaya-border p-6 sm:p-8 md:p-10"
-            >
-              <h3 className="font-display text-3xl uppercase tracking-wide">
-                {model.name}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-alaya-muted">
-                {model.description}
-              </p>
-            </div>
-          ))}
+          <section className="mt-14">
+            <p className="page-kicker">Promodels</p>
+            <ul className="mt-5 space-y-5">
+              {shaper.promodels.map((model) => (
+                <li key={model.name}>
+                  <h2 className="text-lg uppercase tracking-[0.12em]">{model.name}</h2>
+                  <p className="mt-1 text-sm text-alaya-muted">{model.description}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          {related.length ? (
+            <section className="mt-14">
+              <p className="page-kicker">Tablas</p>
+              <div className="mt-5 flex flex-wrap gap-4">
+                {related.map((board) => (
+                  <Link
+                    key={board.slug}
+                    href={`/surf/boards/${board.slug}`}
+                    className="text-[0.7rem] uppercase tracking-[0.14em] underline-offset-4 hover:underline"
+                  >
+                    {board.name}
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ) : null}
         </div>
-      </section>
-    </div>
+      </div>
+    </article>
   );
 }

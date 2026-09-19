@@ -8,6 +8,7 @@ export type PostMeta = {
   date: string;
   excerpt: string;
   cover: string;
+  category: string;
 };
 
 const postsDirectory = path.join(process.cwd(), "content/posts");
@@ -35,6 +36,7 @@ export function getPostBySlug(slug: string) {
       date: String(data.date || ""),
       excerpt: String(data.excerpt || ""),
       cover: String(data.cover || ""),
+      category: String(data.category || "surf"),
     } satisfies PostMeta,
     content,
   };

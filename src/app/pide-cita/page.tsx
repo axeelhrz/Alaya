@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export const metadata: Metadata = {
   title: "Pide Cita",
@@ -11,16 +10,18 @@ export const metadata: Metadata = {
 
 export default function PideCitaPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:py-16 md:px-6 md:py-24">
-      <SectionHeading
-        label="Pide Cita"
-        title="Start"
-        titleDisplay="Here"
-        description="Sin registro. Cuéntanos tu proyecto: shaper o Alaya, presencial en fábrica u online. Te confirmaremos fecha y hora."
-      />
-      <div className="mt-8 border border-alaya-border p-4 sm:mt-12 sm:p-6 md:p-10">
+    <div className="mx-auto max-w-4xl px-4 py-16 sm:px-8 sm:py-24">
+      <div className="text-center">
+        <h1 className="text-4xl font-light uppercase tracking-[0.22em] sm:text-6xl">
+          Pide cita
+        </h1>
+        <p className="mx-auto mt-4 max-w-md text-sm text-alaya-muted">
+          Y da el primer paso para crear tu tabla a medida.
+        </p>
+      </div>
+      <div className="mt-14">
         <Suspense
-          fallback={<p className="text-sm text-alaya-muted">Cargando formulario…</p>}
+          fallback={<p className="text-center text-sm text-alaya-muted">Cargando…</p>}
         >
           <AppointmentForm />
         </Suspense>

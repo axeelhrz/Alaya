@@ -1,27 +1,53 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { shapers } from "../../../../content/shapers";
-import { ShaperCard } from "@/components/surf/ShaperCard";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export const metadata: Metadata = {
-  title: "Shapers",
+  title: "Team / Shapers",
   description:
     "Shapers Alaya: Patterson, Arakawa, Mark Phipps, Roberds y Dylan.",
 };
 
 export default function ShapersPage() {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-24">
-      <SectionHeading
-        label="Surf · Shapers"
-        title="The"
-        titleDisplay="Shapers"
-        description="Conoce a los shapers y sus promodels. Elige con quién quieres iniciar tu proyecto."
-      />
-      <div className="mt-14 grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
-        {shapers.map((shaper) => (
-          <ShaperCard key={shaper.slug} shaper={shaper} />
-        ))}
+    <div className="mx-auto max-w-[1400px] px-4 py-12 sm:px-8 sm:py-16">
+      <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <div>
+          <h1 className="text-5xl font-light uppercase tracking-[0.16em] sm:text-7xl">
+            Shapers
+          </h1>
+          <nav className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-[0.7rem] uppercase tracking-[0.16em] text-alaya-muted">
+            {shapers.map((s) => (
+              <Link
+                key={s.slug}
+                href={`/surf/shapers/${s.slug}`}
+                className="hover:text-alaya-black"
+              >
+                {s.name}
+              </Link>
+            ))}
+          </nav>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2">
+          {shapers.map((shaper) => (
+            <Link key={shaper.slug} href={`/surf/shapers/${shaper.slug}`} className="group">
+              <div className="relative aspect-[3/4] overflow-hidden bg-alaya-surface">
+                <Image
+                  src={shaper.image}
+                  alt={shaper.name}
+                  fill
+                  className="object-cover transition duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                />
+              </div>
+              <p className="mt-3 text-[0.75rem] uppercase tracking-[0.16em]">
+                {shaper.name}
+              </p>
+              <p className="text-[0.65rem] text-alaya-muted">{shaper.role}</p>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,9 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo_Narrow, Bebas_Neue, Libre_Baskerville } from "next/font/google";
-import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
+import { Archivo_Narrow, Bebas_Neue, Geist } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Providers } from "@/components/providers";
 import "./globals.css";
+
+const geist = Geist({
+  variable: "--font-geist",
+  subsets: ["latin"],
+});
 
 const archivo = Archivo_Narrow({
   variable: "--font-archivo",
@@ -15,12 +20,6 @@ const bebas = Bebas_Neue({
   variable: "--font-bebas",
   subsets: ["latin"],
   weight: "400",
-});
-
-const libre = Libre_Baskerville({
-  variable: "--font-libre",
-  subsets: ["latin"],
-  weight: ["400", "700"],
 });
 
 const siteUrl =
@@ -46,7 +45,7 @@ export const metadata: Metadata = {
     siteName: "Alaya Division",
     title: "Alaya Division",
     description:
-      "Tienda de tablas · cinco shapers · cita en fábrica u online. No un carrito frío.",
+      "Tienda de tablas · cinco shapers · cita en fábrica u online.",
   },
 };
 
@@ -58,13 +57,14 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${archivo.variable} ${bebas.variable} ${libre.variable} h-full antialiased`}
+      className={`${geist.variable} ${archivo.variable} ${bebas.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col overflow-x-clip bg-alaya-white text-alaya-black">
-        <AnnouncementBar />
-        <Header />
-        <main className="w-full min-w-0 flex-1">{children}</main>
-        <Footer />
+        <Providers>
+          <Header />
+          <main className="w-full min-w-0 flex-1">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

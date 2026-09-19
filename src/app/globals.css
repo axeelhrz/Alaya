@@ -32,7 +32,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-family: var(--font-geist), var(--font-archivo), system-ui, sans-serif;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
@@ -193,6 +193,85 @@ body {
   text-transform: uppercase;
 }
 
+.header-link {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.btn-pill {
+  --btn-fill: var(--alaya-white);
+  --btn-hover-ink: var(--alaya-black);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.75rem;
+  border: 1px solid var(--alaya-black);
+  border-radius: 999px;
+  background: var(--alaya-black);
+  color: var(--alaya-white);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-ghost {
+  --btn-fill: var(--alaya-black);
+  --btn-hover-ink: var(--alaya-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.75rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-ghost.text-white {
+  --btn-fill: var(--alaya-white);
+  --btn-hover-ink: var(--alaya-black);
+}
+
+.input-block {
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  background: #ececec;
+  padding: 1.15rem 1.25rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.input-block:focus {
+  background: #e4e4e4;
+}
+
+.page-kicker {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--alaya-muted);
+}
+
 /* ——— Motion ——— */
 
 @keyframes hero-in {
@@ -317,19 +396,67 @@ body {
 
 .btn-primary,
 .btn-secondary,
-.btn-outline {
+.btn-outline,
+.btn-pill,
+.btn-ghost {
   transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    transform 0.25s ease,
-    letter-spacing 0.25s ease;
+    background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-pill::before,
+.btn-ghost::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--btn-fill);
+  transform: translateY(101%);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .btn-primary:hover,
 .btn-secondary:hover,
-.btn-outline:hover {
-  transform: translateY(-1px);
-  letter-spacing: 0.18em;
+.btn-outline:hover,
+.btn-pill:hover,
+.btn-ghost:hover {
+  transform: translateY(-2px);
+  letter-spacing: 0.26em;
+}
+
+.btn-pill:hover,
+.btn-ghost:hover {
+  color: var(--btn-hover-ink);
+  border-color: var(--btn-fill);
+}
+
+.btn-pill:hover::before,
+.btn-ghost:hover::before {
+  transform: translateY(0);
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.btn-outline:active,
+.btn-pill:active,
+.btn-ghost:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.btn-pill:disabled,
+.btn-ghost:disabled,
+.btn-primary:disabled {
+  transform: none;
+  cursor: not-allowed;
+}
+
+.btn-pill:disabled::before,
+.btn-ghost:disabled::before {
+  transform: translateY(101%);
 }
 
 .img-zoom {
@@ -368,7 +495,15 @@ body {
 
   .btn-primary:hover,
   .btn-secondary:hover,
-  .btn-outline:hover {
+  .btn-outline:hover,
+  .btn-pill:hover,
+  .btn-ghost:hover {
     transform: none;
+    letter-spacing: 0.2em;
+  }
+
+  .btn-pill::before,
+  .btn-ghost::before {
+    transition: none;
   }
 }
