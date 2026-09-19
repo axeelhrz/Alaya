@@ -66,7 +66,7 @@ export function HomeCarousel() {
   }, []);
 
   return (
-    <section className="relative isolate h-[calc(100svh-3.5rem)] overflow-hidden bg-alaya-black text-white sm:h-[calc(100svh-4rem)]">
+    <section className="relative isolate -mt-14 h-[100svh] w-full overflow-hidden bg-alaya-black text-white sm:-mt-16">
       {slides.map((item, i) => (
         <div
           key={item.id}
@@ -79,7 +79,7 @@ export function HomeCarousel() {
             alt={item.imageAlt}
             fill
             priority={i === 0}
-            className="scale-[1.02] object-cover object-center"
+            className="h-full w-full object-cover object-center"
             sizes="100vw"
           />
           <div
