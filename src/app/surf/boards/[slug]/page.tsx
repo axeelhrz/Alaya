@@ -10,6 +10,7 @@ import {
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { BoardPhoto } from "@/components/surf/BoardPhoto";
 import { BoardSilhouette } from "@/components/surf/BoardSilhouette";
+import { BoardSpecs } from "@/components/surf/BoardSpecs";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -55,11 +56,13 @@ export default async function BoardPage({ params }: Props) {
           </h1>
           <p className="mt-2 text-[0.7rem] uppercase tracking-[0.16em] text-alaya-muted">
             {board.shaper} · {board.dimensions}
+            {board.volume ? ` · ${board.volume}` : ""}
           </p>
           <p className="mt-6 text-sm leading-relaxed text-alaya-muted">
             {board.description}
           </p>
-          <Link href={boardCitaHref(board)} className="btn-pill mt-8 inline-flex">
+          <BoardSpecs board={board} />
+          <Link href={boardCitaHref(board)} className="btn-pill mt-10 inline-flex">
             Pide cita
           </Link>
 

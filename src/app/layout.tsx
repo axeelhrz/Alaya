@@ -59,9 +59,9 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${geist.variable} ${archivo.variable} ${bebas.variable} h-full antialiased`}
+      className={`${geist.variable} ${archivo.variable} ${bebas.variable} antialiased`}
     >
-      <body className="flex min-h-full flex-col overflow-x-clip bg-alaya-white text-alaya-black">
+      <body className="flex min-h-svh flex-col overflow-x-clip bg-alaya-white text-alaya-black">
         <Providers>
           <Header />
           <main className="w-full min-w-0 flex-1">{children}</main>

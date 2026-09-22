@@ -64,6 +64,11 @@ export default async function BoardsPage({ searchParams }: Props) {
             <p className="mt-1 text-[0.65rem] text-alaya-muted">
               {board.shaper} · {board.dimensions}
             </p>
+            {board.wave && (
+              <p className="mt-1 text-[0.6rem] leading-snug text-alaya-muted/80">
+                {board.wave}
+              </p>
+            )}
           </Link>
         ))}
       </div>

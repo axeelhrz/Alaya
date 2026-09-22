@@ -27,6 +27,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+  background: #000;
+  min-height: 100svh;
 }
 
 .hero-full {

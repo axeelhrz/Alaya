@@ -71,7 +71,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="border-t border-white/10 pb-[env(safe-area-inset-bottom)]">
         <div className="mx-auto flex max-w-[1400px] flex-col gap-2 px-4 py-5 text-[0.6rem] uppercase tracking-[0.16em] text-white/45 sm:px-8 md:flex-row md:justify-between">
           <p>Privacy Policy · Terms & Conditions</p>
           <p>Alaya Division · © {new Date().getFullYear()} · All rights reserved</p>
