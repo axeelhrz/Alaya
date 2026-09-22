@@ -92,7 +92,7 @@ export function HomeCarousel() {
         </div>
       ))}
 
-      <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-end px-4 pb-10 pt-20 sm:px-8 sm:pb-14">
+      <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-end px-4 pt-20 pb-[max(6.5rem,calc(env(safe-area-inset-bottom)+5.75rem))] sm:px-8 sm:pb-14">
         <p className="page-kicker text-white/70">{slide.eyebrow}</p>
         <h1 className="mt-3 max-w-3xl text-4xl font-light uppercase leading-[0.95] tracking-[0.12em] sm:text-6xl md:text-7xl">
           {slide.title}
