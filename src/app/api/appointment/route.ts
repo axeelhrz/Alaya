@@ -1,28 +1,16 @@
-import { z } from "zod";
 import { Resend } from "resend";
 import { shapers } from "../../../../content/shapers";
 import {
-  appointmentTimeSlots,
   appointmentTypes,
   appointmentChoices,
 } from "../../../../content/appointment-slots";
-
-const schema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  phone: z.string().min(6),
-  choice: z.enum(["alaya", "shaper"]),
-  shaperSlug: z.string().optional(),
-  boardInfo: z.string().min(10),
-  appointmentType: z.enum(["presencial", "online"]),
-  date: z.string().min(1),
-  time: z.enum(appointmentTimeSlots),
-});
+import { appointmentSchema } from "@/lib/appointment-schema";
+import { createReserva } from "@/lib/reservas";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const parsed = schema.safeParse(body);
+    const parsed = appointmentSchema.safeParse(body);
 
     if (!parsed.success) {
       return Response.json(
@@ -51,6 +39,8 @@ export async function POST(request: Request) {
     const typeLabel =
       appointmentTypes.find((t) => t.value === data.appointmentType)?.label ||
       data.appointmentType;
+
+    await createReserva(data, shaperName);
 
     const apiKey = process.env.RESEND_API_KEY;
     const to = process.env.RESEND_TO;
