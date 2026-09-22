@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { boardCategories, boards } from "../../../../content/boards";
+import { boardCategories, filterBoards } from "../../../../content/boards";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
-import { BoardSilhouette } from "@/components/surf/BoardSilhouette";
+import { BoardPhoto } from "@/components/surf/BoardPhoto";
 
 export const metadata: Metadata = {
   title: "Boards",
@@ -15,8 +15,7 @@ export default async function BoardsPage({ searchParams }: Props) {
   const { cat } = await searchParams;
   const active = cat && cat !== "all" ? cat : "all";
   const current = boardCategories.find((c) => c.slug === active);
-  const list =
-    active === "all" ? boards : boards.filter((b) => b.categorySlug === active);
+  const list = filterBoards(active);
 
   return (
     <div className="mx-auto max-w-[1400px] px-4 py-10 sm:px-8 sm:py-14">
@@ -53,7 +52,12 @@ export default async function BoardsPage({ searchParams }: Props) {
             href={`/surf/boards/${board.slug}`}
             className="group text-center"
           >
-            <BoardSilhouette className="mx-auto h-40 w-auto text-alaya-black/75 transition group-hover:scale-[1.03] sm:h-48" />
+            <BoardPhoto
+              src={board.image}
+              alt={board.name}
+              className="h-56 transition duration-500 group-hover:scale-[1.03] sm:h-64"
+              sizes="(max-width: 640px) 50vw, 25vw"
+            />
             <p className="mt-4 text-[0.7rem] uppercase tracking-[0.14em]">
               {board.name}
             </p>

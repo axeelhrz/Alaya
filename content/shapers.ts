@@ -65,19 +65,23 @@ export const shapers: Shaper[] = [
   },
   {
     slug: "roberds",
-    name: "Roberds",
+    name: "Roberts",
     role: "Shaper",
-    location: "USA",
-    bio: "Diseños con identidad propia: desde retro fish hasta performance boards. Cada blank se trabaja como un proyecto único junto al rider.",
+    location: "Ventura, USA",
+    bio: "Línea Roberts en Alaya durante su estancia: diamonds, grovelers, fish y mids. Cada modelo se ajusta en cita — dims, glass y setup.",
     image: "/images/shapers/roberds.jpg",
     promodels: [
       {
-        name: "RB Keel",
-        description: "Fish clásico con keels y glide generoso.",
+        name: "Flying Hippie",
+        description: "Retro con respuesta moderna y five-fin.",
       },
       {
-        name: "RB Modern",
-        description: "Híbrido contemporáneo para todo tipo de spot.",
+        name: "Dreamcatcher",
+        description: "All-around de paddle generoso y trim largo.",
+      },
+      {
+        name: "GSD",
+        description: "High performance para beach break potente.",
       },
     ],
   },

@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { boards, getBoard, getRelatedBoards } from "../../../../../content/boards";
+import {
+  boardCitaHref,
+  boards,
+  getBoard,
+  getRelatedBoards,
+} from "../../../../../content/boards";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { BoardPhoto } from "@/components/surf/BoardPhoto";
 import { BoardSilhouette } from "@/components/surf/BoardSilhouette";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -26,8 +32,13 @@ export default async function BoardPage({ params }: Props) {
 
   return (
     <div className="lg:flex">
-      <div className="flex min-h-[42vh] items-center justify-center bg-[#f3f3f3] lg:sticky lg:top-14 lg:h-[calc(100svh-3.5rem)] lg:w-[48%]">
-        <BoardSilhouette className="h-[55vh] w-auto text-alaya-black/70" />
+      <div className="relative flex min-h-[70vh] items-center justify-center bg-alaya-white lg:sticky lg:top-14 lg:h-[calc(100svh-3.5rem)] lg:w-[48%]">
+        <BoardPhoto
+          src={board.image}
+          alt={board.name}
+          className="h-[68vh] w-[min(96%,560px)] lg:h-[82vh]"
+          sizes="(max-width: 1024px) 100vw, 50vw"
+        />
       </div>
 
       <div className="lg:w-[52%]">
@@ -48,18 +59,7 @@ export default async function BoardPage({ params }: Props) {
           <p className="mt-6 text-sm leading-relaxed text-alaya-muted">
             {board.description}
           </p>
-          <Link
-            href={
-              board.shaper === "Alaya"
-                ? "/pide-cita?choice=alaya"
-                : `/pide-cita?shaper=${
-                    board.shaper === "Mark Phipps"
-                      ? "mark-phipps"
-                      : board.shaper.toLowerCase()
-                  }`
-            }
-            className="btn-pill mt-8 inline-flex"
-          >
+          <Link href={boardCitaHref(board)} className="btn-pill mt-8 inline-flex">
             Pide cita
           </Link>
 
@@ -68,8 +68,17 @@ export default async function BoardPage({ params }: Props) {
             <div className="mt-6 grid grid-cols-2 gap-5">
               {related.map((item) => (
                 <Link key={item.slug} href={`/surf/boards/${item.slug}`} className="text-center">
-                  <div className="flex aspect-square items-center justify-center bg-[#f3f3f3]">
-                    <BoardSilhouette className="h-24 w-auto text-alaya-black/70" />
+                  <div className="relative flex aspect-square items-center justify-center bg-alaya-white">
+                    {item.image.includes("/roberts/") ? (
+                      <BoardPhoto
+                        src={item.image}
+                        alt={item.name}
+                        className="h-[78%] w-[78%]"
+                        sizes="160px"
+                      />
+                    ) : (
+                      <BoardSilhouette className="h-24 w-auto text-alaya-black/70" />
+                    )}
                   </div>
                   <p className="mt-3 text-[0.65rem] uppercase tracking-[0.14em]">
                     {item.name}

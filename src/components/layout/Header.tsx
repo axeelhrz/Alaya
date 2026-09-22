@@ -10,6 +10,7 @@ const surfLinks = [
   { href: "/surf/boards?cat=fish", label: "Fish / Twin" },
   { href: "/surf/boards?cat=mid", label: "Mid-Length" },
   { href: "/surf/boards?cat=custom", label: "Custom" },
+  { href: "/surf/boards?cat=roberts", label: "Roberts" },
   { href: "/surf/shapers", label: "Shapers" },
 ];
 

@@ -4,11 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { boards } from "../../../content/boards";
 import { useSubscribe } from "@/components/subscribe/SubscribeContext";
-import { BoardSilhouette } from "@/components/surf/BoardSilhouette";
+import { BoardPhoto } from "@/components/surf/BoardPhoto";
 
 export function HomeSections() {
   const { open } = useSubscribe();
-  const featured = boards.slice(0, 4);
+  const featured = boards.filter((board) => board.shaper === "Roberts").slice(0, 4);
 
   return (
     <>
@@ -20,7 +20,12 @@ export function HomeSections() {
               href={`/surf/boards/${board.slug}`}
               className="group text-center"
             >
-              <BoardSilhouette className="mx-auto h-44 w-auto text-alaya-black/80 transition group-hover:scale-[1.03] sm:h-52" />
+              <BoardPhoto
+                src={board.image}
+                alt={board.name}
+                className="h-52 transition duration-500 group-hover:scale-[1.03] sm:h-60"
+                sizes="(max-width: 640px) 50vw, 25vw"
+              />
               <p className="mt-4 text-[0.7rem] uppercase tracking-[0.16em]">
                 {board.name}
               </p>
