@@ -65,7 +65,7 @@ export const boards: Board[] = [
     dimensions: "5'4\" – 6'2\"",
     description:
       "Groveler de volumen inteligente. Entra fácil en rodilla a hombro y mantiene speed cuando la ola se cierra.",
-    image: "/images/boards/roberts/dream-machine-studio.jpg",
+    image: "/images/boards/roberts/dream-machine-clean.jpg",
     related: ["floaty", "flying-hippie", "wd3"],
   },
   {
