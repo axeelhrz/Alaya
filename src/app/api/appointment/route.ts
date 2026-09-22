@@ -30,7 +30,9 @@ export async function POST(request: Request) {
 
     const shaperName =
       data.choice === "shaper"
-        ? shapers.find((s) => s.slug === data.shaperSlug)?.name || data.shaperSlug
+        ? shapers.find((s) => s.slug === data.shaperSlug)?.name ||
+          data.shaperSlug ||
+          "Shaper"
         : "Alaya";
 
     const choiceLabel =
