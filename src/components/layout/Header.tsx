@@ -43,7 +43,7 @@ export function Header() {
     <>
       <header className="fixed inset-x-0 top-0 z-[60] bg-alaya-black text-white">
         <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between gap-3 px-4 sm:h-16 sm:gap-6 md:px-8">
-          <Logo light />
+          <Logo light onClick={() => setOpen(false)} />
 
           <nav className="hidden min-w-0 items-center gap-4 md:flex lg:gap-8">
             {links.map((link) =>

@@ -16,7 +16,7 @@ export function ArticleLayout({
 }) {
   return (
     <article className="lg:flex">
-      <div className="relative -mt-14 h-[100svh] bg-alaya-surface sm:-mt-16 lg:mt-0 lg:sticky lg:top-14 lg:h-[calc(100svh-3.5rem)] lg:w-[46%] lg:min-h-0">
+      <div className="hero-full relative -mt-14 bg-alaya-surface sm:-mt-16 lg:mt-0 lg:h-[calc(100svh-3.5rem)] lg:min-h-0 lg:sticky lg:top-14 lg:w-[46%]">
         {cover ? (
           <Image
             src={cover}

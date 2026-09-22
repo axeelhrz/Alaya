@@ -8,7 +8,7 @@ export default function ApparelPage() {
 
   return (
     <div className="grid lg:min-h-[calc(100svh-4rem)] lg:grid-cols-2">
-      <div className="relative -mt-14 h-[100svh] bg-alaya-black sm:-mt-16 lg:mt-0 lg:h-auto lg:min-h-full">
+      <div className="hero-full relative -mt-14 bg-alaya-black sm:-mt-16 lg:mt-0 lg:h-auto lg:min-h-full">
         <Image
           src="/images/home/apparel.jpg"
           alt="Apparel Alaya"

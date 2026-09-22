@@ -29,6 +29,15 @@ html {
   overflow-x: clip;
 }
 
+.hero-full {
+  height: 100vh;
+  height: 100dvh;
+  height: var(--hero-h, 100dvh);
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: var(--hero-h, 100dvh);
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

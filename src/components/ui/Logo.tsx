@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function FlameMark({ className = "h-7 w-7" }: { className?: string }) {
   return (
@@ -17,11 +20,15 @@ export function Logo({
   href = "/",
   light = false,
   withWord = false,
+  onClick,
 }: {
   href?: string;
   light?: boolean;
   withWord?: boolean;
+  onClick?: () => void;
 }) {
+  const pathname = usePathname();
+
   return (
     <Link
       href={href}
@@ -29,6 +36,16 @@ export function Logo({
         light ? "text-white" : "text-alaya-black"
       }`}
       aria-label="Alaya Division"
+      onClick={(event) => {
+        onClick?.();
+        if (href !== "/") return;
+        if (pathname !== "/") return;
+        event.preventDefault();
+        const reduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+      }}
     >
       <FlameMark className="h-6 w-6 sm:h-7 sm:w-7" />
       {withWord ? (

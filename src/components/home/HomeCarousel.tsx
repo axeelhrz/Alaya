@@ -66,7 +66,7 @@ export function HomeCarousel() {
   }, []);
 
   return (
-    <section className="relative isolate -mt-14 h-[100svh] w-full overflow-hidden bg-alaya-black text-white sm:-mt-16">
+    <section className="hero-full relative isolate -mt-14 w-full shrink-0 overflow-hidden bg-alaya-black text-white sm:-mt-16">
       {slides.map((item, i) => (
         <div
           key={item.id}
