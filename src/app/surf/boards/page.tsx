@@ -9,13 +9,26 @@ export const metadata: Metadata = {
   description: "Catálogo de tablas Alaya: promodels y custom.",
 };
 
-type Props = { searchParams: Promise<{ cat?: string }> };
+const PAGE_SIZE = 16;
+
+type Props = { searchParams: Promise<{ cat?: string; page?: string }> };
 
 export default async function BoardsPage({ searchParams }: Props) {
-  const { cat } = await searchParams;
+  const { cat, page: pageParam } = await searchParams;
   const active = cat && cat !== "all" ? cat : "all";
   const current = boardCategories.find((c) => c.slug === active);
   const list = filterBoards(active);
+  const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+  const page = Math.min(totalPages, Math.max(1, Number(pageParam) || 1));
+  const shown = list.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  const hrefFor = (nextPage: number) => {
+    const params = new URLSearchParams();
+    if (active !== "all") params.set("cat", active);
+    if (nextPage > 1) params.set("page", String(nextPage));
+    const q = params.toString();
+    return q ? `/surf/boards?${q}` : "/surf/boards";
+  };
 
   return (
     <div className="mx-auto max-w-[1400px] px-4 py-10 sm:px-8 sm:py-14">
@@ -45,8 +58,8 @@ export default async function BoardsPage({ searchParams }: Props) {
         ))}
       </nav>
 
-      <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-4">
-        {list.map((board) => (
+      <div className="mt-14 grid grid-cols-2 gap-x-8 gap-y-16 sm:grid-cols-3 lg:grid-cols-4">
+        {shown.map((board) => (
           <Link
             key={board.slug}
             href={`/surf/boards/${board.slug}`}
@@ -55,23 +68,41 @@ export default async function BoardsPage({ searchParams }: Props) {
             <BoardPhoto
               src={board.image}
               alt={board.name}
-              className="h-56 transition duration-500 group-hover:scale-[1.03] sm:h-64"
+              className="h-56 transition duration-500 group-hover:scale-[1.03] sm:h-72"
               sizes="(max-width: 640px) 50vw, 25vw"
             />
-            <p className="mt-4 text-[0.7rem] uppercase tracking-[0.14em]">
+            <p className="mt-5 text-[0.7rem] uppercase tracking-[0.14em]">
               {board.name}
             </p>
             <p className="mt-1 text-[0.65rem] text-alaya-muted">
               {board.shaper} · {board.dimensions}
             </p>
-            {board.wave && (
-              <p className="mt-1 text-[0.6rem] leading-snug text-alaya-muted/80">
-                {board.wave}
-              </p>
-            )}
           </Link>
         ))}
       </div>
+
+      {totalPages > 1 ? (
+        <nav
+          className="mt-16 flex items-center justify-center gap-4 text-sm uppercase tracking-[0.16em]"
+          aria-label="Paginación"
+        >
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+            <Link
+              key={n}
+              href={hrefFor(n)}
+              className={n === page ? "text-alaya-black" : "text-alaya-muted"}
+              aria-current={n === page ? "page" : undefined}
+            >
+              {n}
+            </Link>
+          ))}
+          {page < totalPages ? (
+            <Link href={hrefFor(page + 1)} aria-label="Siguiente">
+              →
+            </Link>
+          ) : null}
+        </nav>
+      ) : null}
     </div>
   );
 }

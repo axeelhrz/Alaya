@@ -18,10 +18,11 @@
   --color-alaya-muted: var(--alaya-muted);
   --color-alaya-border: var(--alaya-border);
   --color-alaya-surface: var(--alaya-surface);
-  --font-display: var(--font-bebas);
-  --font-nav: var(--font-archivo);
-  --font-serif: var(--font-libre);
-  --font-sans: var(--font-archivo);
+  --font-display: var(--font-gottak);
+  --font-nav: var(--font-myriad);
+  --font-serif: var(--font-trebuchet);
+  --font-sans: var(--font-myriad);
+  --font-roboto: var(--font-roboto);
 }
 
 html {
@@ -49,7 +50,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist), var(--font-archivo), system-ui, sans-serif;
+  font-family: var(--font-myriad), var(--font-roboto), system-ui, sans-serif;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
@@ -60,21 +61,30 @@ body {
 }
 
 .font-display {
-  font-family: var(--font-bebas), sans-serif;
+  font-family: var(--font-gottak), var(--font-myriad), sans-serif;
   letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.font-member {
+  font-family: var(--font-member), var(--font-gottak), cursive;
 }
 
 .font-nav {
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-myriad), sans-serif;
 }
 
 .font-serif {
-  font-family: var(--font-libre), Georgia, serif;
+  font-family: var(--font-trebuchet), "Trebuchet MS", sans-serif;
+}
+
+.font-roboto {
+  font-family: var(--font-roboto), sans-serif;
 }
 
 .nav-link {
   position: relative;
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-myriad), sans-serif;
   font-weight: 600;
   font-size: 0.8125rem;
   letter-spacing: 0.12em;
@@ -87,7 +97,7 @@ body {
   justify-content: center;
   background: var(--alaya-black);
   color: var(--alaya-white);
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-myriad), sans-serif;
   font-weight: 600;
   font-size: 0.7rem;
   letter-spacing: 0.14em;
@@ -117,7 +127,7 @@ body {
   justify-content: center;
   background: transparent;
   color: var(--alaya-white);
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-myriad), sans-serif;
   font-weight: 600;
   font-size: 0.7rem;
   letter-spacing: 0.14em;
@@ -147,7 +157,7 @@ body {
   justify-content: center;
   background: transparent;
   color: var(--alaya-black);
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-myriad), sans-serif;
   font-weight: 600;
   font-size: 0.7rem;
   letter-spacing: 0.14em;
@@ -172,7 +182,7 @@ body {
 }
 
 .section-label {
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-myriad), sans-serif;
   font-weight: 600;
   font-size: 0.6875rem;
   letter-spacing: 0.18em;
@@ -186,7 +196,7 @@ body {
   border-radius: 0;
   background: var(--alaya-white);
   padding: 0.875rem 1rem;
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-myriad), sans-serif;
   font-size: 0.9375rem;
   outline: none;
   transition: border-color 0.15s ease;
@@ -203,17 +213,32 @@ body {
 .label-field {
   display: block;
   margin-bottom: 0.5rem;
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-myriad), sans-serif;
   font-weight: 600;
   font-size: 0.6875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
+.surf-mega {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.site-header.is-surf-open .surf-mega,
+.site-header:has(.surf-trigger:hover) .surf-mega,
+.site-header:has(.surf-mega:hover) .surf-mega {
+  max-height: 20rem;
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .header-link {
   position: relative;
+  font-family: var(--font-myriad), sans-serif;
   font-size: 0.68rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   transition:
@@ -299,6 +324,7 @@ body {
   border-radius: 0;
   background: #ececec;
   padding: 1.15rem 1.25rem;
+  font-family: var(--font-roboto), var(--font-myriad), sans-serif;
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;

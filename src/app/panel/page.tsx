@@ -27,9 +27,9 @@ export default async function PanelPage() {
     return (
       <div className="flex min-h-svh items-center justify-center bg-alaya-white px-6 text-center">
         <p className="max-w-sm text-sm leading-relaxed text-alaya-muted">
-          Las reservas se guardan en Vercel Blob, no en este equipo. Falta{" "}
+          Las reservas se guardan en Vercel Blob. Falta{" "}
           <span className="text-alaya-black">BLOB_READ_WRITE_TOKEN</span> en
-          producción.
+          este entorno.
         </p>
       </div>
     );

@@ -12,7 +12,7 @@ export function HomeSections() {
 
   return (
     <>
-      <section className="mx-auto max-w-[1400px] px-4 py-16 sm:px-8 sm:py-20">
+      <section className="mx-auto max-w-[1400px] px-4 py-10 sm:px-8 sm:py-14">
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 sm:gap-10">
           {featured.map((board) => (
             <Link

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const items = [
   { href: "/surf/boards", label: "Boards", text: "Todos los modelos y filtros." },
-  { href: "/surf/shapers", label: "Shapers", text: "El team y sus promodels." },
+  { href: "/surf/shapers", label: "Shapers", text: "Promodels y líneas de cada shaper." },
   { href: "/pide-cita", label: "Pide Cita", text: "Empieza tu tabla." },
 ];
 

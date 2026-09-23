@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
+import { useMemo, useState } from "react";
 import { BoardSilhouette } from "@/components/surf/BoardSilhouette";
+import { robertsPhotoCandidates } from "@/lib/robertsPhoto";
 
 export function BoardPhoto({
   src,
@@ -12,19 +16,33 @@ export function BoardPhoto({
   className?: string;
   sizes?: string;
 }) {
-  const hasPhoto = Boolean(src?.includes("/roberts/"));
+  const candidates = useMemo(
+    () => (src ? robertsPhotoCandidates(src) : []),
+    [src],
+  );
+  const [index, setIndex] = useState(0);
+  const [seen, setSeen] = useState(src);
+  if (seen !== src) {
+    setSeen(src);
+    setIndex(0);
+  }
+  const current = candidates[Math.min(index, Math.max(candidates.length - 1, 0))];
 
   return (
-    <div className={`relative mx-auto w-full ${className}`}>
-      {hasPhoto && src ? (
+    <div className={`relative mx-auto w-full bg-transparent ${className}`}>
+      {current ? (
         <Image
-          src={src}
+          key={current}
+          src={current}
           alt={alt}
           fill
           unoptimized
           quality={95}
-          className="object-contain object-center"
+          className="bg-transparent object-contain object-center"
           sizes={sizes}
+          onError={() => {
+            setIndex((i) => (i + 1 < candidates.length ? i + 1 : i));
+          }}
         />
       ) : (
         <BoardSilhouette className="mx-auto h-full w-auto text-alaya-black/75" />

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { shapers } from "../../../../content/shapers";
 
 export const metadata: Metadata = {
-  title: "Team / Shapers",
+  title: "Shapers",
   description:
     "Shapers Alaya: Patterson, Arakawa, Mark Phipps, Roberds y Dylan.",
 };

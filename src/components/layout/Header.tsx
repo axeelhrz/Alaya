@@ -3,23 +3,60 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/ui/Logo";
+import { boardCategories } from "../../../content/boards";
+import { shapers } from "../../../content/shapers";
 
-const surfLinks = [
-  { href: "/surf/boards", label: "Boards" },
-  { href: "/surf/boards?cat=shortboard", label: "Shortboard" },
-  { href: "/surf/boards?cat=fish", label: "Fish / Twin" },
-  { href: "/surf/boards?cat=mid", label: "Mid-Length" },
-  { href: "/surf/boards?cat=custom", label: "Custom" },
-  { href: "/surf/boards?cat=roberts", label: "Roberts" },
-  { href: "/surf/shapers", label: "Shapers" },
+const boardLinks = boardCategories
+  .filter((c) => c.slug !== "roberts")
+  .map((c) => ({
+    href: c.slug === "all" ? "/surf/boards" : `/surf/boards?cat=${c.slug}`,
+    label: c.label,
+  }));
+
+const shaperLinks = shapers.map((s) => ({
+  href: `/surf/shapers/${s.slug}`,
+  label: s.name,
+}));
+
+const citaLinks = [
+  { href: "/pide-cita?shaper=roberds", label: "Roberts" },
+  { href: "/pide-cita?choice=alaya", label: "Alaya Division" },
+];
+
+const surfColumns = [
+  { title: "Boards", href: "/surf/boards", links: boardLinks },
+  { title: "Shapers", href: "/surf/shapers", links: shaperLinks },
+  { title: "Pide cita", href: "/pide-cita", links: citaLinks },
 ];
 
 const links = [
   { href: "/new", label: "New" },
-  { href: "/surf", label: "Surf", children: surfLinks },
+  { href: "/surf", label: "Surf", mega: true },
   { href: "/pide-cita", label: "Pide Cita" },
-  { href: "/surf/shapers", label: "Team" },
+  { href: "/team", label: "Team" },
 ];
+
+function MegaLink({
+  href,
+  children,
+  onClick,
+  className = "",
+}: {
+  href: string;
+  children: React.ReactNode;
+  onClick?: () => void;
+  className?: string;
+}) {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className={`block text-[0.62rem] uppercase tracking-[0.16em] text-white/70 transition hover:text-white ${className}`}
+    >
+      {children}
+    </Link>
+  );
+}
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -41,48 +78,32 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-[60] bg-alaya-black text-white">
+      <header
+        className={`site-header fixed inset-x-0 top-0 z-[60] bg-alaya-black text-white ${
+          surfOpen ? "is-surf-open" : ""
+        }`}
+        onMouseLeave={() => setSurfOpen(false)}
+      >
         <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between gap-3 px-4 sm:h-16 sm:gap-6 md:px-8">
           <Logo light onClick={() => setOpen(false)} />
 
           <nav className="hidden min-w-0 items-center gap-4 md:flex lg:gap-8">
             {links.map((link) =>
-              link.children ? (
-                <div
+              link.mega ? (
+                <Link
                   key={link.href}
-                  className="relative shrink-0"
+                  href={link.href}
+                  className="surf-trigger header-link shrink-0"
                   onMouseEnter={() => setSurfOpen(true)}
-                  onMouseLeave={() => setSurfOpen(false)}
                 >
-                  <Link
-                    href={link.href}
-                    className="header-link inline-flex items-center gap-1"
-                  >
-                    {link.label}
-                  </Link>
-                  <div
-                    className={`absolute top-full left-1/2 z-50 w-48 -translate-x-1/2 bg-alaya-black py-3 transition-all duration-300 ${
-                      surfOpen
-                        ? "pointer-events-auto translate-y-0 opacity-100"
-                        : "pointer-events-none -translate-y-1 opacity-0"
-                    }`}
-                  >
-                    {link.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="header-link block px-5 py-2 text-white/80 hover:text-white"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
+                  {link.label}
+                </Link>
               ) : (
                 <Link
                   key={link.href}
                   href={link.href}
                   className="header-link shrink-0"
+                  onMouseEnter={() => setSurfOpen(false)}
                 >
                   {link.label}
                 </Link>
@@ -103,6 +124,33 @@ export function Header() {
             {open ? "Cerrar" : "Menú"}
           </button>
         </div>
+
+        <div
+          className="surf-mega hidden overflow-hidden transition-[max-height,opacity] duration-300 md:block"
+        >
+          <nav
+            aria-label="Surf"
+            className="mx-auto grid max-w-[720px] grid-cols-3 gap-10 px-4 pb-10 pt-2 sm:px-8"
+          >
+            {surfColumns.map((col) => (
+              <div key={col.title}>
+                <Link
+                  href={col.href}
+                  className="mb-3 block text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-white"
+                >
+                  {col.title}
+                </Link>
+                <ul className="space-y-2">
+                  {col.links.map((item) => (
+                    <li key={item.href + item.label}>
+                      <MegaLink href={item.href}>{item.label}</MegaLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
+        </div>
       </header>
       <div className="h-14 sm:h-16" aria-hidden />
 
@@ -117,7 +165,7 @@ export function Header() {
             const index = mobileIndex++;
             return (
               <div key={link.href}>
-                {link.children ? (
+                {link.mega ? (
                   <>
                     <button
                       type="button"
@@ -133,23 +181,34 @@ export function Header() {
                       </span>
                     </button>
                     {mobileSurfOpen
-                      ? link.children.map((child) => {
-                          const childIndex = mobileIndex++;
-                          return (
-                            <Link
-                              key={child.href}
-                              href={child.href}
-                              tabIndex={open ? 0 : -1}
-                              className="mobile-nav-link header-link block border-b border-white/10 py-3 pl-4 text-white/70"
-                              style={
-                                { "--i": childIndex } as React.CSSProperties
-                              }
+                      ? surfColumns.map((col) => (
+                          <div key={col.title} className="border-b border-white/10 py-3 pl-1">
+                            <MegaLink
+                              href={col.href}
                               onClick={() => setOpen(false)}
+                              className="mb-2 text-white"
                             >
-                              {child.label}
-                            </Link>
-                          );
-                        })
+                              {col.title}
+                            </MegaLink>
+                            {col.links.map((child) => {
+                              const childIndex = mobileIndex++;
+                              return (
+                                <Link
+                                  key={child.href + child.label}
+                                  href={child.href}
+                                  tabIndex={open ? 0 : -1}
+                                  className="mobile-nav-link header-link block py-2 pl-3 text-white/70"
+                                  style={
+                                    { "--i": childIndex } as React.CSSProperties
+                                  }
+                                  onClick={() => setOpen(false)}
+                                >
+                                  {child.label}
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        ))
                       : null}
                   </>
                 ) : (

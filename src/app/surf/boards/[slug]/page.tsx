@@ -9,7 +9,7 @@ import {
 } from "../../../../../content/boards";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { BoardPhoto } from "@/components/surf/BoardPhoto";
-import { BoardSilhouette } from "@/components/surf/BoardSilhouette";
+import { BoardGallery } from "@/components/surf/BoardGallery";
 import { BoardSpecs } from "@/components/surf/BoardSpecs";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -34,11 +34,11 @@ export default async function BoardPage({ params }: Props) {
   return (
     <div className="lg:flex">
       <div className="relative flex min-h-[70vh] items-center justify-center bg-alaya-white lg:sticky lg:top-14 lg:h-[calc(100svh-3.5rem)] lg:w-[48%]">
-        <BoardPhoto
-          src={board.image}
-          alt={board.name}
-          className="h-[68vh] w-[min(96%,560px)] lg:h-[82vh]"
-          sizes="(max-width: 1024px) 100vw, 50vw"
+        <BoardGallery
+          name={board.name}
+          image={board.image}
+          back={board.back}
+          composite={board.composite}
         />
       </div>
 
@@ -62,7 +62,7 @@ export default async function BoardPage({ params }: Props) {
             {board.description}
           </p>
           <BoardSpecs board={board} />
-          <Link href={boardCitaHref(board)} className="btn-pill mt-10 inline-flex">
+          <Link href={boardCitaHref(board)} className="btn-pill mt-10 inline-flex min-w-40">
             Pide cita
           </Link>
 
@@ -72,16 +72,12 @@ export default async function BoardPage({ params }: Props) {
               {related.map((item) => (
                 <Link key={item.slug} href={`/surf/boards/${item.slug}`} className="text-center">
                   <div className="relative flex aspect-square items-center justify-center bg-alaya-white">
-                    {item.image.includes("/roberts/") ? (
-                      <BoardPhoto
-                        src={item.image}
-                        alt={item.name}
-                        className="h-[78%] w-[78%]"
-                        sizes="160px"
-                      />
-                    ) : (
-                      <BoardSilhouette className="h-24 w-auto text-alaya-black/70" />
-                    )}
+                    <BoardPhoto
+                      src={item.image}
+                      alt={item.name}
+                      className="h-[78%] w-[78%]"
+                      sizes="160px"
+                    />
                   </div>
                   <p className="mt-3 text-[0.65rem] uppercase tracking-[0.14em]">
                     {item.name}

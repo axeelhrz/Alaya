@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { shapers } from "../../content/shapers";
 import { boards } from "../../content/boards";
+import { team } from "../../content/team";
 import { getAllPosts } from "@/lib/posts";
 
 const base = process.env.NEXT_PUBLIC_SITE_URL || "https://alayadivision.com";
@@ -13,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/surf",
     "/surf/boards",
     "/surf/shapers",
+    "/team",
     "/surf/encuentra-tu-tabla",
     "/pide-cita",
     "/built-on-connection",
@@ -34,6 +36,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const teamRoutes = team.map((m) => ({
+    url: `${base}/team/${m.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   const boardRoutes = boards.map((b) => ({
     url: `${base}/surf/boards/${b.slug}`,
     lastModified: new Date(),
@@ -48,5 +57,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...staticRoutes, ...shaperRoutes, ...boardRoutes, ...postRoutes];
+  return [
+    ...staticRoutes,
+    ...shaperRoutes,
+    ...teamRoutes,
+    ...boardRoutes,
+    ...postRoutes,
+  ];
 }

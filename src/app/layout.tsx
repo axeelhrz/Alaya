@@ -1,23 +1,46 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo_Narrow, Bebas_Neue, Geist } from "next/font/google";
+import localFont from "next/font/local";
+import { New_Rocker, Roboto } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 
-const geist = Geist({
-  variable: "--font-geist",
-  subsets: ["latin"],
+const gottak = localFont({
+  src: "../fonts/Gottak-SemiBold.woff2",
+  variable: "--font-gottak",
+  weight: "600",
+  display: "swap",
 });
 
-const archivo = Archivo_Narrow({
-  variable: "--font-archivo",
+const myriad = localFont({
+  src: [
+    { path: "../fonts/MyriadPro-Light.otf", weight: "300", style: "normal" },
+    { path: "../fonts/MyriadPro-Regular.otf", weight: "400", style: "normal" },
+    { path: "../fonts/MyriadPro-Semibold.otf", weight: "600", style: "normal" },
+    { path: "../fonts/MyriadPro-Bold.otf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-myriad",
+  display: "swap",
+});
+
+const trebuchet = localFont({
+  src: [
+    { path: "../fonts/TrebuchetMS.ttf", weight: "400", style: "normal" },
+    { path: "../fonts/TrebuchetMS-Bold.ttf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-trebuchet",
+  display: "swap",
+});
+
+const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  variable: "--font-roboto",
 });
 
-const bebas = Bebas_Neue({
-  variable: "--font-bebas",
+const member = New_Rocker({
+  variable: "--font-member",
   subsets: ["latin"],
   weight: "400",
 });
@@ -59,7 +82,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${geist.variable} ${archivo.variable} ${bebas.variable} antialiased`}
+      className={`${gottak.variable} ${myriad.variable} ${trebuchet.variable} ${roboto.variable} ${member.variable} antialiased`}
     >
       <body className="flex min-h-svh flex-col overflow-x-clip bg-alaya-white text-alaya-black">
         <Providers>
