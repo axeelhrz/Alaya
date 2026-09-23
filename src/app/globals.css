@@ -335,6 +335,12 @@ body {
   background: #e4e4e4;
 }
 
+.input-block.is-plain {
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
 .page-kicker {
   font-size: 0.65rem;
   font-weight: 500;

@@ -46,9 +46,7 @@ export function SelectMenu({
 
   return (
     <div ref={rootRef} className="relative">
-      {name ? (
-        <input type="hidden" name={name} value={value} required={required} />
-      ) : null}
+      {name ? <input type="hidden" name={name} value={value} /> : null}
       <button
         type="button"
         className={`input-block flex w-full items-center justify-between gap-3 text-left ${

@@ -13,8 +13,9 @@ export async function POST(request: Request) {
     const parsed = appointmentSchema.safeParse(body);
 
     if (!parsed.success) {
+      const issue = parsed.error.issues[0];
       return Response.json(
-        { error: "Revisa los campos del formulario." },
+        { error: issue?.message || "Revisa los campos del formulario." },
         { status: 400 },
       );
     }

@@ -72,6 +72,16 @@ export function AppointmentForm() {
       setMessage("Completa hora, shaper y tipo de cita.");
       return;
     }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+      setStatus("error");
+      setMessage("El e-mail no es válido.");
+      return;
+    }
+    if (form.boardInfo.trim().length < 10) {
+      setStatus("error");
+      setMessage("Cuéntanos un poco más sobre la tabla.");
+      return;
+    }
     setStatus("loading");
     setMessage("");
     try {
@@ -80,6 +90,10 @@ export function AppointmentForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
+          name: form.name.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          boardInfo: form.boardInfo.trim(),
           choice: form.shaperSlug ? "shaper" : form.choice || "alaya",
         }),
       });
@@ -95,9 +109,10 @@ export function AppointmentForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="mx-auto max-w-3xl space-y-4">
+    <form noValidate onSubmit={onSubmit} className="mx-auto max-w-3xl space-y-4">
       <input
         required
+        autoComplete="name"
         className="input-block"
         placeholder="Nombre y apellidos"
         value={form.name}
@@ -108,7 +123,11 @@ export function AppointmentForm() {
         <input
           type="email"
           required
-          className="input-block"
+          autoComplete="email"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck={false}
+          className="input-block is-plain"
           placeholder="E-mail"
           value={form.email}
           onChange={(e) => update("email", e.target.value)}
@@ -117,7 +136,8 @@ export function AppointmentForm() {
         <input
           type="tel"
           required
-          className="input-block"
+          autoComplete="tel"
+          className="input-block is-plain"
           placeholder="Teléfono"
           value={form.phone}
           onChange={(e) => update("phone", e.target.value)}
@@ -179,7 +199,7 @@ export function AppointmentForm() {
       <textarea
         required
         rows={6}
-        className="input-block resize-y normal-case tracking-normal"
+        className="input-block is-plain resize-y"
         placeholder="Comentarios / información inicial sobre la tabla"
         value={form.boardInfo}
         onChange={(e) => update("boardInfo", e.target.value)}

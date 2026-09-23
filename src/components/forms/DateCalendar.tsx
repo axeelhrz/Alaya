@@ -136,7 +136,7 @@ export function DateCalendar({
 
   return (
     <div ref={rootRef} className="relative">
-      <input type="hidden" name={name} value={value} required={required} />
+      <input type="hidden" name={name} value={value} />
       <button
         type="button"
         className={`input-block w-full text-left ${value ? "text-alaya-black" : "text-alaya-muted"}`}
