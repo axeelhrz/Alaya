@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
+import { LocaleProvider } from "@/components/i18n/LocaleContext";
+import type { Locale } from "@/lib/i18n";
 import { SubscribeProvider } from "@/components/subscribe/SubscribeContext";
 import { SubscribeModal } from "@/components/subscribe/SubscribeModal";
 
@@ -27,12 +29,20 @@ function ViewportHeight() {
   return null;
 }
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({
+  children,
+  initialLocale,
+}: {
+  children: React.ReactNode;
+  initialLocale?: Locale;
+}) {
   return (
-    <SubscribeProvider>
-      <ViewportHeight />
-      {children}
-      <SubscribeModal />
-    </SubscribeProvider>
+    <LocaleProvider initialLocale={initialLocale}>
+      <SubscribeProvider>
+        <ViewportHeight />
+        {children}
+        <SubscribeModal />
+      </SubscribeProvider>
+    </LocaleProvider>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLocale } from "@/components/i18n/LocaleContext";
 import { BoardPhoto } from "@/components/surf/BoardPhoto";
 
 export function BoardGallery({
@@ -23,6 +24,7 @@ export function BoardGallery({
         : image;
   const wide = view === "composite" && Boolean(composite);
   const hasViews = Boolean(back || composite);
+  const { t } = useLocale();
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center px-4">
@@ -43,7 +45,7 @@ export function BoardGallery({
             onClick={() => setView("front")}
             className={view === "front" ? "text-alaya-black" : "hover:text-alaya-black"}
           >
-            Frontal
+            {t.boards.front}
           </button>
           {back ? (
             <button
@@ -51,7 +53,7 @@ export function BoardGallery({
               onClick={() => setView("back")}
               className={view === "back" ? "text-alaya-black" : "hover:text-alaya-black"}
             >
-              Trasera
+              {t.boards.back}
             </button>
           ) : null}
           {composite ? (
@@ -60,7 +62,7 @@ export function BoardGallery({
               onClick={() => setView("composite")}
               className={view === "composite" ? "text-alaya-black" : "hover:text-alaya-black"}
             >
-              Compuesta
+              {t.boards.composite}
             </button>
           ) : null}
         </div>

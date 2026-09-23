@@ -1,22 +1,43 @@
 "use client";
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useLocale } from "@/components/i18n/LocaleContext";
 
-const WEEKDAYS = ["L", "M", "X", "J", "V", "S", "D"];
-const MONTHS = [
-  "Enero",
-  "Febrero",
-  "Marzo",
-  "Abril",
-  "Mayo",
-  "Junio",
-  "Julio",
-  "Agosto",
-  "Septiembre",
-  "Octubre",
-  "Noviembre",
-  "Diciembre",
-];
+const WEEKDAYS = {
+  en: ["M", "T", "W", "T", "F", "S", "S"],
+  es: ["L", "M", "X", "J", "V", "S", "D"],
+} as const;
+
+const MONTHS = {
+  en: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ],
+  es: [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ],
+} as const;
 
 function pad(n: number) {
   return String(n).padStart(2, "0");
@@ -36,9 +57,9 @@ function parseKey(key: string) {
   return { year, month: month - 1, day };
 }
 
-function formatLabel(key: string) {
+function formatLabel(key: string, months: readonly string[]) {
   const { year, month, day } = parseKey(key);
-  return `${pad(day)} ${MONTHS[month].slice(0, 3)} ${year}`;
+  return `${pad(day)} ${months[month].slice(0, 3)} ${year}`;
 }
 
 function monthCells(year: number, month: number) {
@@ -91,6 +112,9 @@ export function DateCalendar({
   min = todayKey(),
   name = "date",
 }: Props) {
+  const { locale, t } = useLocale();
+  const months = MONTHS[locale];
+  const weekdays = WEEKDAYS[locale];
   const labelId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
@@ -145,13 +169,13 @@ export function DateCalendar({
         aria-controls={labelId}
         onClick={() => setOpen((prev) => !prev)}
       >
-        {value ? formatLabel(value) : "Fecha"}
+        {value ? formatLabel(value, months) : t.cita.date}
       </button>
       {open ? (
         <div
           id={labelId}
           role="dialog"
-          aria-label="Calendario"
+          aria-label={t.cita.date}
           className="absolute left-0 right-0 z-30 mt-1 border border-alaya-black bg-alaya-white p-4 shadow-none sm:p-5"
         >
           <div className="mb-4 flex items-center justify-between">
@@ -165,7 +189,7 @@ export function DateCalendar({
               ←
             </button>
             <p className="text-[0.65rem] uppercase tracking-[0.2em]">
-              {MONTHS[view.month]} {view.year}
+              {months[view.month]} {view.year}
             </p>
             <button
               type="button"
@@ -177,9 +201,9 @@ export function DateCalendar({
             </button>
           </div>
           <div className="grid grid-cols-7 gap-y-1 text-center">
-            {WEEKDAYS.map((day) => (
+            {weekdays.map((day, i) => (
               <span
-                key={day}
+                key={`${day}-${i}`}
                 className="pb-2 text-[0.58rem] uppercase tracking-[0.16em] text-alaya-muted"
               >
                 {day}

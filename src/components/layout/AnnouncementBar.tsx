@@ -1,14 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useLocale } from "@/components/i18n/LocaleContext";
 
 export function AnnouncementBar() {
-  const items = [
-    "Lanzamiento 25·09",
-    "Tienda de tablas",
-    "Casa de shapers",
-    "Pide cita en fábrica u online",
-    "Encuentra tu tabla",
-    "Built on Connection",
-  ];
+  const { t } = useLocale();
+  const items = [...t.announce.items];
   const loop = [...items, ...items];
 
   return (
@@ -30,7 +27,7 @@ export function AnnouncementBar() {
         href="/pide-cita"
         className="absolute top-0 right-0 z-10 hidden h-full items-center bg-gradient-to-l from-alaya-black via-alaya-black to-transparent pl-8 pr-4 text-[0.65rem] font-semibold uppercase tracking-[0.16em] underline-offset-2 hover:underline sm:flex"
       >
-        Pide cita
+        {t.announce.book}
       </Link>
     </div>
   );

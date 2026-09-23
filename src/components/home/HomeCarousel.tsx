@@ -3,45 +3,30 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useLocale } from "@/components/i18n/LocaleContext";
 import { useSubscribe } from "@/components/subscribe/SubscribeContext";
 
-type Slide = {
-  id: string;
-  title: string;
-  line: string;
-  text: string;
-  image: string;
-  imageAlt: string;
-  cta: { label: string; href?: string; subscribe?: "apparel" | "accessories" };
-};
-
-const slides: Slide[] = [
+const slideMeta = [
   {
     id: "roberts",
-    title: "Roberts",
-    line: "está aquí",
-    text: "Tu oportunidad para crear tu tabla a medida con uno de los mejores shapers del mundo.",
     image: "/images/home/surf.jpg",
-    imageAlt: "Ola al atardecer",
-    cta: { label: "Pide cita", href: "/pide-cita?shaper=roberds" },
+    imageAlt: "Roberts",
+    href: "/pide-cita?shaper=roberds" as const,
+    subscribe: undefined as undefined | "apparel" | "accessories",
   },
   {
     id: "apparel",
-    title: "Nueva",
-    line: "colección textil",
-    text: "Dentro de poco lanzamos nuestra primera colección. Suscríbete y te avisamos el día del drop.",
     image: "/images/home/apparel.jpg",
-    imageAlt: "Colección textil Alaya",
-    cta: { label: "Suscríbete", subscribe: "apparel" },
+    imageAlt: "Alaya apparel",
+    href: undefined,
+    subscribe: "apparel" as const,
   },
   {
     id: "accessories",
-    title: "Accesorios",
-    line: "next up",
-    text: "Pads, grips y el resto de la línea. Deja tu email y sé el primero en el line-up.",
     image: "/images/home/hero.jpg",
-    imageAlt: "Línea de costa",
-    cta: { label: "Suscríbete", subscribe: "accessories" },
+    imageAlt: "Alaya accessories",
+    href: undefined,
+    subscribe: "accessories" as const,
   },
 ];
 
@@ -51,6 +36,30 @@ export function HomeCarousel() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const { open } = useSubscribe();
+  const { t } = useLocale();
+  const slides = [
+    {
+      ...slideMeta[0],
+      title: t.home.robertsTitle,
+      line: t.home.robertsLine,
+      text: t.home.robertsText,
+      label: t.home.robertsCta,
+    },
+    {
+      ...slideMeta[1],
+      title: t.home.apparelTitle,
+      line: t.home.apparelLine,
+      text: t.home.apparelText,
+      label: t.home.subscribe,
+    },
+    {
+      ...slideMeta[2],
+      title: t.home.accessoriesTitle,
+      line: t.home.accessoriesLine,
+      text: t.home.accessoriesText,
+      label: t.home.subscribe,
+    },
+  ];
   const slide = slides[index];
   const timer = useRef<number>(0);
 
@@ -60,7 +69,7 @@ export function HomeCarousel() {
     if (reduced) return;
     const start = window.setTimeout(() => {
       timer.current = window.setInterval(() => {
-        setIndex((i) => (i + 1) % slides.length);
+        setIndex((i) => (i + 1) % slideMeta.length);
       }, INTERVAL);
     }, 8000);
     return () => {
@@ -101,17 +110,17 @@ export function HomeCarousel() {
           {slide.text}
         </p>
         <div className="mt-8">
-          {slide.cta.subscribe ? (
+              {slide.subscribe ? (
             <button
               type="button"
               className="btn-ghost text-white"
-              onClick={() => open(slide.cta.subscribe)}
+              onClick={() => open(slide.subscribe)}
             >
-              {slide.cta.label}
+              {slide.label}
             </button>
           ) : (
-            <Link href={slide.cta.href || "/"} className="btn-ghost text-white">
-              {slide.cta.label}
+            <Link href={slide.href || "/"} className="btn-ghost text-white">
+              {slide.label}
             </Link>
           )}
         </div>
@@ -121,7 +130,7 @@ export function HomeCarousel() {
             <button
               key={item.id}
               type="button"
-              aria-label={`Ir a ${item.title}`}
+              aria-label={item.title}
               onClick={() => {
                 setPaused(true);
                 setIndex(i);

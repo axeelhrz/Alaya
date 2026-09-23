@@ -31,8 +31,10 @@ export default async function NewPostPage({ params }: Props) {
   return (
     <ArticleLayout
       title={post.meta.title}
+      titleEn={post.meta.titleEn}
       cover={post.meta.cover}
       content={post.content}
+      contentEn={post.contentEn}
       related={related}
     />
   );

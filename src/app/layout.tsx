@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { New_Rocker, Roboto } from "next/font/google";
+import { cookies } from "next/headers";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Providers } from "@/components/providers";
+import { defaultLocale, isLocale, LOCALE_STORAGE_KEY } from "@/lib/i18n";
 import "./globals.css";
 
 const gottak = localFont({
@@ -74,18 +76,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookie = (await cookies()).get(LOCALE_STORAGE_KEY)?.value ?? null;
+  const initialLocale = isLocale(cookie) ? cookie : defaultLocale;
+
   return (
     <html
-      lang="es"
+      lang={initialLocale}
       className={`${gottak.variable} ${myriad.variable} ${trebuchet.variable} ${roboto.variable} ${member.variable} antialiased`}
     >
       <body className="flex min-h-svh flex-col overflow-x-clip bg-alaya-white text-alaya-black">
-        <Providers>
+        <Providers initialLocale={initialLocale}>
           <Header />
           <main className="w-full min-w-0 flex-1">{children}</main>
           <Footer />

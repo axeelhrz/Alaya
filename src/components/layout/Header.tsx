@@ -2,16 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useLocale } from "@/components/i18n/LocaleContext";
 import { Logo } from "@/components/ui/Logo";
 import { boardCategories } from "../../../content/boards";
 import { shapers } from "../../../content/shapers";
-
-const boardLinks = boardCategories
-  .filter((c) => c.slug !== "roberts")
-  .map((c) => ({
-    href: c.slug === "all" ? "/surf/boards" : `/surf/boards?cat=${c.slug}`,
-    label: c.label,
-  }));
 
 const shaperLinks = shapers.map((s) => ({
   href: `/surf/shapers/${s.slug}`,
@@ -23,18 +17,19 @@ const citaLinks = [
   { href: "/pide-cita?choice=alaya", label: "Alaya Division" },
 ];
 
-const surfColumns = [
-  { title: "Boards", href: "/surf/boards", links: boardLinks },
-  { title: "Shapers", href: "/surf/shapers", links: shaperLinks },
-  { title: "Pide cita", href: "/pide-cita", links: citaLinks },
-];
-
-const links = [
-  { href: "/new", label: "New" },
-  { href: "/surf", label: "Surf", mega: true },
-  { href: "/pide-cita", label: "Pide Cita" },
-  { href: "/team", label: "Team" },
-];
+function LocaleSwitch({ className = "" }: { className?: string }) {
+  const { locale, toggleLocale, meta, t } = useLocale();
+  return (
+    <button
+      type="button"
+      className={className}
+      onClick={toggleLocale}
+      aria-label={locale === "en" ? t.locale.switchToEs : t.locale.switchToEn}
+    >
+      {meta.label}
+    </button>
+  );
+}
 
 function MegaLink({
   href,
@@ -59,9 +54,27 @@ function MegaLink({
 }
 
 export function Header() {
+  const { t } = useLocale();
   const [open, setOpen] = useState(false);
   const [surfOpen, setSurfOpen] = useState(false);
   const [mobileSurfOpen, setMobileSurfOpen] = useState(false);
+  const links = [
+    { href: "/new", label: t.nav.new },
+    { href: "/surf", label: t.nav.surf, mega: true },
+    { href: "/pide-cita", label: t.nav.book },
+    { href: "/team", label: t.nav.team },
+  ];
+  const boardLinks = boardCategories
+    .filter((c) => c.slug !== "roberts")
+    .map((c) => ({
+      href: c.slug === "all" ? "/surf/boards" : `/surf/boards?cat=${c.slug}`,
+      label: c.slug === "all" ? t.boards.all : c.label,
+    }));
+  const surfColumns = [
+    { title: t.nav.boards, href: "/surf/boards", links: boardLinks },
+    { title: t.nav.shapers, href: "/surf/shapers", links: shaperLinks },
+    { title: t.nav.book, href: "/pide-cita", links: citaLinks },
+  ];
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -109,19 +122,17 @@ export function Header() {
                 </Link>
               ),
             )}
-            <span className="header-link hidden shrink-0 cursor-default text-white/70 lg:inline">
-              € Esp
-            </span>
+            <LocaleSwitch className="header-link hidden shrink-0 text-white/70 md:inline" />
           </nav>
 
           <button
             type="button"
             className="header-link min-h-11 md:hidden"
-            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={open}
             onClick={() => setOpen((value) => !value)}
           >
-            {open ? "Cerrar" : "Menú"}
+            {open ? t.nav.close : t.nav.menu}
           </button>
         </div>
 
@@ -225,6 +236,7 @@ export function Header() {
               </div>
             );
           })}
+          <LocaleSwitch className="mobile-nav-link header-link block border-b border-white/10 py-4 text-left text-white/70" />
         </nav>
       </div>
     </>

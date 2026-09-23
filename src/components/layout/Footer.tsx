@@ -2,18 +2,8 @@
 
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { useLocale } from "@/components/i18n/LocaleContext";
 import { Logo } from "@/components/ui/Logo";
-
-const service = [
-  { href: "/aviso-legal", label: "Aviso Legal" },
-  { href: "/contact", label: "Contact Us" },
-  { href: "/about", label: "Company" },
-];
-
-const company = [
-  { href: "/about", label: "About Alaya Division" },
-  { href: "/built-on-connection", label: "Built on Connection" },
-];
 
 const social = [
   { href: "https://facebook.com", label: "Facebook", icon: FacebookIcon },
@@ -67,6 +57,18 @@ function YoutubeIcon() {
 }
 
 export function Footer() {
+  const { t } = useLocale();
+  const year = new Date().getFullYear();
+  const service = [
+    { href: "/aviso-legal", label: t.footer.legal },
+    { href: "/contact", label: t.footer.contact },
+    { href: "/about", label: t.footer.company },
+  ];
+  const company = [
+    { href: "/about", label: t.footer.about },
+    { href: "/built-on-connection", label: t.footer.built },
+  ];
+
   return (
     <footer className="bg-alaya-black text-white">
       <div className="mx-auto grid max-w-[1400px] items-start gap-16 px-4 py-16 sm:px-8 md:grid-cols-2 lg:py-20">
@@ -74,7 +76,7 @@ export function Footer() {
           <Logo light withWord stacked />
           <div className="mt-12 space-y-8 text-[0.68rem] uppercase tracking-[0.16em] text-white/70">
             <div>
-              <p className="mb-3 text-white/40">Customer Service</p>
+              <p className="mb-3 text-white/40">{t.footer.customerService}</p>
               <ul className="space-y-1.5">
                 {service.map((item) => (
                   <li key={item.href}>
@@ -97,7 +99,7 @@ export function Footer() {
           </div>
           <div className="mt-14 flex flex-wrap items-center gap-x-7 gap-y-4">
             <p className="text-5xl font-light uppercase tracking-[0.2em] sm:text-6xl">
-              Follow us
+              {t.footer.follow}
             </p>
             <div className="flex items-center gap-5 text-white">
               {social.map((item) => {
@@ -125,19 +127,17 @@ export function Footer() {
             <span className="block">Member</span>
           </p>
           <p className="mt-14 text-[0.68rem] uppercase leading-relaxed tracking-[0.16em] text-white/70">
-            Sign up to get all the latest news and exclusive offers.
+            {t.footer.signup}
           </p>
           <FooterNewsletter />
           <p className="mt-4 max-w-md text-[0.58rem] uppercase leading-relaxed tracking-[0.12em] text-white/40">
-            By entering your email, you agree to{" "}
             <Link href="/aviso-legal" className="underline underline-offset-2">
-              Terms & Conditions
-            </Link>{" "}
-            and acknowledge having read the{" "}
-            <Link href="/aviso-legal" className="underline underline-offset-2">
-              Privacy Policy
+              {t.footer.terms}
             </Link>
-            .
+            {" · "}
+            <Link href="/aviso-legal" className="underline underline-offset-2">
+              {t.footer.privacy}
+            </Link>
           </p>
         </div>
       </div>
@@ -146,15 +146,14 @@ export function Footer() {
         <div className="font-serif mx-auto max-w-[1400px] px-4 pb-8 text-[0.58rem] uppercase leading-relaxed tracking-[0.14em] text-white/35 sm:px-8">
           <p>
             <Link href="/aviso-legal" className="hover:text-white/60">
-              Privacy Policy
+              {t.footer.privacy}
             </Link>{" "}
             <Link href="/aviso-legal" className="hover:text-white/60">
-              Terms & Conditions
+              {t.footer.terms}
             </Link>
           </p>
           <p className="mt-1">
-            Alaya Division is a trademark · © {new Date().getFullYear()} · All
-            rights reserved
+            {t.footer.rights.replace("{year}", String(year))}
           </p>
         </div>
       </div>
@@ -163,6 +162,7 @@ export function Footer() {
 }
 
 function FooterNewsletter() {
+  const { t } = useLocale();
   return (
     <form
       className="mt-6 flex items-center gap-3 border-b border-white/30 pb-2"
@@ -180,7 +180,7 @@ function FooterNewsletter() {
       }}
     >
       <span className="shrink-0 text-[0.65rem] uppercase tracking-[0.16em] text-white/55">
-        Email address:
+        {t.footer.email}
       </span>
       <input
         name="email"
@@ -189,7 +189,7 @@ function FooterNewsletter() {
         className="w-full bg-transparent py-2 text-sm text-white outline-none placeholder:text-white/30"
         aria-label="Email"
       />
-      <button type="submit" className="shrink-0 text-lg" aria-label="Suscribirse">
+      <button type="submit" className="shrink-0 text-lg" aria-label={t.footer.subscribe}>
         →
       </button>
     </form>

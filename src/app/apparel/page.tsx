@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { useLocale } from "@/components/i18n/LocaleContext";
 import { useSubscribe } from "@/components/subscribe/SubscribeContext";
 
 export default function ApparelPage() {
   const { open } = useSubscribe();
+  const { t } = useLocale();
 
   return (
     <div className="grid lg:min-h-[calc(100svh-4rem)] lg:grid-cols-2">
@@ -19,16 +21,15 @@ export default function ApparelPage() {
         />
       </div>
       <div className="flex flex-col justify-center px-6 py-16 sm:px-12">
-        <p className="page-kicker">Apparel</p>
+        <p className="page-kicker">{t.pages.apparelKicker}</p>
         <h1 className="mt-4 text-4xl font-light uppercase tracking-[0.16em] sm:text-6xl">
-          Coming soon
+          {t.pages.apparelTitle}
         </h1>
         <p className="mt-5 max-w-sm text-sm leading-relaxed text-alaya-muted">
-          Primera colección textil Alaya. Suscríbete y te avisamos en el
-          lanzamiento — así empezamos la lista de heavy users.
+          {t.pages.apparelText}
         </p>
         <button type="button" className="btn-pill mt-8 w-fit" onClick={() => open("apparel")}>
-          Suscríbete
+          {t.home.subscribe}
         </button>
       </div>
     </div>

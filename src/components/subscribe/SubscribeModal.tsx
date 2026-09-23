@@ -1,25 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLocale } from "@/components/i18n/LocaleContext";
 import { useSubscribe } from "@/components/subscribe/SubscribeContext";
-
-const titles: Record<string, { title: string; text: string }> = {
-  apparel: {
-    title: "Apparel",
-    text: "Suscríbete y te avisamos cuando lancemos la primera colección textil.",
-  },
-  accessories: {
-    title: "Accesorios",
-    text: "Pads, grips y el resto de la línea. Sé el primero en saberlo.",
-  },
-  general: {
-    title: "Suscríbete",
-    text: "Novedades, lanzamientos y citas con shapers. Directo a tu email.",
-  },
-};
 
 export function SubscribeModal() {
   const { isOpen, close, source } = useSubscribe();
+  const { t } = useLocale();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
@@ -41,7 +28,15 @@ export function SubscribeModal() {
 
   if (!isOpen) return null;
 
-  const copy = titles[source] || titles.general;
+  const copy =
+    source === "apparel"
+      ? { title: t.subscribe.apparelTitle, text: t.subscribe.apparelText }
+      : source === "accessories"
+        ? {
+            title: t.subscribe.accessoriesTitle,
+            text: t.subscribe.accessoriesText,
+          }
+        : { title: t.subscribe.generalTitle, text: t.subscribe.generalText };
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -54,13 +49,13 @@ export function SubscribeModal() {
         body: JSON.stringify({ email, source }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "No se pudo suscribir");
+      if (!res.ok) throw new Error(data.error || t.subscribe.fail);
       setStatus("success");
-      setMessage("Listo. Te avisamos en el lanzamiento.");
+      setMessage(t.subscribe.success);
       setEmail("");
     } catch (err) {
       setStatus("error");
-      setMessage(err instanceof Error ? err.message : "Algo salió mal");
+      setMessage(err instanceof Error ? err.message : t.subscribe.error);
     }
   }
 
@@ -80,7 +75,7 @@ export function SubscribeModal() {
           type="button"
           onClick={close}
           className="absolute top-4 right-4 text-lg leading-none text-alaya-muted hover:text-alaya-black"
-          aria-label="Cerrar"
+          aria-label={t.subscribe.close}
         >
           ×
         </button>
@@ -102,16 +97,16 @@ export function SubscribeModal() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
+            placeholder={t.footer.email.replace(":", "")}
             className="input-block w-full text-center"
-            aria-label="Email"
+            aria-label={t.footer.email.replace(":", "")}
           />
           <button
             type="submit"
             disabled={status === "loading"}
             className="btn-pill w-full disabled:opacity-60"
           >
-            {status === "loading" ? "..." : "Suscríbete"}
+            {status === "loading" ? "..." : t.home.subscribe}
           </button>
         </form>
         {message ? (

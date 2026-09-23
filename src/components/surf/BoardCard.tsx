@@ -1,8 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import type { Board } from "../../../content/boards";
+import { boardCopy } from "../../../content/catalog-i18n";
+import { useLocale } from "@/components/i18n/LocaleContext";
 
 export function BoardCard({ board }: { board: Board }) {
+  const { locale } = useLocale();
+  const copy = boardCopy(board, locale);
   return (
     <article className="group">
       <Link href="/pide-cita" className="block">
@@ -16,15 +22,15 @@ export function BoardCard({ board }: { board: Board }) {
           />
         </div>
         <div className="mt-4 space-y-1">
-          <p className="section-label">{board.category}</p>
+          <p className="section-label">{copy.category}</p>
           <h3 className="font-display text-2xl uppercase tracking-wide">
             {board.name}
           </h3>
           <p className="text-sm text-alaya-muted">
-            {board.shaper} · {board.dimensions}
+            {board.shaper} · {copy.dimensions}
           </p>
           <p className="pt-2 text-sm leading-relaxed text-alaya-muted">
-            {board.description}
+            {copy.description}
           </p>
         </div>
       </Link>

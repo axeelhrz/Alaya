@@ -5,8 +5,10 @@ import matter from "gray-matter";
 export type PostMeta = {
   slug: string;
   title: string;
+  titleEn: string;
   date: string;
   excerpt: string;
+  excerptEn: string;
   cover: string;
   category: string;
 };
@@ -33,12 +35,15 @@ export function getPostBySlug(slug: string) {
     meta: {
       slug: realSlug,
       title: String(data.title || realSlug),
+      titleEn: String(data.titleEn || data.title || realSlug),
       date: String(data.date || ""),
       excerpt: String(data.excerpt || ""),
+      excerptEn: String(data.excerptEn || data.excerpt || ""),
       cover: String(data.cover || ""),
       category: String(data.category || "surf"),
     } satisfies PostMeta,
     content,
+    contentEn: data.contentEn ? String(data.contentEn) : content,
   };
 }
 

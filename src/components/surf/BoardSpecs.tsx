@@ -1,4 +1,8 @@
+"use client";
+
 import type { Board } from "../../../content/boards";
+import { boardCopy } from "../../../content/catalog-i18n";
+import { useLocale } from "@/components/i18n/LocaleContext";
 
 function Spec({ label, value }: { label: string; value?: string }) {
   if (!value) return null;
@@ -11,15 +15,17 @@ function Spec({ label, value }: { label: string; value?: string }) {
 }
 
 export function BoardSpecs({ board }: { board: Board }) {
-  const hasDetail = Boolean(board.wave || board.body || board.sizes?.length);
+  const { locale, t } = useLocale();
+  const copy = boardCopy(board, locale);
+  const hasDetail = Boolean(copy.wave || copy.body || board.sizes?.length);
   if (!hasDetail) return null;
 
-  const paragraphs = board.body?.split("\n").filter(Boolean) ?? [];
+  const paragraphs = copy.body?.split("\n").filter(Boolean) ?? [];
 
   return (
     <div className="mt-10">
-      <Spec label="Ola" value={board.wave} />
-      <Spec label="Surfista" value={board.rider} />
+      <Spec label={t.boards.wave} value={copy.wave} />
+      <Spec label={t.boards.rider} value={copy.rider} />
 
       {paragraphs.map((p) => (
         <p key={p.slice(0, 24)} className="mt-5 text-sm leading-relaxed text-alaya-muted">
@@ -27,24 +33,24 @@ export function BoardSpecs({ board }: { board: Board }) {
         </p>
       ))}
 
-      {(board.rocker || board.rails || board.bottom || board.fins || board.volume) && (
+      {(copy.rocker || copy.rails || copy.bottom || copy.fins || board.volume) && (
         <section className="mt-10">
-          <p className="page-kicker">Especificaciones</p>
+          <p className="page-kicker">{t.boards.specs}</p>
           <dl className="mt-4">
-            <Spec label="Rocker" value={board.rocker} />
-            <Spec label="Rails" value={board.rails} />
-            <Spec label="Bottom" value={board.bottom} />
-            <Spec label="Quillas" value={board.fins} />
-            <Spec label="Volumen" value={board.volume} />
+            <Spec label="Rocker" value={copy.rocker} />
+            <Spec label="Rails" value={copy.rails} />
+            <Spec label="Bottom" value={copy.bottom} />
+            <Spec label={t.boards.fins} value={copy.fins} />
+            <Spec label={t.boards.volume} value={board.volume} />
           </dl>
         </section>
       )}
 
       {board.sizes && board.sizes.length > 0 && (
         <section className="mt-10">
-          <p className="page-kicker">Stock Roberts</p>
+          <p className="page-kicker">{t.boards.stock}</p>
           <p className="mt-2 text-[0.65rem] uppercase tracking-[0.14em] text-alaya-muted">
-            Pesos orientativos en kg · Adv / Int / Nov
+            {t.boards.weights}
           </p>
           <div className="mt-4 overflow-x-auto">
             <table className="w-full min-w-[28rem] text-left text-[0.7rem] uppercase tracking-[0.08em]">
@@ -73,10 +79,10 @@ export function BoardSpecs({ board }: { board: Board }) {
         </section>
       )}
 
-      {board.sizing && (
+      {copy.sizing && (
         <section className="mt-10">
-          <p className="page-kicker">Cómo medirla</p>
-          <p className="mt-3 text-sm leading-relaxed text-alaya-muted">{board.sizing}</p>
+          <p className="page-kicker">{t.boards.howToSize}</p>
+          <p className="mt-3 text-sm leading-relaxed text-alaya-muted">{copy.sizing}</p>
         </section>
       )}
     </div>

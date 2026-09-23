@@ -1,8 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import type { Shaper } from "../../../content/shapers";
+import { shaperCopy } from "../../../content/catalog-i18n";
+import { useLocale } from "@/components/i18n/LocaleContext";
 
 export function ShaperCard({ shaper }: { shaper: Shaper }) {
+  const { locale } = useLocale();
+  const copy = shaperCopy(shaper, locale);
   return (
     <Link
       href={`/surf/shapers/${shaper.slug}`}
@@ -22,7 +28,7 @@ export function ShaperCard({ shaper }: { shaper: Shaper }) {
             {shaper.name}
           </h3>
           <p className="mt-1 text-[0.65rem] uppercase tracking-[0.14em] text-white/75">
-            {shaper.role} · {shaper.location}
+            {copy.role} · {copy.location}
           </p>
         </div>
       </div>

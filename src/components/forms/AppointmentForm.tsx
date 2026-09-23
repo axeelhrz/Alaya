@@ -9,6 +9,7 @@ import {
 } from "../../../content/appointment-slots";
 import { DateCalendar, todayKey } from "@/components/forms/DateCalendar";
 import { SelectMenu } from "@/components/forms/SelectMenu";
+import { useLocale } from "@/components/i18n/LocaleContext";
 
 type FormState = {
   name: string;
@@ -35,6 +36,7 @@ const initial: FormState = {
 };
 
 export function AppointmentForm() {
+  const { t } = useLocale();
   const searchParams = useSearchParams();
   const [form, setForm] = useState<FormState>(initial);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
@@ -64,22 +66,22 @@ export function AppointmentForm() {
     e.preventDefault();
     if (!form.date) {
       setStatus("error");
-      setMessage("Elige una fecha en el calendario.");
+      setMessage(t.cita.pickDate);
       return;
     }
     if (!form.time || !form.appointmentType || (!form.shaperSlug && form.choice !== "alaya")) {
       setStatus("error");
-      setMessage("Completa hora, shaper y tipo de cita.");
+      setMessage(t.cita.completeFields);
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
       setStatus("error");
-      setMessage("El e-mail no es válido.");
+      setMessage(t.cita.invalidEmail);
       return;
     }
     if (form.boardInfo.trim().length < 10) {
       setStatus("error");
-      setMessage("Cuéntanos un poco más sobre la tabla.");
+      setMessage(t.cita.moreAboutBoard);
       return;
     }
     setStatus("loading");
@@ -100,7 +102,7 @@ export function AppointmentForm() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "No se pudo enviar");
       setStatus("success");
-      setMessage("Solicitud enviada. Te confirmaremos fecha y hora.");
+      setMessage(t.cita.success);
       setForm(initial);
     } catch (err) {
       setStatus("error");
@@ -114,10 +116,10 @@ export function AppointmentForm() {
         required
         autoComplete="name"
         className="input-block"
-        placeholder="Nombre y apellidos"
+        placeholder={t.cita.name}
         value={form.name}
         onChange={(e) => update("name", e.target.value)}
-        aria-label="Nombre y apellidos"
+        aria-label={t.cita.name}
       />
       <div className="grid gap-4 sm:grid-cols-2">
         <input
@@ -128,20 +130,20 @@ export function AppointmentForm() {
           autoCorrect="off"
           spellCheck={false}
           className="input-block is-plain"
-          placeholder="E-mail"
+          placeholder={t.cita.email}
           value={form.email}
           onChange={(e) => update("email", e.target.value)}
-          aria-label="Email"
+          aria-label={t.cita.email}
         />
         <input
           type="tel"
           required
           autoComplete="tel"
           className="input-block is-plain"
-          placeholder="Teléfono"
+          placeholder={t.cita.phone}
           value={form.phone}
           onChange={(e) => update("phone", e.target.value)}
-          aria-label="Teléfono"
+          aria-label={t.cita.phone}
         />
         <DateCalendar
           required
@@ -152,8 +154,8 @@ export function AppointmentForm() {
         <SelectMenu
           required
           name="time"
-          placeholder="Hora"
-          label="Hora"
+          placeholder={t.cita.time}
+          label={t.cita.time}
           value={form.time}
           onChange={(next) => update("time", next)}
           options={appointmentTimeSlots.map((slot) => ({
@@ -164,8 +166,8 @@ export function AppointmentForm() {
         <SelectMenu
           required
           name="shaper"
-          placeholder="Selecciona el shaper"
-          label="Selecciona el shaper"
+          placeholder={t.cita.shaper}
+          label={t.cita.shaper}
           value={form.choice === "alaya" ? "alaya" : form.shaperSlug}
           onChange={(next) => {
             if (next === "alaya") {
@@ -184,15 +186,15 @@ export function AppointmentForm() {
         <SelectMenu
           required
           name="appointmentType"
-          placeholder="Tipo de cita"
-          label="Tipo de cita"
+          placeholder={t.cita.type}
+          label={t.cita.type}
           value={form.appointmentType}
           onChange={(next) =>
             update("appointmentType", next as FormState["appointmentType"])
           }
-          options={appointmentTypes.map((t) => ({
-            value: t.value,
-            label: t.label,
+          options={appointmentTypes.map((item) => ({
+            value: item.value,
+            label: item.value === "presencial" ? t.cita.inPerson : t.cita.online,
           }))}
         />
       </div>
@@ -200,10 +202,10 @@ export function AppointmentForm() {
         required
         rows={6}
         className="input-block is-plain resize-y"
-        placeholder="Comentarios / información inicial sobre la tabla"
+        placeholder={t.cita.comments}
         value={form.boardInfo}
         onChange={(e) => update("boardInfo", e.target.value)}
-        aria-label="Comentarios"
+        aria-label={t.cita.comments}
       />
       <div className="flex justify-center pt-4">
         <button
@@ -211,7 +213,7 @@ export function AppointmentForm() {
           disabled={status === "loading"}
           className="btn-pill min-w-40 disabled:opacity-60"
         >
-          {status === "loading" ? "..." : "Enviar"}
+          {status === "loading" ? t.cita.sending : t.cita.send}
         </button>
       </div>
       {message ? (

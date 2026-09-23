@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function BuiltOnConnectionPage() {
-  redirect("/new");
+  redirect("/about");
 }

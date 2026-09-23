@@ -28,6 +28,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+  overscroll-behavior: none;
   background: #000;
   min-height: 100svh;
 }
@@ -52,6 +53,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-myriad), var(--font-roboto), system-ui, sans-serif;
   overflow-x: clip;
+  overscroll-behavior: none;
   -webkit-font-smoothing: antialiased;
 }
 
