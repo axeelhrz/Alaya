@@ -7,6 +7,8 @@ import {
   appointmentTimeSlots,
   appointmentTypes,
 } from "../../../content/appointment-slots";
+import { DateCalendar, todayKey } from "@/components/forms/DateCalendar";
+import { SelectMenu } from "@/components/forms/SelectMenu";
 
 type FormState = {
   name: string;
@@ -60,6 +62,16 @@ export function AppointmentForm() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!form.date) {
+      setStatus("error");
+      setMessage("Elige una fecha en el calendario.");
+      return;
+    }
+    if (!form.time || !form.appointmentType || (!form.shaperSlug && form.choice !== "alaya")) {
+      setStatus("error");
+      setMessage("Completa hora, shaper y tipo de cita.");
+      return;
+    }
     setStatus("loading");
     setMessage("");
     try {
@@ -81,8 +93,6 @@ export function AppointmentForm() {
       setMessage(err instanceof Error ? err.message : "Algo salió mal");
     }
   }
-
-  const minDate = new Date().toISOString().split("T")[0];
 
   return (
     <form onSubmit={onSubmit} className="mx-auto max-w-3xl space-y-4">
@@ -113,68 +123,58 @@ export function AppointmentForm() {
           onChange={(e) => update("phone", e.target.value)}
           aria-label="Teléfono"
         />
-        <input
-          type="date"
+        <DateCalendar
           required
-          min={minDate}
-          className="input-block"
+          min={todayKey()}
           value={form.date}
-          onChange={(e) => update("date", e.target.value)}
-          aria-label="Fecha"
+          onChange={(next) => update("date", next)}
         />
-        <select
+        <SelectMenu
           required
-          className="input-block"
+          name="time"
+          placeholder="Hora"
+          label="Hora"
           value={form.time}
-          onChange={(e) => update("time", e.target.value)}
-          aria-label="Hora"
-        >
-          <option value="">Hora</option>
-          {appointmentTimeSlots.map((slot) => (
-            <option key={slot} value={slot}>
-              {slot}
-            </option>
-          ))}
-        </select>
-        <select
+          onChange={(next) => update("time", next)}
+          options={appointmentTimeSlots.map((slot) => ({
+            value: slot,
+            label: slot,
+          }))}
+        />
+        <SelectMenu
           required
-          className="input-block"
+          name="shaper"
+          placeholder="Selecciona el shaper"
+          label="Selecciona el shaper"
           value={form.choice === "alaya" ? "alaya" : form.shaperSlug}
-          onChange={(e) => {
-            if (e.target.value === "alaya") {
+          onChange={(next) => {
+            if (next === "alaya") {
               update("choice", "alaya");
               update("shaperSlug", "");
             } else {
               update("choice", "shaper");
-              update("shaperSlug", e.target.value);
+              update("shaperSlug", next);
             }
           }}
-          aria-label="Selecciona el shaper"
-        >
-          <option value="">Selecciona el shaper</option>
-          <option value="alaya">Alaya</option>
-          {shapers.map((s) => (
-            <option key={s.slug} value={s.slug}>
-              {s.name}
-            </option>
-          ))}
-        </select>
-        <select
+          options={[
+            { value: "alaya", label: "Alaya" },
+            ...shapers.map((s) => ({ value: s.slug, label: s.name })),
+          ]}
+        />
+        <SelectMenu
           required
-          className="input-block"
+          name="appointmentType"
+          placeholder="Tipo de cita"
+          label="Tipo de cita"
           value={form.appointmentType}
-          onChange={(e) =>
-            update("appointmentType", e.target.value as FormState["appointmentType"])
+          onChange={(next) =>
+            update("appointmentType", next as FormState["appointmentType"])
           }
-          aria-label="Tipo de cita"
-        >
-          <option value="">Tipo de cita</option>
-          {appointmentTypes.map((t) => (
-            <option key={t.value} value={t.value}>
-              {t.label}
-            </option>
-          ))}
-        </select>
+          options={appointmentTypes.map((t) => ({
+            value: t.value,
+            label: t.label,
+          }))}
+        />
       </div>
       <textarea
         required
