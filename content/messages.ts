@@ -75,10 +75,11 @@ export const messages = {
       apparelKicker: "Apparel collection",
       nextUp: "Next up",
       apparelBody:
-        "First Alaya apparel line. Coming soon — leave your email and we will tell you on launch day.",
+        "Subscribe to be among the first to discover it.",
       accessoriesKicker: "Accessories",
       accessoriesBody:
         "Pads, grips and the rest of the line. Coming soon with a waitlist.",
+      minimalKicker: "Minimal collection",
     },
     about: {
       kicker: "Company",
@@ -285,10 +286,11 @@ export const messages = {
       apparelKicker: "Colección textil",
       nextUp: "Next up",
       apparelBody:
-        "Primera línea textil Alaya. Coming soon — déjanos tu email y te avisamos el día del lanzamiento.",
+        "Suscríbete para ser de los primeros en descubrirlo.",
       accessoriesKicker: "Accesorios",
       accessoriesBody:
         "Pads, grips y el resto de la línea. Coming soon con lista de espera.",
+      minimalKicker: "Colección minimal",
     },
     about: {
       kicker: "Compañía",
