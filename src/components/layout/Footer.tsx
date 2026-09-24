@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "@/components/i18n/LocaleContext";
 import { Logo } from "@/components/ui/Logo";
@@ -122,10 +123,13 @@ export function Footer() {
         </div>
 
         <div className="lg:pt-2">
-          <p className="font-member text-[2.75rem] leading-[0.85] uppercase sm:text-6xl">
-            Division
-            <span className="block">Member</span>
-          </p>
+          <Image
+            src="/images/brand/division-member.png"
+            alt="Division Member"
+            width={720}
+            height={360}
+            className="w-full max-w-md"
+          />
           <p className="mt-14 text-[0.68rem] uppercase leading-relaxed tracking-[0.16em] text-white/70">
             {t.footer.signup}
           </p>

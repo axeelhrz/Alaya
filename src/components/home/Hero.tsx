@@ -83,7 +83,7 @@ export function Hero() {
     <section className="relative flex min-h-[100svh] w-full items-center overflow-hidden bg-alaya-black md:min-h-[88vh]">
       <div className="absolute inset-0">
         <Image
-          src="/images/home/hero.jpg"
+          src="/images/home/hero-roberts.jpg"
           alt=""
           fill
           priority
@@ -103,7 +103,7 @@ export function Hero() {
               muted
               playsInline
               preload="auto"
-              poster="/images/home/hero.jpg"
+              poster="/images/home/hero-roberts.jpg"
               onError={() => setUseVideo(false)}
             >
               <source src="/videos/hero-wave.mp4" type="video/mp4" />

@@ -39,16 +39,18 @@ export function HomeSections() {
         </div>
       </section>
 
-      <section className="relative min-h-[56vh] overflow-hidden bg-alaya-black text-white">
+      <section className="relative overflow-hidden bg-alaya-black text-white">
+        <div className="relative aspect-[1280/713] w-full">
         <Image
           src="/images/home/cita.jpg"
           alt=""
           fill
-          className="object-cover"
+          quality={95}
+          className="object-cover object-center"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black/45" />
-        <div className="relative z-10 mx-auto flex min-h-[56vh] max-w-[1400px] flex-col items-center justify-center px-4 py-20 text-center">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-black/10" />
+        <div className="absolute inset-0 z-10 mx-auto flex max-w-[1400px] flex-col items-center justify-center px-4 text-center">
           <h2 className="text-3xl font-light uppercase tracking-[0.18em] sm:text-5xl">
             {t.home.bookShaper}
           </h2>
@@ -59,15 +61,17 @@ export function HomeSections() {
             {t.home.bookNow}
           </Link>
         </div>
+        </div>
       </section>
 
       <section className="grid lg:grid-cols-2">
-        <div className="relative min-h-[420px] bg-alaya-surface lg:min-h-[640px]">
+        <div className="relative aspect-[1108/1419] bg-alaya-white">
           <Image
-            src="/images/home/apparel.jpg"
+            src="/images/home/destacado-apparel.png"
             alt="Colección textil Alaya"
             fill
-            className="object-cover object-center"
+            quality={95}
+            className="object-contain object-center"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>
@@ -106,12 +110,13 @@ export function HomeSections() {
             {t.home.subscribe}
           </button>
         </div>
-        <div className="relative order-1 min-h-[360px] bg-alaya-black lg:order-2 lg:min-h-[560px]">
+        <div className="relative order-1 aspect-[638/824] bg-alaya-black lg:order-2">
           <Image
-            src="/images/home/surf.jpg"
+            src="/images/home/destacado-accessories.jpg"
             alt="Accesorios Alaya"
             fill
-            className="object-cover"
+            quality={95}
+            className="object-contain object-center"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>

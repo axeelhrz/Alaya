@@ -66,6 +66,9 @@ export const metadata: Metadata = {
   },
   description:
     "Alaya Division — tienda de tablas y casa de shapers. Built on Connection. Pide cita para crear o elegir tu tabla.",
+  icons: {
+    icon: "/images/brand/icon.gif",
+  },
   openGraph: {
     type: "website",
     locale: "es_ES",

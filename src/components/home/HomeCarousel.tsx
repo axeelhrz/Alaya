@@ -2,39 +2,45 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useLocale } from "@/components/i18n/LocaleContext";
 import { useSubscribe } from "@/components/subscribe/SubscribeContext";
 
 const slideMeta = [
   {
     id: "roberts",
-    image: "/images/home/surf.jpg",
+    image: "/images/home/hero-roberts.jpg",
     imageAlt: "Roberts",
+    overlay: "bg-gradient-to-t from-black/55 via-black/20 to-black/25",
+    position: "object-[72%_center]",
+    contrast: false,
     href: "/pide-cita?shaper=roberds" as const,
     subscribe: undefined as undefined | "apparel" | "accessories",
   },
   {
     id: "apparel",
-    image: "/images/home/apparel.jpg",
+    image: "/images/home/hero-apparel.jpg",
     imageAlt: "Alaya apparel",
+    overlay: "bg-gradient-to-t from-black/35 via-black/10 to-black/5",
+    position: "object-[20%_center]",
+    contrast: false,
     href: undefined,
     subscribe: "apparel" as const,
   },
   {
     id: "accessories",
-    image: "/images/home/hero.jpg",
+    image: "/images/home/hero-accessories.jpg",
     imageAlt: "Alaya accessories",
+    overlay: "bg-gradient-to-r from-black/80 via-black/45 to-transparent",
+    position: "object-[center_center]",
+    contrast: true,
     href: undefined,
     subscribe: "accessories" as const,
   },
 ];
 
-const INTERVAL = 5500;
-
 export function HomeCarousel() {
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
   const { open } = useSubscribe();
   const { t } = useLocale();
   const slides = [
@@ -61,25 +67,9 @@ export function HomeCarousel() {
     },
   ];
   const slide = slides[index];
-  const timer = useRef<number>(0);
-
-  useEffect(() => {
-    if (paused) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
-    const start = window.setTimeout(() => {
-      timer.current = window.setInterval(() => {
-        setIndex((i) => (i + 1) % slideMeta.length);
-      }, INTERVAL);
-    }, 8000);
-    return () => {
-      window.clearTimeout(start);
-      window.clearInterval(timer.current);
-    };
-  }, [paused]);
 
   return (
-    <section className="hero-full relative isolate -mt-14 w-full shrink-0 overflow-hidden bg-alaya-black text-white sm:-mt-16 lg:!max-h-[100svh]">
+    <section className="hero-full relative isolate -mt-14 w-full overflow-hidden bg-alaya-black text-white sm:-mt-16 lg:!max-h-[100svh]">
       {slides.map((item, i) => (
         <div
           key={item.id}
@@ -92,25 +82,32 @@ export function HomeCarousel() {
             alt={item.imageAlt}
             fill
             priority={i === 0}
-            className="h-full w-full object-cover object-center"
+            unoptimized
+            className={`h-full w-full object-cover ${item.position}`}
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-black/35" />
+          <div className={`absolute inset-0 ${item.overlay}`} />
         </div>
       ))}
 
-      <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col items-center justify-center px-6 pb-10 text-center">
-        <h1 className="font-display text-[2.35rem] uppercase leading-none tracking-[0.28em] sm:text-6xl md:text-[4.5rem]">
+      <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col items-start justify-center px-6 text-left sm:px-10 lg:px-16">
+        <h1 className="max-w-[12ch] font-light text-5xl uppercase leading-[0.95] tracking-[0.18em] [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] sm:text-7xl md:text-[5.75rem] lg:text-[6.75rem]">
           {slide.title}
         </h1>
-        <p className="mt-3 font-display text-base uppercase tracking-[0.42em] sm:text-xl">
+        <p className="mt-5 font-light text-[0.8rem] uppercase tracking-[0.42em] [text-shadow:0_2px_18px_rgba(0,0,0,0.5)] sm:text-base sm:tracking-[0.5em]">
           {slide.line}
         </p>
-        <p className="mx-auto mt-6 max-w-[16rem] font-sans text-[0.62rem] uppercase leading-[1.7] tracking-[0.2em] text-white/90 sm:max-w-xs sm:text-[0.68rem]">
+        <p
+          className={`mt-6 max-w-[20rem] font-light text-[0.62rem] uppercase leading-[1.85] tracking-[0.2em] sm:max-w-sm sm:text-[0.7rem] ${
+            slide.contrast
+              ? "text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.7)]"
+              : "text-white/90 [text-shadow:0_2px_16px_rgba(0,0,0,0.45)]"
+          }`}
+        >
           {slide.text}
         </p>
         <div className="mt-8">
-              {slide.subscribe ? (
+          {slide.subscribe ? (
             <button
               type="button"
               className="btn-ghost text-white"
@@ -131,10 +128,7 @@ export function HomeCarousel() {
               key={item.id}
               type="button"
               aria-label={item.title}
-              onClick={() => {
-                setPaused(true);
-                setIndex(i);
-              }}
+              onClick={() => setIndex(i)}
               className={`h-2.5 w-2.5 rounded-full border transition ${
                 i === index
                   ? "border-white bg-white/50"
