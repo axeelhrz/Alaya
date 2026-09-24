@@ -124,6 +124,31 @@ export const team: TeamMember[] = [
     ],
   },
   {
+    slug: "melania-suarez",
+    name: "Melania Suárez",
+    role: "Performance",
+    roleEs: "Performance",
+    location: "Tenerife",
+    locationEs: "Tenerife",
+    image: "/images/team/melania-suarez.jpg",
+    excerpt:
+      "Powerful surfing, a sharp backhand and a generation that carries their roots with them.",
+    excerptEs:
+      "Un surf potente, un backhand preciso y una generación que lleva sus raíces consigo.",
+    body: [
+      "Born and raised in Tenerife, Melania Suárez has been surfing since the age of six. From her early days competing in the national junior circuit to becoming one of the most accomplished surfers in the Canary Islands, she has built a career defined by progression, commitment and style.",
+      "A multiple Spanish junior champion, a Rip Curl GromSearch World Finalist and winner of the Iberdrola Pro League in 2023, Melania continued to raise the bar in 2025, becoming Spanish Champion and winning the PRO Iberdrola National League. She also claimed her fourth Open LPA Surf City title, cementing her connection with one of the waves where she has built part of her story.",
+      "Known for her powerful surfing, sharp backhand and natural flow, Melania represents a new generation of Canary Island surfers who carry their roots with them wherever they go.",
+      "For her, surfing is about pushing herself, chasing good waves, travelling and sharing the experience with the people around her. That connection to the ocean, her home and the culture that surrounds it is what makes Melania a natural part of ALAYA DIVISION.",
+    ],
+    bodyEs: [
+      "Nacida y criada en Tenerife, Melania Suárez surfea desde los seis años. Desde sus primeros pasos en el circuito junior nacional hasta convertirse en una de las surfistas más completas de Canarias, ha construido una carrera marcada por la progresión, el compromiso y el estilo.",
+      "Varias veces campeona de España junior, finalista del Rip Curl GromSearch World y ganadora de la Iberdrola Pro League en 2023, Melania volvió a subir el listón en 2025: se proclamó campeona de España y ganó la Liga Nacional PRO Iberdrola. También sumó su cuarto título del Open LPA Surf City, reforzando su conexión con una de las olas donde ha escrito parte de su historia.",
+      "Conocida por un surf potente, un backhand preciso y un flow natural, Melania representa a una nueva generación de surfistas canarias que llevan sus raíces consigo allá donde van.",
+      "Para ella, surfear es exigirse, buscar buenas olas, viajar y compartir la experiencia con la gente que la rodea. Esa conexión con el océano, con su casa y con la cultura que lo envuelve es lo que hace de Melania una parte natural de ALAYA DIVISION.",
+    ],
+  },
+  {
     slug: "gabri-salazar",
     name: "Gabri Salazar",
     role: "Skate",
