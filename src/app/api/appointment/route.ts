@@ -4,6 +4,7 @@ import {
   appointmentTypes,
   appointmentChoices,
 } from "../../../../content/appointment-slots";
+import { getBoard } from "../../../../content/boards";
 import { appointmentSchema } from "@/lib/appointment-schema";
 import { createReserva } from "@/lib/reservas";
 
@@ -35,6 +36,8 @@ export async function POST(request: Request) {
           data.shaperSlug ||
           "Shaper"
         : "Alaya";
+    const board = data.boardSlug ? getBoard(data.boardSlug) : undefined;
+    const boardLabel = board?.name || "sin modelo concreto";
 
     const choiceLabel =
       appointmentChoices.find((c) => c.value === data.choice)?.label ||
@@ -72,6 +75,7 @@ export async function POST(request: Request) {
         `Tipo: ${typeLabel}`,
         `Fecha: ${data.date}`,
         `Hora: ${data.time}`,
+        `Tabla: ${boardLabel}`,
         "",
         "Info tabla:",
         data.boardInfo,
@@ -87,7 +91,7 @@ export async function POST(request: Request) {
         "",
         "Gracias por contactar con Alaya Division. Hemos recibido tu solicitud de cita y te confirmaremos fecha y hora lo antes posible.",
         "",
-        `Resumen: ${typeLabel} · ${data.date} ${data.time} · ${choiceLabel}`,
+        `Resumen: ${typeLabel} · ${data.date} ${data.time} · ${choiceLabel} · ${boardLabel}`,
         "",
         "Built on Connection,",
         "Alaya Division",

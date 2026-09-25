@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { getBoard } from "../../../content/boards";
 import { shapers } from "../../../content/shapers";
 import {
   appointmentTimeSlots,
@@ -17,6 +19,7 @@ type FormState = {
   phone: string;
   choice: "alaya" | "shaper" | "";
   shaperSlug: string;
+  boardSlug: string;
   boardInfo: string;
   appointmentType: "presencial" | "online" | "";
   date: string;
@@ -29,6 +32,7 @@ const initial: FormState = {
   phone: "",
   choice: "shaper",
   shaperSlug: "",
+  boardSlug: "",
   boardInfo: "",
   appointmentType: "",
   date: "",
@@ -47,16 +51,23 @@ export function AppointmentForm() {
   useEffect(() => {
     const shaperParam = searchParams.get("shaper");
     const choiceParam = searchParams.get("choice");
-    if (shaperParam && shapers.some((s) => s.slug === shaperParam)) {
-      setForm((prev) => ({
-        ...prev,
-        choice: "shaper",
-        shaperSlug: shaperParam,
-      }));
-    } else if (choiceParam === "alaya") {
-      setForm((prev) => ({ ...prev, choice: "alaya", shaperSlug: "" }));
-    }
+    const boardParam = searchParams.get("board");
+    const board = boardParam ? getBoard(boardParam) : undefined;
+    setForm((prev) => {
+      const next = { ...prev };
+      if (shaperParam && shapers.some((s) => s.slug === shaperParam)) {
+        next.choice = "shaper";
+        next.shaperSlug = shaperParam;
+      } else if (choiceParam === "alaya") {
+        next.choice = "alaya";
+        next.shaperSlug = "";
+      }
+      if (board) next.boardSlug = board.slug;
+      return next;
+    });
   }, [searchParams]);
+
+  const selectedBoard = form.boardSlug ? getBoard(form.boardSlug) : undefined;
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -96,6 +107,7 @@ export function AppointmentForm() {
           email: form.email.trim(),
           phone: form.phone.trim(),
           boardInfo: form.boardInfo.trim(),
+          boardSlug: form.boardSlug || undefined,
           choice: form.shaperSlug ? "shaper" : form.choice || "alaya",
         }),
       });
@@ -198,6 +210,27 @@ export function AppointmentForm() {
           }))}
         />
       </div>
+      {selectedBoard ? (
+        <div className="flex flex-wrap items-baseline justify-between gap-3 border border-alaya-border px-4 py-3">
+          <p className="text-[0.7rem] uppercase tracking-[0.14em]">
+            <span className="text-alaya-muted">{t.cita.interestedIn} · </span>
+            <Link
+              href={`/surf/boards/${selectedBoard.slug}`}
+              className="text-alaya-black underline-offset-4 hover:underline"
+            >
+              {selectedBoard.name}
+            </Link>
+            <span className="text-alaya-muted"> · {selectedBoard.shaper}</span>
+          </p>
+          <button
+            type="button"
+            onClick={() => update("boardSlug", "")}
+            className="text-[0.65rem] uppercase tracking-[0.16em] text-alaya-muted hover:text-alaya-black"
+          >
+            {t.cita.changeBoard}
+          </button>
+        </div>
+      ) : null}
       <textarea
         required
         rows={6}

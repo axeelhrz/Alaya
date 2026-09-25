@@ -120,8 +120,8 @@ export function matchBoard(answers: MatchAnswers): MatchResult {
   const key = `${answers.level}-${answers.wave}-${answers.style}`;
   const hit = matrix[key] || fallback;
   const citaQuery = hit.shaperSlug
-    ? `?shaper=${hit.shaperSlug}`
-    : "?choice=alaya";
+    ? `?shaper=${hit.shaperSlug}&board=${hit.boardSlug}`
+    : `?choice=alaya&board=${hit.boardSlug}`;
 
   return { ...hit, citaQuery };
 }

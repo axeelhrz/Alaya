@@ -1280,16 +1280,22 @@ export function filterBoards(cat?: string) {
 }
 
 export function boardCitaHref(board: Board) {
-  if (board.shaper === "Alaya") return "/pide-cita?choice=alaya";
-  const slugs: Record<string, string> = {
-    Roberts: "roberds",
-    Roberds: "roberds",
-    "Mark Phipps": "mark-phipps",
-    Patterson: "patterson",
-    Arakawa: "arakawa",
-    Dylan: "dylan",
-  };
-  return `/pide-cita?shaper=${slugs[board.shaper] ?? board.shaper.toLowerCase()}`;
+  const params = new URLSearchParams();
+  params.set("board", board.slug);
+  if (board.shaper === "Alaya") {
+    params.set("choice", "alaya");
+  } else {
+    const slugs: Record<string, string> = {
+      Roberts: "roberds",
+      Roberds: "roberds",
+      "Mark Phipps": "mark-phipps",
+      Patterson: "patterson",
+      Arakawa: "arakawa",
+      Dylan: "dylan",
+    };
+    params.set("shaper", slugs[board.shaper] ?? board.shaper.toLowerCase());
+  }
+  return `/pide-cita?${params.toString()}`;
 }
 
 export function getBoard(slug: string) {

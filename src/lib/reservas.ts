@@ -1,4 +1,5 @@
 import { get, put } from "@vercel/blob";
+import { getBoard } from "../../content/boards";
 import type { AppointmentInput } from "@/lib/appointment-schema";
 
 export type ReservaStatus = "pendiente" | "confirmada" | "cancelada";
@@ -13,11 +14,27 @@ export type Reserva = {
   choice: "alaya" | "shaper";
   shaperSlug?: string;
   shaperName: string;
+  boardSlug?: string;
+  boardName?: string;
   boardInfo: string;
   appointmentType: "presencial" | "online";
   date: string;
   time: string;
+  notes?: string;
 };
+
+export type ReservaPatch = {
+  status?: ReservaStatus;
+  notes?: string;
+};
+
+function hydrate(reserva: Reserva): Reserva {
+  if (reserva.boardSlug && !reserva.boardName) {
+    const board = getBoard(reserva.boardSlug);
+    if (board) return { ...reserva, boardName: board.name };
+  }
+  return reserva;
+}
 
 const BLOB_PATH = "reservas.json";
 
@@ -34,7 +51,7 @@ async function load(): Promise<Reserva[]> {
   const text = await new Response(file.stream).text();
   if (!text.trim()) return [];
   const parsed = JSON.parse(text) as Reserva[];
-  return Array.isArray(parsed) ? parsed : [];
+  return Array.isArray(parsed) ? parsed.map(hydrate) : [];
 }
 
 async function persist(list: Reserva[]) {
@@ -64,6 +81,7 @@ export async function createReserva(
   shaperName: string,
 ): Promise<Reserva> {
   const list = await load();
+  const board = data.boardSlug ? getBoard(data.boardSlug) : undefined;
   const reserva: Reserva = {
     id: crypto.randomUUID(),
     createdAt: new Date().toISOString(),
@@ -74,21 +92,28 @@ export async function createReserva(
     choice: data.choice,
     shaperSlug: data.shaperSlug,
     shaperName,
+    boardSlug: board?.slug,
+    boardName: board?.name,
     boardInfo: data.boardInfo,
     appointmentType: data.appointmentType,
     date: data.date,
     time: data.time,
+    notes: "",
   };
   await persist([reserva, ...list]);
   return reserva;
 }
 
-export async function updateReservaStatus(id: string, status: ReservaStatus) {
+export async function updateReserva(id: string, patch: ReservaPatch) {
   const list = await load();
   const index = list.findIndex((item) => item.id === id);
   if (index < 0) return null;
-  const next = { ...list[index], status };
+  const next = hydrate({ ...list[index], ...patch });
   list[index] = next;
   await persist(list);
   return next;
+}
+
+export async function updateReservaStatus(id: string, status: ReservaStatus) {
+  return updateReserva(id, { status });
 }

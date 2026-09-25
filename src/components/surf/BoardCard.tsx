@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Board } from "../../../content/boards";
+import { boardCitaHref } from "../../../content/boards";
 import { boardCopy } from "../../../content/catalog-i18n";
 import { useLocale } from "@/components/i18n/LocaleContext";
 
@@ -11,7 +12,7 @@ export function BoardCard({ board }: { board: Board }) {
   const copy = boardCopy(board, locale);
   return (
     <article className="group">
-      <Link href="/pide-cita" className="block">
+      <Link href={boardCitaHref(board)} className="block">
         <div className="relative aspect-[4/5] overflow-hidden bg-alaya-surface">
           <Image
             src={board.image}

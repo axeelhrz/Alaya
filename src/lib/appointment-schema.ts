@@ -10,6 +10,7 @@ export const appointmentSchema = z.object({
     .min(6, "El teléfono no es válido."),
   choice: z.enum(["alaya", "shaper"]),
   shaperSlug: z.string().trim().optional(),
+  boardSlug: z.string().trim().max(80).optional(),
   boardInfo: z
     .string()
     .trim()
