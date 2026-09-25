@@ -16,7 +16,7 @@ export function AboutView() {
           alt={`${copy.title} — ${copy.subtitle}`}
           fill
           priority
-          className="object-cover object-[center_70%]"
+          className="object-cover object-[center_30%] lg:object-[center_70%]"
           sizes="(max-width: 1024px) 100vw, 46vw"
         />
       </div>

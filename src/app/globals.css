@@ -35,15 +35,21 @@ html {
 
 .hero-full {
   /* 100vh/dvh on iOS Safari is the large viewport and sits under the toolbar */
-  height: 100svh;
-  height: var(--hero-h, 100svh);
+  height: calc(var(--hero-h, 100svh) - 3.5rem);
   min-height: 0;
-  max-height: 100svh;
-  max-height: var(--hero-h, 100svh);
+  max-height: calc(var(--hero-h, 100svh) - 3.5rem);
+}
+
+@media (min-width: 640px) {
+  .hero-full {
+    height: calc(var(--hero-h, 100svh) - 4rem);
+    max-height: calc(var(--hero-h, 100svh) - 4rem);
+  }
 }
 
 @media (min-width: 1024px) {
   .hero-full {
+    height: var(--hero-h, 100svh);
     max-height: none;
   }
 }

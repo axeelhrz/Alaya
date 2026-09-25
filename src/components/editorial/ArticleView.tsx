@@ -27,26 +27,26 @@ export function ArticleView({
   return (
     <article>
       <div className="lg:flex">
-        <div className="relative flex min-h-[70vh] items-end bg-alaya-black text-white lg:min-h-[calc(100svh-3.5rem)] lg:w-[46%]">
+        <div className="relative flex min-h-[52svh] items-end bg-alaya-black text-white sm:min-h-[60svh] lg:min-h-[calc(100svh-3.5rem)] lg:w-[46%]">
           {cover ? (
             <Image
               src={cover}
               alt=""
               fill
               priority
-              className="object-cover opacity-80"
+              className="object-cover object-[center_20%] opacity-80 lg:object-center"
               sizes="(max-width: 1024px) 100vw, 46vw"
             />
           ) : null}
           <div className="absolute inset-0 bg-black/35" />
-          <h1 className="relative z-10 max-w-md px-6 py-14 text-4xl font-light uppercase leading-[1.05] tracking-[0.16em] sm:px-12 sm:text-5xl">
+          <h1 className="relative z-10 max-w-md break-words px-6 py-10 text-3xl font-light uppercase leading-[1.1] tracking-[0.08em] sm:px-12 sm:py-14 sm:text-5xl sm:tracking-[0.16em]">
             {heading}
           </h1>
         </div>
 
         <div className="bg-alaya-white lg:w-[54%]">
           <div className="mx-auto max-w-xl px-5 py-14 sm:px-12 sm:py-20">
-            <div className="prose-alaya space-y-5 text-sm leading-relaxed text-alaya-muted [&_a]:text-alaya-black [&_a]:underline [&_h2]:mt-10 [&_h2]:text-lg [&_h2]:font-normal [&_h2]:uppercase [&_h2]:tracking-[0.12em] [&_h2]:text-alaya-black [&_strong]:text-alaya-black">
+            <div className="prose-alaya space-y-5 text-sm leading-relaxed text-alaya-muted [&_a]:text-alaya-black [&_a]:underline [&_h2]:mt-10 [&_h2]:text-lg [&_h2]:font-normal [&_h2]:uppercase [&_h2]:tracking-[0.12em] [&_h2]:text-alaya-black [&_img]:h-auto [&_img]:max-w-full [&_strong]:text-alaya-black">
               {locale === "en" ? contentEn : content}
             </div>
           </div>
@@ -56,24 +56,24 @@ export function ArticleView({
       {related.length ? (
         <section className="mx-auto max-w-[1400px] px-4 py-16 sm:px-8">
           <p className="page-kicker">{t.news.related}</p>
-          <div className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
+          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
             {related.map((item) => {
               const relatedTitle =
                 locale === "en" ? item.titleEn || item.title : item.title;
               return (
                 <Link key={item.slug} href={`/new/${item.slug}`} className="group">
-                  <div className="relative aspect-square overflow-hidden bg-alaya-surface">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-alaya-surface">
                     {item.cover ? (
                       <Image
                         src={item.cover}
                         alt={relatedTitle}
                         fill
-                        className="object-cover transition group-hover:scale-105"
-                        sizes="240px"
+                        className="object-cover object-center transition group-hover:scale-105"
+                        sizes="(max-width: 640px) 100vw, 240px"
                       />
                     ) : null}
                   </div>
-                  <p className="mt-3 text-[0.7rem] uppercase tracking-[0.12em]">
+                  <p className="mt-3 line-clamp-2 break-words text-[0.7rem] uppercase tracking-[0.08em] sm:tracking-[0.12em]">
                     {relatedTitle}
                   </p>
                 </Link>

@@ -25,7 +25,7 @@ export function ShaperDetailView({
           alt={shaper.name}
           fill
           priority
-          className="object-cover"
+          className="object-cover object-[center_20%] lg:object-center"
           sizes="(max-width: 1024px) 100vw, 46vw"
         />
       </div>

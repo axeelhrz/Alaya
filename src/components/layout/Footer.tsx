@@ -99,7 +99,7 @@ export function Footer() {
             </div>
           </div>
           <div className="mt-14 flex flex-wrap items-center gap-x-7 gap-y-4">
-            <p className="text-5xl font-light uppercase tracking-[0.2em] sm:text-6xl">
+            <p className="max-w-full break-words text-3xl font-light uppercase tracking-[0.1em] sm:text-6xl sm:tracking-[0.2em]">
               {t.footer.follow}
             </p>
             <div className="flex items-center gap-5 text-white">

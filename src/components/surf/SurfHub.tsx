@@ -13,7 +13,7 @@ export function SurfHub() {
 
   return (
     <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-8 sm:py-24">
-      <h1 className="text-6xl font-light uppercase tracking-[0.16em] sm:text-8xl">
+      <h1 className="max-w-full break-words text-5xl font-light uppercase tracking-[0.1em] sm:text-8xl sm:tracking-[0.16em]">
         {t.surf.title}
       </h1>
       <div className="mt-14 grid gap-10 sm:grid-cols-3">

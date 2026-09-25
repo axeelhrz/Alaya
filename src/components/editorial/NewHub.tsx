@@ -25,7 +25,7 @@ export function NewHub({
     <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-8 sm:py-24">
       <div className="grid items-start gap-16 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
         <div className="lg:sticky lg:top-24">
-          <h1 className="text-7xl font-light uppercase tracking-[0.2em] sm:text-8xl lg:text-[7.5rem]">
+          <h1 className="max-w-full break-words text-[clamp(2.4rem,12vw,7.5rem)] font-light uppercase leading-[0.95] tracking-[0.08em] sm:tracking-[0.14em] lg:tracking-[0.2em]">
             {t.news.title}
           </h1>
           <nav className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-[0.7rem] uppercase tracking-[0.2em]">
@@ -56,7 +56,7 @@ export function NewHub({
                 className="grid items-center gap-10 md:grid-cols-2"
               >
                 <div>
-                  <h2 className="text-2xl font-light uppercase leading-tight tracking-[0.14em] sm:text-3xl">
+                  <h2 className="max-w-full break-words text-2xl font-light uppercase leading-tight tracking-[0.08em] sm:text-3xl sm:tracking-[0.14em]">
                     <Link href={`/new/${post.slug}`}>{title}</Link>
                   </h2>
                   <p className="mt-5 max-w-sm text-sm leading-relaxed text-alaya-muted">
@@ -65,14 +65,14 @@ export function NewHub({
                 </div>
                 <Link
                   href={`/new/${post.slug}`}
-                  className="relative block aspect-[4/5] overflow-hidden bg-alaya-black"
+                  className="relative block aspect-[4/3] overflow-hidden bg-alaya-black sm:aspect-[4/5]"
                 >
                   {post.cover ? (
                     <Image
                       src={post.cover}
                       alt={title}
                       fill
-                      className="object-cover"
+                      className="object-contain object-center sm:object-cover"
                       sizes="(max-width: 768px) 100vw, 40vw"
                     />
                   ) : null}

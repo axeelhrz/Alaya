@@ -12,7 +12,7 @@ const slideMeta = [
     image: "/images/home/hero-roberts.jpg",
     imageAlt: "Roberts",
     overlay: "bg-gradient-to-r from-black/75 via-black/35 to-black/10",
-    position: "object-[72%_center]",
+    position: "object-[center_center] sm:object-[72%_center]",
     ink: "light" as const,
     align: "left" as const,
     href: "/pide-cita?shaper=roberds" as const,
@@ -144,7 +144,7 @@ export function HomeCarousel() {
           } ${dark ? "text-alaya-black" : "text-white"}`}
         >
           <p
-            className={`font-light text-[0.72rem] uppercase tracking-[0.38em] sm:text-[0.8rem] sm:tracking-[0.42em] ${
+            className={`max-w-full break-words font-light text-[0.72rem] uppercase tracking-[0.18em] sm:text-[0.8rem] sm:tracking-[0.42em] ${
               dark
                 ? ""
                 : "[text-shadow:0_2px_18px_rgba(0,0,0,0.5)]"
@@ -153,7 +153,7 @@ export function HomeCarousel() {
             {slide.line}
           </p>
           <h1
-            className={`mt-3 max-w-[12ch] font-light uppercase leading-[0.95] tracking-[0.18em] sm:text-7xl md:text-[5.75rem] ${
+            className={`mt-3 max-w-[12ch] break-words font-light uppercase leading-[0.95] tracking-[0.12em] sm:text-7xl sm:tracking-[0.18em] md:text-[5.75rem] ${
               dark
                 ? "text-5xl lg:text-[5.5rem]"
                 : "text-5xl [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] lg:text-[6.75rem]"

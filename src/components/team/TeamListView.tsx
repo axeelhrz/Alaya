@@ -12,7 +12,7 @@ export function TeamListView() {
     <div className="mx-auto max-w-[1400px] px-4 py-12 sm:px-8 sm:py-16">
       <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <h1 className="text-5xl font-light uppercase tracking-[0.16em] sm:text-7xl">
+          <h1 className="max-w-full break-words text-4xl font-light uppercase tracking-[0.1em] sm:text-7xl sm:tracking-[0.16em]">
             {t.team.title}
           </h1>
           <nav className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-[0.7rem] uppercase tracking-[0.16em] text-alaya-muted">

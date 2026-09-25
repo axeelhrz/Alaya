@@ -27,13 +27,13 @@ export default function ApparelPage() {
             fill
             priority
             quality={95}
-            className="object-cover object-center lg:object-contain"
+            className="object-contain object-center"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>
         <div className="flex flex-col justify-center px-6 py-16 sm:px-12">
           <p className="page-kicker">{t.pages.apparelKicker}</p>
-          <h1 className="mt-4 text-4xl font-light uppercase tracking-[0.16em] sm:text-6xl">
+          <h1 className="mt-4 max-w-full break-words text-3xl font-light uppercase tracking-[0.1em] sm:text-6xl sm:tracking-[0.16em]">
             {t.pages.apparelTitle}
           </h1>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-alaya-muted">
@@ -52,7 +52,7 @@ export default function ApparelPage() {
               alt={look.alt}
               fill
               quality={95}
-              className="object-cover"
+              className="object-contain object-center"
               sizes="(max-width: 768px) 50vw, 33vw"
             />
           </div>

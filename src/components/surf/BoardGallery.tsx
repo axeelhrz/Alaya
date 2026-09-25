@@ -33,8 +33,8 @@ export function BoardGallery({
         alt={name}
         className={
           wide
-            ? "h-[62vh] w-[min(96%,720px)] lg:h-[78vh]"
-            : "h-[68vh] w-[min(96%,560px)] lg:h-[82vh]"
+            ? "h-[min(52svh,420px)] w-[min(96%,720px)] lg:h-[78vh]"
+            : "h-[min(56svh,480px)] w-[min(96%,560px)] lg:h-[82vh]"
         }
         sizes={wide ? "(max-width: 1024px) 100vw, 60vw" : "(max-width: 1024px) 100vw, 50vw"}
       />
