@@ -67,7 +67,11 @@ export const metadata: Metadata = {
   description:
     "Alaya Division — tienda de tablas y casa de shapers. Built on Connection. Pide cita para crear o elegir tu tabla.",
   icons: {
-    icon: "/images/brand/icon.gif",
+    icon: [
+      { url: "/images/brand/icon.gif", type: "image/gif" },
+      { url: "/images/brand/apple-icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: "/images/brand/apple-icon.png",
   },
   openGraph: {
     type: "website",
@@ -76,6 +80,22 @@ export const metadata: Metadata = {
     title: "Alaya Division",
     description:
       "Tienda de tablas · cinco shapers · cita en fábrica u online.",
+    images: [
+      {
+        url: "/images/brand/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Alaya Division",
+        type: "image/jpeg",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alaya Division",
+    description:
+      "Tienda de tablas · cinco shapers · cita en fábrica u online.",
+    images: ["/images/brand/og.jpg"],
   },
 };
 
