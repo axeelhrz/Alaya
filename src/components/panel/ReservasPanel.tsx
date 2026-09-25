@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { shapers } from "../../../content/shapers";
+import { SelectMenu } from "@/components/forms/SelectMenu";
 import { FlameMark } from "@/components/ui/Logo";
+import { downloadXlsx } from "@/lib/write-xlsx";
 import type { Reserva, ReservaStatus } from "@/lib/reservas";
 
 type StatusFilter = "todas" | ReservaStatus;
@@ -95,11 +97,6 @@ function matchesSearch(reserva: Reserva, query: string) {
   return hay.includes(query);
 }
 
-function csvEscape(value: string) {
-  if (/[",\n]/.test(value)) return `"${value.replace(/"/g, '""')}"`;
-  return value;
-}
-
 export function ReservasPanel({ initial }: { initial: Reserva[] }) {
   const [reservas, setReservas] = useState(initial);
   const [status, setStatus] = useState<StatusFilter>("todas");
@@ -178,8 +175,8 @@ export function ReservasPanel({ initial }: { initial: Reserva[] }) {
     window.location.reload();
   }
 
-  function exportCsv() {
-    const rows = [
+  function exportXlsx() {
+    downloadXlsx(`reservas-${today}.xlsx`, "Reservas", [
       [
         "Fecha",
         "Hora",
@@ -197,30 +194,19 @@ export function ReservasPanel({ initial }: { initial: Reserva[] }) {
       ...visible.map((r) => [
         r.date,
         r.time,
-        r.status,
+        statusLabel(r.status),
         r.name,
         r.email,
         r.phone,
-        r.appointmentType,
+        typeLabel(r.appointmentType),
         r.shaperName,
         r.boardName || "",
         r.boardInfo,
         r.notes || "",
-        r.createdAt,
+        formatCreated(r.createdAt),
       ]),
-    ];
-    const csv = rows.map((row) => row.map(csvEscape).join(",")).join("\n");
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `reservas-${today}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
+    ]);
   }
-
-  const selectClass =
-    "border-0 bg-alaya-surface px-3 py-2 text-[0.65rem] uppercase tracking-[0.14em] text-alaya-black outline-none";
 
   return (
     <div className="min-h-svh bg-alaya-white text-alaya-black">
@@ -237,7 +223,7 @@ export function ReservasPanel({ initial }: { initial: Reserva[] }) {
         <div className="flex items-center gap-5">
           <button
             type="button"
-            onClick={exportCsv}
+            onClick={exportXlsx}
             className="text-[0.65rem] uppercase tracking-[0.16em] text-white/70 hover:text-white"
           >
             Exportar
@@ -277,76 +263,69 @@ export function ReservasPanel({ initial }: { initial: Reserva[] }) {
           aria-label="Buscar reservas"
         />
 
-        <nav className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[0.7rem] uppercase tracking-[0.16em] text-alaya-muted">
-          {statusFilters.map((item) => (
-            <button
-              key={item.value}
-              type="button"
-              onClick={() => setStatus(item.value)}
-              className={
-                status === item.value ? "text-alaya-black" : "hover:text-alaya-black"
-              }
-            >
-              {item.label}
-            </button>
-          ))}
-        </nav>
-
-        <div className="mt-5 flex flex-wrap gap-2">
-          <select
-            className={selectClass}
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <SelectMenu
+            label="Estado"
+            placeholder="Estado"
+            value={status}
+            onChange={(next) => setStatus(next as StatusFilter)}
+            options={statusFilters}
+          />
+          <SelectMenu
+            label="Fecha"
+            placeholder="Fecha"
             value={when}
-            onChange={(e) => setWhen(e.target.value as WhenFilter)}
-            aria-label="Filtrar por fecha"
-          >
-            <option value="todas">Todas las fechas</option>
-            <option value="proximas">Próximas</option>
-            <option value="semana">Esta semana</option>
-            <option value="pasadas">Pasadas</option>
-          </select>
-          <select
-            className={selectClass}
+            onChange={(next) => setWhen(next as WhenFilter)}
+            options={[
+              { value: "todas", label: "Todas las fechas" },
+              { value: "proximas", label: "Próximas" },
+              { value: "semana", label: "Esta semana" },
+              { value: "pasadas", label: "Pasadas" },
+            ]}
+          />
+          <SelectMenu
+            label="Tipo"
+            placeholder="Tipo"
             value={type}
-            onChange={(e) => setType(e.target.value as TypeFilter)}
-            aria-label="Filtrar por tipo"
-          >
-            <option value="todas">Presencial y online</option>
-            <option value="presencial">Presencial</option>
-            <option value="online">Online</option>
-          </select>
-          <select
-            className={selectClass}
+            onChange={(next) => setType(next as TypeFilter)}
+            options={[
+              { value: "todas", label: "Presencial y online" },
+              { value: "presencial", label: "Presencial" },
+              { value: "online", label: "Online" },
+            ]}
+          />
+          <SelectMenu
+            label="Shaper"
+            placeholder="Shaper"
             value={shaper}
-            onChange={(e) => setShaper(e.target.value)}
-            aria-label="Filtrar por shaper"
-          >
-            <option value="todas">Todos los shapers</option>
-            {shaperOptions.map((name) => (
-              <option key={name} value={name}>
-                {name}
-              </option>
-            ))}
-          </select>
-          <select
-            className={selectClass}
+            onChange={setShaper}
+            options={[
+              { value: "todas", label: "Todos los shapers" },
+              ...shaperOptions.map((name) => ({ value: name, label: name })),
+            ]}
+          />
+          <SelectMenu
+            label="Tabla"
+            placeholder="Tabla"
             value={board}
-            onChange={(e) => setBoard(e.target.value as BoardFilter)}
-            aria-label="Filtrar por tabla"
-          >
-            <option value="todas">Cualquier tabla</option>
-            <option value="con">Con modelo</option>
-            <option value="sin">Sin modelo</option>
-          </select>
-          <select
-            className={selectClass}
+            onChange={(next) => setBoard(next as BoardFilter)}
+            options={[
+              { value: "todas", label: "Cualquier tabla" },
+              { value: "con", label: "Con modelo" },
+              { value: "sin", label: "Sin modelo" },
+            ]}
+          />
+          <SelectMenu
+            label="Orden"
+            placeholder="Orden"
             value={sort}
-            onChange={(e) => setSort(e.target.value as SortKey)}
-            aria-label="Ordenar"
-          >
-            <option value="cita">Orden: cita</option>
-            <option value="entrada">Orden: más nuevas</option>
-            <option value="nombre">Orden: nombre</option>
-          </select>
+            onChange={(next) => setSort(next as SortKey)}
+            options={[
+              { value: "cita", label: "Orden: cita" },
+              { value: "entrada", label: "Orden: más nuevas" },
+              { value: "nombre", label: "Orden: nombre" },
+            ]}
+          />
         </div>
 
         {visible.length === 0 ? (
