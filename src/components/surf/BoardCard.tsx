@@ -13,6 +13,7 @@ export function BoardCard({ board }: { board: Board }) {
   return (
     <article className="group">
       <Link href={boardCitaHref(board)} className="block">
+        {board.image ? (
         <div className="relative aspect-[4/5] overflow-hidden bg-alaya-surface">
           <Image
             src={board.image}
@@ -22,6 +23,7 @@ export function BoardCard({ board }: { board: Board }) {
             sizes="(max-width: 768px) 100vw, 33vw"
           />
         </div>
+        ) : null}
         <div className="mt-4 space-y-1">
           <p className="section-label">{copy.category}</p>
           <h3 className="font-display text-2xl uppercase tracking-wide">

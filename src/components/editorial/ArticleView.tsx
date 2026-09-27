@@ -62,13 +62,14 @@ export function ArticleView({
                 locale === "en" ? item.titleEn || item.title : item.title;
               return (
                 <Link key={item.slug} href={`/new/${item.slug}`} className="group">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-alaya-surface">
+                  <div className="overflow-hidden bg-alaya-surface">
                     {item.cover ? (
                       <Image
                         src={item.cover}
                         alt={relatedTitle}
-                        fill
-                        className="object-cover object-center transition group-hover:scale-105"
+                        width={1280}
+                        height={735}
+                        className="h-auto w-full transition group-hover:scale-105"
                         sizes="(max-width: 640px) 100vw, 240px"
                       />
                     ) : null}

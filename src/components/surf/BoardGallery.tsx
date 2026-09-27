@@ -11,7 +11,7 @@ export function BoardGallery({
   composite,
 }: {
   name: string;
-  image: string;
+  image?: string;
   back?: string;
   composite?: string;
 }) {

@@ -14,7 +14,7 @@ export type Board = {
   shaper: string;
   dimensions: string;
   description: string;
-  image: string;
+  image?: string;
   back?: string;
   composite?: string;
   related?: string[];
@@ -71,9 +71,9 @@ export const boards: Board[] = [
     body: "La Flying Hippie acerca el vibe retro al shortboard moderno. Mantiene volumen bajo el pecho para remar, afinó nose y tail para que responda, y subió un poco el rocker delantero para meterse más en el pocket y aguantar secciones más verticales. Es la tabla del equipo cuando el grind de performance se queda corto y aún quieres rail o lip.\n\nSe pide en cita con Roberts: dims, quillas y glass según cómo surfeas.",
     sizing:
       "Para el día a día, 2–4\" por debajo de tu altura y ~1 L más que tu tabla de ola buena. Más cruiser: a tu altura o por encima. Frente a un pro model, 5–7\" más corta, 1\" más ancha y un poco más de canto.",
-    image: "/images/boards/roberts/catalog/d48e2088-a4ea-4776-a528-ded7927add53-front.png",
-    back: "/images/boards/roberts/catalog/d48e2088-a4ea-4776-a528-ded7927add53-back.png",
-    composite: "/images/boards/roberts/catalog/d48e2088-a4ea-4776-a528-ded7927add53-composite.png",
+    image: "/images/boards/roberts/catalog/076abf27-b7d6-4107-bf95-8112a0bb874c-front.png",
+    back: "/images/boards/roberts/catalog/076abf27-b7d6-4107-bf95-8112a0bb874c-back.png",
+    composite: "/images/boards/roberts/catalog/076abf27-b7d6-4107-bf95-8112a0bb874c-composite.png",
     related: ["bro-fish", "army-knife", "floaty"],
     sizes: [
       stock("5'2 x 18 3/4 x 2 3/16", 23.9, 140, 115, 95),
@@ -97,14 +97,14 @@ export const boards: Board[] = [
   },
   {
     slug: "wd3",
-    name: "WD3",
+    name: "Redneck",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
     dimensions: "4'10\" – 6'4\"",
     volume: "20.6 – 43.4 L",
     description:
-      "La Diamond afinada para grovel: coge slop y sigue surfeando como una White Diamond.",
+      "Outline de performance con rocker de ola chica: giros rápidos en el pocket sin perder speed.",
     wave: "Rodilla a hombro. Débil a un poco punchy.",
     rider:
       "Quien ya conoce la WD y quiere más rango bajo. Performance en ola chica, intermedio a avanzado.",
@@ -188,14 +188,14 @@ export const boards: Board[] = [
   },
   {
     slug: "dream-machine",
-    name: "Dream Machine",
+    name: "Disco Hippy",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
     dimensions: "5'0\" – 6'6\"",
     volume: "24.2 – 53.6 L",
     description:
-      "Groveler corto y ancho para olas planas: la diaria de beach y point chico.",
+      "Retro empujado: speed fácil, twin o Twonzer y un outline más suelto que un shortboard.",
     wave: "Olas planas y lentas. Cualquier beach o point.",
     rider:
       "Diaria de small-medium. Se suele ir 7–8\" por debajo del shortboard estándar, o 3–4\" por debajo de una White Diamond.",
@@ -235,13 +235,13 @@ export const boards: Board[] = [
   },
   {
     slug: "gsd",
-    name: "GSD",
+    name: "Cruzee",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
     dimensions: "5'8\" – 6'4\"",
     description:
-      "High performance de swell con punch. Aquí el rocker y el pocket mandan.",
+      "Grom shortboard: volumen y perdón para progresar sin pelear la tabla.",
     wave: "Hombro a doble overhead. Punch y verticalidad. Beach, point o reef.",
     rider:
       "Surfista de performance que viaja o espera swell de verdad. No es la diaria de summer.",
@@ -317,9 +317,9 @@ export const boards: Board[] = [
     body: "Piezas de varios modelos Roberts: rocker y rail más rectos al estilo 3DF para ir rápido de frente; nose tipo White Diamond; caderas de Modern 80s que pivotan y recortan cola; bloque de cola de la Black Diamond para feeling. No es un HP de swell gordo ni un groveler ancho: está en medio a propósito.\n\nSi las fotos se parecen a otras shortboards de la línea, mira el outline: las caderas y la cola metida son el recorte.",
     sizing:
       "Frente a un pro model: 5–6\" más corta, 1\" más ancha, mismo canto. Approach HP: 1–4\" por debajo de tu altura. Más estable: a tu altura o por encima, con más litros.",
-    image: "/images/boards/roberts/catalog/9832390a-277f-41eb-aa74-f83f56851e4d-front.png",
-    back: "/images/boards/roberts/catalog/9832390a-277f-41eb-aa74-f83f56851e4d-back.png",
-    composite: "/images/boards/roberts/catalog/9832390a-277f-41eb-aa74-f83f56851e4d-composite.png",
+    image: "/images/boards/roberts/catalog/367ceb71-9d42-4f06-ade4-e0531d5a06aa-front.png",
+    back: "/images/boards/roberts/catalog/367ceb71-9d42-4f06-ade4-e0531d5a06aa-back.png",
+    composite: "/images/boards/roberts/catalog/367ceb71-9d42-4f06-ade4-e0531d5a06aa-composite.png",
     related: ["flying-hippie", "dreamcatcher", "bro-fish"],
     sizes: [
       stock("5'2 x 18 3/8 x 2 1/8", 22.68, 140, 120, 100),
@@ -359,9 +359,9 @@ export const boards: Board[] = [
     body: "Roberts la lleva años afinando para que no se quede en mini-longboard plana: ese rocker intermedio evita pearling y hang-ups, y deja aplicar rail cuando el nivel sube. Nose más lleno para remar; cola squash para no arrastrar.\n\nSegún cómo la midas, es tabla de escuela o mid que un avanzado puede romper. La Modern Mid pisa más performance; la Fun 1 es la más abierta del catálogo.",
     sizing:
       "Principiante: según peso en la grilla, o un poco más larga si quieres remar más fácil. Avanzado: más corta que tu altura con litros por encima del shortboard, o varios pulgadas por encima para mid rippable.",
-    image: "/images/boards/roberts/catalog/4046cbdd-e87b-49bc-b487-ef45ab96d953-front.png",
-    back: "/images/boards/roberts/catalog/4046cbdd-e87b-49bc-b487-ef45ab96d953-back.png",
-    composite: "/images/boards/roberts/catalog/4046cbdd-e87b-49bc-b487-ef45ab96d953-composite.png",
+    image: "/images/boards/roberts/catalog/be7667f1-d75a-4752-b614-f4204c97fe4e-front.png",
+    back: "/images/boards/roberts/catalog/be7667f1-d75a-4752-b614-f4204c97fe4e-back.png",
+    composite: "/images/boards/roberts/catalog/be7667f1-d75a-4752-b614-f4204c97fe4e-composite.png",
     related: ["modern-mid", "dreamcatcher", "floaty"],
     sizes: [
       stock("5'6 x 19 3/4 x 2 1/4", 28.53, 170, 150, 125),
@@ -387,7 +387,7 @@ export const boards: Board[] = [
   },
   {
     slug: "floaty",
-    name: "Floaty",
+    name: "Dream Maker",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -466,7 +466,7 @@ export const boards: Board[] = [
   },
   {
     slug: "mayhem",
-    name: "Mayhem",
+    name: "Metatwin",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -479,7 +479,7 @@ export const boards: Board[] = [
   },
   {
     slug: "db",
-    name: "D/B",
+    name: "OB Pin",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -518,7 +518,7 @@ export const boards: Board[] = [
   },
   {
     slug: "choice",
-    name: "Choice",
+    name: "Mutant",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -531,7 +531,7 @@ export const boards: Board[] = [
   },
   {
     slug: "anything",
-    name: "Anything",
+    name: "Dreamcatcher Plus",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -596,7 +596,7 @@ export const boards: Board[] = [
   },
   {
     slug: "monks",
-    name: "Monks",
+    name: "The Goods",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -648,7 +648,7 @@ export const boards: Board[] = [
   },
   {
     slug: "more-diamonds",
-    name: "More Diamonds",
+    name: "Hope Diamond",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -674,7 +674,7 @@ export const boards: Board[] = [
   },
   {
     slug: "bfeet",
-    name: "BFEET",
+    name: "Black Punt",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -687,7 +687,7 @@ export const boards: Board[] = [
   },
   {
     slug: "ras",
-    name: "RAS",
+    name: "The Rap",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -700,7 +700,7 @@ export const boards: Board[] = [
   },
   {
     slug: "retet",
-    name: "Rétet",
+    name: "MP3",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -713,7 +713,7 @@ export const boards: Board[] = [
   },
   {
     slug: "mayhem-stripe",
-    name: "Mayhem",
+    name: "Metatwin",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -726,7 +726,7 @@ export const boards: Board[] = [
   },
   {
     slug: "choice-neon",
-    name: "Choice",
+    name: "Black Dump Truck",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -778,7 +778,7 @@ export const boards: Board[] = [
   },
   {
     slug: "monks-shield",
-    name: "Monks",
+    name: "Black Thumb",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -804,7 +804,7 @@ export const boards: Board[] = [
   },
   {
     slug: "modern-80s-fade",
-    name: "Modern 80s",
+    name: "Biodiesel",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -881,34 +881,8 @@ export const boards: Board[] = [
     related: ["wd3", "dream-machine", "fun-1"],
   },
   {
-    slug: "blue-fade",
-    name: "Blue Fade",
-    category: "Shortboard",
-    categorySlug: "shortboard",
-    shaper: "Roberts",
-    dimensions: "5'8\" – 6'4\"",
-    description: "Shortboard con wash azul en el tail.",
-    image: "/images/boards/roberts/catalog/076abf27-b7d6-4107-bf95-8112a0bb874c-front.png",
-    back: "/images/boards/roberts/catalog/076abf27-b7d6-4107-bf95-8112a0bb874c-back.png",
-    composite: "/images/boards/roberts/catalog/076abf27-b7d6-4107-bf95-8112a0bb874c-composite.png",
-    related: ["wd3", "dream-machine", "fun-1"],
-  },
-  {
-    slug: "blue-mist",
-    name: "Blue Mist",
-    category: "Shortboard",
-    categorySlug: "shortboard",
-    shaper: "Roberts",
-    dimensions: "5'8\" – 6'4\"",
-    description: "Shortboard con splash azul y rail limpio.",
-    image: "/images/boards/roberts/catalog/367ceb71-9d42-4f06-ade4-e0531d5a06aa-front.png",
-    back: "/images/boards/roberts/catalog/367ceb71-9d42-4f06-ade4-e0531d5a06aa-back.png",
-    composite: "/images/boards/roberts/catalog/367ceb71-9d42-4f06-ade4-e0531d5a06aa-composite.png",
-    related: ["wd3", "dream-machine", "fun-1"],
-  },
-  {
     slug: "green-band",
-    name: "Green Band",
+    name: "Black Cobra",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -921,7 +895,7 @@ export const boards: Board[] = [
   },
   {
     slug: "grey-blue",
-    name: "Grey Blue",
+    name: "HPLB",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -934,7 +908,7 @@ export const boards: Board[] = [
   },
   {
     slug: "orange-mark",
-    name: "Orange Mark",
+    name: "Black Diamond",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -947,7 +921,7 @@ export const boards: Board[] = [
   },
   {
     slug: "hex",
-    name: "Hex",
+    name: "Star Chip",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -960,7 +934,7 @@ export const boards: Board[] = [
   },
   {
     slug: "carbon-tail",
-    name: "Carbon Tail",
+    name: "Black Thumb",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -986,7 +960,7 @@ export const boards: Board[] = [
   },
   {
     slug: "black-block",
-    name: "Black Block",
+    name: "White Diamond",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -999,7 +973,7 @@ export const boards: Board[] = [
   },
   {
     slug: "checker",
-    name: "Checker",
+    name: "Vlad",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -1011,21 +985,8 @@ export const boards: Board[] = [
     related: ["wd3", "dream-machine", "fun-1"],
   },
   {
-    slug: "orange-rail",
-    name: "Orange Rail",
-    category: "Shortboard",
-    categorySlug: "shortboard",
-    shaper: "Roberts",
-    dimensions: "5'8\" – 6'4\"",
-    description: "Shortboard blanco con rail naranja.",
-    image: "/images/boards/roberts/catalog/be7667f1-d75a-4752-b614-f4204c97fe4e-front.png",
-    back: "/images/boards/roberts/catalog/be7667f1-d75a-4752-b614-f4204c97fe4e-back.png",
-    composite: "/images/boards/roberts/catalog/be7667f1-d75a-4752-b614-f4204c97fe4e-composite.png",
-    related: ["wd3", "dream-machine", "fun-1"],
-  },
-  {
     slug: "red-rail",
-    name: "Red Rail",
+    name: "Dream Maker Plus",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -1038,7 +999,7 @@ export const boards: Board[] = [
   },
   {
     slug: "red-mark",
-    name: "Red Mark",
+    name: "Beaver",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -1051,7 +1012,7 @@ export const boards: Board[] = [
   },
   {
     slug: "blue-mark",
-    name: "Blue Mark",
+    name: "Rob's Big Boy Tri",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -1064,7 +1025,7 @@ export const boards: Board[] = [
   },
   {
     slug: "blue-outline",
-    name: "Blue Outline",
+    name: "CG",
     category: "Shortboard",
     categorySlug: "shortboard",
     shaper: "Roberts",
@@ -1086,19 +1047,6 @@ export const boards: Board[] = [
     image: "/images/boards/roberts/catalog/702eb48d-5c06-495b-83e1-fadb043873d2-front.png",
     back: "/images/boards/roberts/catalog/702eb48d-5c06-495b-83e1-fadb043873d2-back.png",
     composite: "/images/boards/roberts/catalog/702eb48d-5c06-495b-83e1-fadb043873d2-composite.png",
-    related: ["wd3", "dream-machine", "fun-1"],
-  },
-  {
-    slug: "white-daily",
-    name: "White Daily",
-    category: "Shortboard",
-    categorySlug: "shortboard",
-    shaper: "Roberts",
-    dimensions: "5'8\" – 6'4\"",
-    description: "Shortboard blanco de línea: rail limpio y five-fin.",
-    image: "/images/boards/roberts/catalog/b12c59e4-6c6a-434e-bf56-1c1b283eb619-front.png",
-    back: "/images/boards/roberts/catalog/b12c59e4-6c6a-434e-bf56-1c1b283eb619-back.png",
-    composite: "/images/boards/roberts/catalog/b12c59e4-6c6a-434e-bf56-1c1b283eb619-composite.png",
     related: ["wd3", "dream-machine", "fun-1"],
   },
   {
@@ -1136,7 +1084,6 @@ export const boards: Board[] = [
     dimensions: "5'6\" – 6'2\"",
     description:
       "Drive y speed en un outline fish contemporáneo. Ideal para olas de hombro con secciones rápidas.",
-    image: "/images/boards/01.jpg",
     related: ["rb-keel", "dyn-twin", "alaya-custom"],
   },
   {
@@ -1148,7 +1095,6 @@ export const boards: Board[] = [
     dimensions: "6'8\" – 7'6\"",
     description:
       "Versatilidad atlántica: paddle fácil, trim limpio y suficiente performance para maniobras modernas.",
-    image: "/images/boards/02.jpg",
     related: ["ara-step", "dyn-aspen", "alaya-custom"],
   },
   {
@@ -1160,7 +1106,6 @@ export const boards: Board[] = [
     dimensions: "5'8\" – 6'4\"",
     description:
       "Performance board para riders que buscan respuesta inmediata y control en beach breaks potentes.",
-    image: "/images/boards/03.jpg",
     related: ["ap-round", "mp-groveler", "dyn-aspen"],
   },
   {
@@ -1172,7 +1117,6 @@ export const boards: Board[] = [
     dimensions: "5'4\" – 5'10\"",
     description:
       "Glide clásico con keels. Diversión máxima en olas pequeñas y medianas.",
-    image: "/images/boards/04.jpg",
     related: ["ap-twin", "rb-modern", "alaya-custom"],
   },
   {
@@ -1184,7 +1128,6 @@ export const boards: Board[] = [
     dimensions: "5'10\" – 6'6\"",
     description:
       "La tabla diaria equilibrada: volumen inteligente, rails sensibles y salida limpia.",
-    image: "/images/boards/05.jpg",
     related: ["mp-hyper", "ap-round", "ara-mid"],
   },
   {
@@ -1196,7 +1139,6 @@ export const boards: Board[] = [
     dimensions: "A medida",
     description:
       "Proyecto 100% personalizado con el equipo Alaya. Desde el blank hasta el glass, cada decisión es tuya.",
-    image: "/images/boards/06.jpg",
     related: ["ap-twin", "ara-mid", "mp-hyper"],
   },
   {
@@ -1208,7 +1150,6 @@ export const boards: Board[] = [
     dimensions: "5'10\" – 6'4\"",
     description:
       "Performance shortboard con rail sensible y salida limpia. Precisión Patterson.",
-    image: "/images/boards/03.jpg",
     related: ["mp-hyper", "dyn-aspen", "alaya-custom"],
   },
   {
@@ -1220,7 +1161,6 @@ export const boards: Board[] = [
     dimensions: "6'10\" – 7'8\"",
     description:
       "Volumen controlado para swell de tamaño serio. Paddle extra sin perder respuesta.",
-    image: "/images/boards/02.jpg",
     related: ["ara-mid", "mp-hyper", "alaya-custom"],
   },
   {
@@ -1232,7 +1172,6 @@ export const boards: Board[] = [
     dimensions: "5'6\" – 6'0\"",
     description:
       "Más volumen, más divertido en olas pequeñas. El daily driver de summer.",
-    image: "/images/boards/05.jpg",
     related: ["rb-keel", "dyn-aspen", "ap-twin"],
   },
   {
@@ -1244,7 +1183,6 @@ export const boards: Board[] = [
     dimensions: "5'6\" – 6'0\"",
     description:
       "Híbrido contemporáneo para todo tipo de spot. Línea Roberds con attitude.",
-    image: "/images/boards/01.jpg",
     related: ["rb-keel", "ap-twin", "dyn-twin"],
   },
   {
@@ -1256,7 +1194,6 @@ export const boards: Board[] = [
     dimensions: "5'8\" – 6'2\"",
     description:
       "Twin con pin para speed y control en paredes largas.",
-    image: "/images/boards/04.jpg",
     related: ["ap-twin", "rb-modern", "dyn-aspen"],
   },
   {
@@ -1268,15 +1205,24 @@ export const boards: Board[] = [
     dimensions: "A medida",
     description:
       "Custom de tamaño para swell serio. Brief con el equipo Alaya.",
-    image: "/images/boards/06.jpg",
     related: ["alaya-custom", "ara-step", "mp-hyper"],
   },
 ];
 
+const aliases: Record<string, string> = {
+  "blue-fade": "flying-hippie",
+  "blue-mist": "army-knife",
+  "orange-rail": "fun-1",
+  "white-daily": "black-block",
+};
+
 export function filterBoards(cat?: string) {
-  if (!cat || cat === "all") return boards;
-  if (cat === "roberts") return boards.filter((b) => b.shaper === "Roberts");
-  return boards.filter((b) => b.categorySlug === cat);
+  const withPhoto = boards.filter(
+    (b) => b.image?.includes("/roberts/") || b.shaper === "Alaya",
+  );
+  if (!cat || cat === "all") return withPhoto;
+  if (cat === "roberts") return withPhoto.filter((b) => b.shaper === "Roberts");
+  return withPhoto.filter((b) => b.categorySlug === cat);
 }
 
 export function boardCitaHref(board: Board) {
@@ -1299,7 +1245,8 @@ export function boardCitaHref(board: Board) {
 }
 
 export function getBoard(slug: string) {
-  return boards.find((b) => b.slug === slug);
+  const key = aliases[slug] ?? slug;
+  return boards.find((b) => b.slug === key);
 }
 
 export function getRelatedBoards(slug: string) {

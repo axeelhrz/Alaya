@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
-import { BoardSilhouette } from "@/components/surf/BoardSilhouette";
 import { robertsPhotoCandidates } from "@/lib/robertsPhoto";
 
 export function BoardPhoto({
@@ -44,9 +43,7 @@ export function BoardPhoto({
             setIndex((i) => (i + 1 < candidates.length ? i + 1 : i));
           }}
         />
-      ) : (
-        <BoardSilhouette className="mx-auto h-full w-auto text-alaya-black/75" />
-      )}
+      ) : null}
     </div>
   );
 }

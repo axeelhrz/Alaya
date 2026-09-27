@@ -65,14 +65,15 @@ export function NewHub({
                 </div>
                 <Link
                   href={`/new/${post.slug}`}
-                  className="relative block aspect-[4/3] overflow-hidden bg-alaya-black sm:aspect-[4/5]"
+                  className="relative block overflow-hidden bg-alaya-black"
                 >
                   {post.cover ? (
                     <Image
                       src={post.cover}
                       alt={title}
-                      fill
-                      className="object-contain object-center sm:object-cover"
+                      width={1280}
+                      height={735}
+                      className="h-auto w-full"
                       sizes="(max-width: 768px) 100vw, 40vw"
                     />
                   ) : null}
