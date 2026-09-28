@@ -223,9 +223,6 @@ const boardEn: Record<string, BoardEn> = {
   retet: {
     description: "Performance with hex and five-fin.",
   },
-  "mayhem-stripe": {
-    description: "Mayhem with a striped rail: punch and pocket.",
-  },
   "choice-neon": {
     description: "Choice in yellow: quick response and a precise rail.",
   },
