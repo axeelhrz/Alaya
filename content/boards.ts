@@ -488,9 +488,9 @@ export const boards: Board[] = [
     shaper: "Roberts",
     dimensions: "5'8\" – 6'4\"",
     description: "Pro model de línea: respuesta rápida y rail preciso.",
-    image: "/images/boards/roberts/catalog/9ab6c941-0ca4-4c0b-85aa-bde200255df2-front.png",
-    back: "/images/boards/roberts/catalog/9ab6c941-0ca4-4c0b-85aa-bde200255df2-back.png",
-    composite: "/images/boards/roberts/catalog/9ab6c941-0ca4-4c0b-85aa-bde200255df2-composite.png",
+    image: "/images/boards/roberts/catalog/702eb48d-5c06-495b-83e1-fadb043873d2-front.png",
+    back: "/images/boards/roberts/catalog/702eb48d-5c06-495b-83e1-fadb043873d2-back.png",
+    composite: "/images/boards/roberts/catalog/702eb48d-5c06-495b-83e1-fadb043873d2-composite.png",
     related: ["wd3", "gsd", "mayhem"],
   },
   {
