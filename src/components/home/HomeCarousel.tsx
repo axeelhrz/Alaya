@@ -20,10 +20,10 @@ const slideMeta = [
   },
   {
     id: "apparel",
-    image: "/images/home/hero-apparel.jpg",
+    image: "/images/banner_apparel.jpg",
     imageAlt: "Alaya apparel",
     overlay: "",
-    position: "object-[center_top]",
+    position: "object-[18%_center] sm:object-[left_center] lg:object-[center_center]",
     ink: "dark" as const,
     align: "right" as const,
     href: undefined,
