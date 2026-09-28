@@ -171,6 +171,20 @@ const boardEn: Record<string, BoardEn> = {
     sizing:
       "Progressing novice: at your height or +2\". Rail-to-rail grovel: 6\" shorter than the pro model, or 4–6\" under your height, with 3–5 L extra. Cruiser: ~10 L more than your good-wave board.",
   },
+  "diamond-fish": {
+    description:
+      "Diamond-line fish: wide swallow, easy speed and a rail that still turns.",
+    wave: "Knee to head-high and a bit more. Beach, reef or point.",
+    rider:
+      "If you want fish glide with Diamond feel in small to medium surf.",
+    rocker: "Low, flat entry: easy paddle and speed on the flat.",
+    rails: "Medium, tucked hard edge for hold without losing flow.",
+    bottom: "Single to double: lift and control in tight turns.",
+    fins: "Twin or Twonzer as standard. Five-fin on request.",
+    body: "The Diamond Fish takes the Roberts fish outline with Diamond attitude: more width under the chest, a swallow that planes and a rail that still asks for curve in the pocket.\n\nIt is the fish in the quiver when you want easy waves without a soft groveler. Dims and fin setup are set in the booking.",
+    sizing:
+      "3–5\" under your height and ~2 L more than your good-wave board. Versus a pro model: 6–8\" shorter, 1 1/2\" wider.",
+  },
   "bro-fish": {
     description:
       "Beak fish, liters under the chest and a swallow: classic glide, today's carve.",
