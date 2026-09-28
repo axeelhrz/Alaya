@@ -10,7 +10,9 @@ import { BoardPhoto } from "@/components/surf/BoardPhoto";
 export function HomeSections() {
   const { open } = useSubscribe();
   const { t } = useLocale();
-  const featured = boards.filter((board) => board.shaper === "Roberts").slice(0, 4);
+  const featured = boards
+    .filter((board) => board.shaper === "Roberts" && board.image)
+    .slice(0, 4);
 
   return (
     <>

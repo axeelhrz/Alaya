@@ -76,8 +76,8 @@ export const shapers: Shaper[] = [
         description: "Retro con respuesta moderna y five-fin.",
       },
       {
-        name: "Dreamcatcher",
-        description: "All-around de paddle generoso y trim largo.",
+        name: "Modern Mid",
+        description: "Mid con rail sensible y setup de quillas abierto.",
       },
       {
         name: "GSD",

@@ -82,21 +82,6 @@ const boardEn: Record<string, BoardEn> = {
     sizing:
       "Same dims as the original WD if you want the same feel in smaller waves. As a groveler next to a WD2: 1\" shorter. Versus a pro model: 5–6\" shorter, 1\" wider, same thickness.",
   },
-  dreamcatcher: {
-    description:
-      "The versatile Roberts: generous paddle, thumb tail and a range from knee-high to overhead.",
-    wave: "Knee to a few feet overhead. Flat face to hollow. Beach, reef or point.",
-    rider:
-      "All levels depending on volume. The all-around of the quiver, and a tube when the tail bites.",
-    rocker:
-      "Moderate, with a soft flip in the nose: speed without extra paddle and less pearling.",
-    rails: "Medium to full, tucked hard edge for hold and speed.",
-    bottom: "Single to double: it controls the speed the outline makes.",
-    fins: "Five-fin as standard. Thruster or single + sidebites on request.",
-    body: "Foam through the blank to catch a lot of waves, moderate rocker for everyday, and a tucked thumb tail that holds in more serious swell and in tight turns. That is why it covers so much: full rails and nose when the surf is messy; tail and concave when the wave gets steep.\n\nNot a classic mid of endless trim, and not a pure HP. It is the Roberts daily if the swell changes every hour.",
-    sizing:
-      "Versus a WD / WD2: 1\" longer, same thickness or a little more volume. Up to 1/2\" narrower if you want more feel. Versus a pro model: 1–4\" shorter, up to 5/8\" wider. HP approach: at your height or 3–4\" under.",
-  },
   "dream-machine": {
     description:
       "Short, wide groveler for flat waves: the daily for small beach and point.",
@@ -206,30 +191,14 @@ const boardEn: Record<string, BoardEn> = {
   db: {
     description: "Everyday shortboard: classic outline, contained rocker.",
   },
-  "two-zero": {
-    description: "Diamond disc: short swallow, five-fin and a loose tail.",
-  },
-  "modern-vd": {
-    description:
-      "Contemporary fish with splash and a loose tail for speed on beach break.",
-  },
   choice: {
     description: "Line pro model: quick response and a precise rail.",
   },
   anything: {
     description: "All-rounder: one outline for the weekly grind.",
   },
-  "pick-rat": {
-    description: "Compact swallow: easy speed and short turns.",
-  },
-  bdt: {
-    description: "Colour fish: glide and an open tail for beach break.",
-  },
   "the-ill": {
     description: "Mid with a fade and a long outline: paddle and flow.",
-  },
-  rivera: {
-    description: "Classic mid, stringer on show, for point and long swell.",
   },
   monks: {
     description: "Performance with a blue V: pocket and rail.",
@@ -246,9 +215,6 @@ const boardEn: Record<string, BoardEn> = {
   "more-diamonds": {
     description: "Classic outline, More Diamonds fins and a clean rail.",
   },
-  "the-lip": {
-    description: "Shortboard for a vertical section and the lip.",
-  },
   bfeet: {
     description: "Black stringer through the blank: drive and hold.",
   },
@@ -264,20 +230,11 @@ const boardEn: Record<string, BoardEn> = {
   "choice-neon": {
     description: "Choice in yellow: quick response and a precise rail.",
   },
-  "bdt-swallow": {
-    description: "BDT swallow, orange fins and an open tail.",
-  },
-  "pick-rat-swallow": {
-    description: "Compact Pick Rat: easy speed and short turns.",
-  },
   "ill-fade": {
     description: "The iLL with a fade in the tail: paddle and flow.",
   },
   "monks-shield": {
     description: "Monks: performance with a shield and a carbon rail.",
-  },
-  "modern-vd-ink": {
-    description: "Modern V.D. ink: contemporary fish for beach break.",
   },
   "modern-80s-fade": {
     description: "Modern 80s fade: neon graphic and a current rail.",
@@ -292,10 +249,10 @@ const boardEn: Record<string, BoardEn> = {
     description: "Dream Machine in white: summer groveler.",
   },
   "resin-fish": {
-    description: "Orange resin fish: glide and a swallow tail.",
+    description: "Classic Fish: glide and a swallow tail.",
   },
   "red-resin": {
-    description: "Red resin fish: speed on beach break.",
+    description: "Classic Single + 2: speed on beach break.",
   },
   "blue-fade": {
     description: "Shortboard with a blue wash in the tail.",
@@ -318,9 +275,6 @@ const boardEn: Record<string, BoardEn> = {
   "carbon-tail": {
     description: "Shortboard with carbon panels in the tail.",
   },
-  "carbon-rail": {
-    description: "Mid with a carbon rail and a classic outline.",
-  },
   "black-block": {
     description: "Shortboard with a black block in the tail.",
   },
@@ -342,17 +296,8 @@ const boardEn: Record<string, BoardEn> = {
   "blue-outline": {
     description: "Shortboard with an outlined logo and blue fins.",
   },
-  mr50: {
-    description: "Compact swallow for speed in small waves.",
-  },
   "white-daily": {
     description: "White line shortboard: clean rail and five-fin.",
-  },
-  "red-swallow": {
-    description: "Swallow with a red logo and an open tail.",
-  },
-  "blue-chevron": {
-    description: "Shortboard with a blue chevron on the deck.",
   },
   "ara-mid": {
     description:
@@ -439,7 +384,7 @@ const shaperEn: Record<
     bio: "The Roberts line at Alaya during his stay: diamonds, grovelers, fish and mids. Every model is set in a booking — dims, glass and setup.",
     promodels: {
       "Flying Hippie": "Retro with a modern response and five-fin.",
-      Dreamcatcher: "All-around with generous paddle and long trim.",
+      "Modern Mid": "Mid with a sensitive rail and an open fin setup.",
       GSD: "High performance for a powerful beach break.",
     },
   },
