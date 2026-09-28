@@ -1,12 +1,23 @@
 "use client";
 
 import Link from "next/link";
+import { useMemo, useState } from "react";
 import { boardCategories, filterBoards } from "../../../content/boards";
 import { useLocale } from "@/components/i18n/LocaleContext";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { BoardPhoto } from "@/components/surf/BoardPhoto";
 
 const PAGE_SIZE = 16;
+
+function matchesBoardName(
+  board: { name: string; shaper: string; slug: string },
+  query: string,
+) {
+  const hay = [board.name, board.shaper, board.slug.replace(/-/g, " ")]
+    .join(" ")
+    .toLowerCase();
+  return hay.includes(query);
+}
 
 export function BoardsHub({
   cat,
@@ -16,11 +27,20 @@ export function BoardsHub({
   pageParam?: string;
 }) {
   const { t } = useLocale();
+  const [query, setQuery] = useState("");
   const active = cat && cat !== "all" ? cat : "all";
   const current = boardCategories.find((c) => c.slug === active);
-  const list = filterBoards(active);
+  const list = useMemo(() => {
+    const base = filterBoards(active);
+    const q = query.trim().toLowerCase();
+    if (!q) return base;
+    return base.filter((board) => matchesBoardName(board, q));
+  }, [active, query]);
+  const searching = query.trim().length > 0;
   const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
-  const page = Math.min(totalPages, Math.max(1, Number(pageParam) || 1));
+  const page = searching
+    ? 1
+    : Math.min(totalPages, Math.max(1, Number(pageParam) || 1));
   const shown = list.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   const hrefFor = (nextPage: number) => {
@@ -61,7 +81,21 @@ export function BoardsHub({
         ))}
       </nav>
 
+      <input
+        type="search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder={t.boards.searchPlaceholder}
+        className="input-block is-plain mt-8 max-w-md"
+        aria-label={t.boards.searchPlaceholder}
+      />
+
       <div className="mt-14 grid grid-cols-2 gap-x-8 gap-y-16 sm:grid-cols-3 lg:grid-cols-4">
+        {shown.length === 0 ? (
+          <p className="col-span-full text-sm text-alaya-muted">
+            {t.boards.searchEmpty}
+          </p>
+        ) : null}
         {shown.map((board) => (
           <Link
             key={board.slug}

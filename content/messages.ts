@@ -133,6 +133,8 @@ export const messages = {
     },
     boards: {
       all: "All Boards",
+      searchPlaceholder: "Search by name…",
+      searchEmpty: "No boards match your search.",
       related: "Related boards",
       book: "Book",
       specs: "Specs",
@@ -346,6 +348,8 @@ export const messages = {
     },
     boards: {
       all: "Todas las tablas",
+      searchPlaceholder: "Buscar por nombre…",
+      searchEmpty: "Ninguna tabla coincide con la búsqueda.",
       related: "Tablas relacionadas",
       book: "Pide cita",
       specs: "Especificaciones",
