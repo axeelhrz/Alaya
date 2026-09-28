@@ -212,6 +212,9 @@ const boardEn: Record<string, BoardEn> = {
     description:
       "Swallow fish with a red, yellow and black graphic: easy speed and a loose tail.",
   },
+  "fish-paco": {
+    description: "White swallow fish with a red logo: classic glide and an open tail.",
+  },
   "t-33": {
     description: "Pro-Lite: everyday performance with a competition pad and glass.",
   },

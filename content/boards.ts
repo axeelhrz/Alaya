@@ -534,6 +534,20 @@ export const boards: Board[] = [
     related: ["vlad", "bro-fish", "flying-hippie"],
   },
   {
+    slug: "fish-paco",
+    name: "Fish Paco",
+    category: "Fish / Twin",
+    categorySlug: "fish",
+    shaper: "Roberts",
+    dimensions: "5'4\" – 6'2\"",
+    description:
+      "Fish swallow blanca con logo rojo: glide clásico y cola abierta.",
+    image: "/images/boards/roberts/catalog/be6daadf-f0de-4b48-8eae-4a1bb7985afd-front.png",
+    back: "/images/boards/roberts/catalog/be6daadf-f0de-4b48-8eae-4a1bb7985afd-back.png",
+    composite: "/images/boards/roberts/catalog/be6daadf-f0de-4b48-8eae-4a1bb7985afd-composite.png",
+    related: ["bro-fish", "dirty-bird", "flying-hippie"],
+  },
+  {
     slug: "t-33",
     name: "T-33",
     category: "Shortboard",
