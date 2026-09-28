@@ -74,7 +74,7 @@ export const boards: Board[] = [
     image: "/images/boards/roberts/catalog/076abf27-b7d6-4107-bf95-8112a0bb874c-front.png",
     back: "/images/boards/roberts/catalog/076abf27-b7d6-4107-bf95-8112a0bb874c-back.png",
     composite: "/images/boards/roberts/catalog/076abf27-b7d6-4107-bf95-8112a0bb874c-composite.png",
-    related: ["bro-fish", "army-knife", "floaty"],
+    related: ["bro-fish", "army-knife", "dream-machine"],
     sizes: [
       stock("5'2 x 18 3/4 x 2 3/16", 23.9, 140, 115, 95),
       stock("5'3 x 18 7/8 x 2 3/16", 24.47, 145, 120, 100),
@@ -165,7 +165,7 @@ export const boards: Board[] = [
     image: "/images/boards/roberts/catalog/245aec12-029d-47ba-9cdb-f0333c98c999-front.png",
     back: "/images/boards/roberts/catalog/245aec12-029d-47ba-9cdb-f0333c98c999-back.png",
     composite: "/images/boards/roberts/catalog/245aec12-029d-47ba-9cdb-f0333c98c999-composite.png",
-    related: ["floaty", "flying-hippie", "wd3"],
+    related: ["flying-hippie", "wd3", "bro-fish"],
     sizes: [
       stock("5'0 x 19 1/2 x 2 1/8", 24.17, 125, 110, 90),
       stock("5'1 x 19 3/4 x 2 3/16", 25.52, 135, 115, 95),
@@ -317,7 +317,7 @@ export const boards: Board[] = [
     image: "/images/boards/roberts/catalog/be7667f1-d75a-4752-b614-f4204c97fe4e-front.png",
     back: "/images/boards/roberts/catalog/be7667f1-d75a-4752-b614-f4204c97fe4e-back.png",
     composite: "/images/boards/roberts/catalog/be7667f1-d75a-4752-b614-f4204c97fe4e-composite.png",
-    related: ["modern-mid", "the-ill", "floaty"],
+    related: ["modern-mid", "the-ill", "bro-fish"],
     sizes: [
       stock("5'6 x 19 3/4 x 2 1/4", 28.53, 170, 150, 125),
       stock("5'8 x 19 7/8 x 2 1/4", 29.69, 180, 160, 130),
@@ -338,45 +338,6 @@ export const boards: Board[] = [
       stock("8'2 x 22 3/8 x 3 1/16", 65.79, 400, 345, 290),
       stock("8'4 x 22 1/2 x 3 1/8", 69.18, 425, 360, 305),
       stock("8'6 x 22 5/8 x 3 3/16", 70.82, 435, 370, 310),
-    ],
-  },
-  {
-    slug: "floaty",
-    name: "Dream Maker",
-    category: "Shortboard",
-    categorySlug: "shortboard",
-    shaper: "Roberts",
-    dimensions: "5'0\" – 6'0\"",
-    volume: "26.9 – 46.8 L",
-    description:
-      "Ancha y con litros, pero rápida. El groveler cuando quieres flotar de verdad.",
-    wave: "Caras planas o lentas. Slop de summer.",
-    rider:
-      "Quien mejora en tabla más corta y aún necesita remar fácil. También groveler de peso o groms. Se puede aprender en ella.",
-    rocker: "Bajo para remar y speed; flip suave en el nose para no clavar la caída.",
-    rails:
-      "Blandos delante, más duros atrás, afinados: perdona y deja girar a riders ligeros.",
-    bottom: "Single a double y vee en el tail.",
-    fins: "Five-fin (twin, twin + trailer, thruster o quad).",
-    body: "No es softboard. Outline ancho de nose a tail para remar y estar estable; rails afinados para que no se quede muerta. La Dream Machine es groveler más performance y más corta; la Floaty es el acorazado de ola chica: más litros, más perdón, todavía gira.\n\nPor encima de 6' va a custom.",
-    sizing:
-      "Novato que progresa: a tu altura o +2\". Grovel rail-to-rail: 6\" más corta que el pro model, o 4–6\" por debajo de tu altura, con 3–5 L extra. Cruiser: ~10 L más que tu tabla de ola buena.",
-    image: "/images/boards/roberts/catalog/40d56812-1a46-4ad0-8af0-804135c85f6e-front.png",
-    back: "/images/boards/roberts/catalog/40d56812-1a46-4ad0-8af0-804135c85f6e-back.png",
-    composite: "/images/boards/roberts/catalog/40d56812-1a46-4ad0-8af0-804135c85f6e-composite.png",
-    related: ["dream-machine", "flying-hippie", "bro-fish"],
-    sizes: [
-      stock("5'0 x 19 3/4 x 2 7/16", 26.93, 130, 110, 85),
-      stock("5'2 x 20 1/4 x 2 9/16", 30.03, 145, 120, 95),
-      stock("5'4 x 20 3/4 x 2 11/16", 33.33, 165, 135, 105),
-      stock("5'5 x 21 x 2 3/4", 35.02, 170, 140, 110),
-      stock("5'6 x 21 1/4 x 2 13/16", 36.78, 180, 145, 115),
-      stock("5'7 x 21 1/2 x 2 7/8", 38.56, 190, 155, 120),
-      stock("5'8 x 21 3/4 x 2 15/16", 40.44, 200, 160, 125),
-      stock("5'9 x 22 x 2 15/16", 41.62, 205, 165, 130),
-      stock("5'10 x 22 1/8 x 3", 43.31, 210, 190, 135),
-      stock("5'11 x 22 1/4 x 3 1/16", 45.3, 220, 180, 140),
-      stock("6'0 x 22 3/8 x 3 1/8", 46.82, 230, 185, 145),
     ],
   },
   {
@@ -402,7 +363,7 @@ export const boards: Board[] = [
     image: "/images/boards/roberts/catalog/a8821992-443c-4674-b5dc-f6d052993274-front.png",
     back: "/images/boards/roberts/catalog/a8821992-443c-4674-b5dc-f6d052993274-back.png",
     composite: "/images/boards/roberts/catalog/a8821992-443c-4674-b5dc-f6d052993274-composite.png",
-    related: ["flying-hippie", "army-knife", "floaty"],
+    related: ["flying-hippie", "army-knife", "diamond-fish"],
     sizes: [
       stock("5'0 x 19 1/2 x 2 1/4", 25.25, 145, 120, 100),
       stock("5'2 x 19 3/4 x 2 5/16", 27.28, 160, 130, 110),
@@ -517,7 +478,7 @@ export const boards: Board[] = [
     image: "/images/boards/roberts/catalog/a3f43720-a36b-468c-a4d5-7ef57108ea00-front.png",
     back: "/images/boards/roberts/catalog/a3f43720-a36b-468c-a4d5-7ef57108ea00-back.png",
     composite: "/images/boards/roberts/catalog/a3f43720-a36b-468c-a4d5-7ef57108ea00-composite.png",
-    related: ["modern-mid", "fun-1", "floaty"],
+    related: ["modern-mid", "fun-1", "bro-fish"],
   },
   {
     slug: "monks",

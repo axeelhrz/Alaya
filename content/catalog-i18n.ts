@@ -156,21 +156,6 @@ const boardEn: Record<string, BoardEn> = {
     sizing:
       "Beginner: by weight on the grid, or a little longer if you want easier paddle. Advanced: shorter than your height with more liters than a shortboard, or several inches over for a rippable mid.",
   },
-  floaty: {
-    description:
-      "Wide and full of liters, but fast. The groveler when you really want to float.",
-    wave: "Flat or slow faces. Summer slop.",
-    rider:
-      "If you are moving down in length and still need easy paddle. Also a groveler for heavier surfers or groms. You can learn on it.",
-    rocker: "Low for paddle and speed; a soft flip in the nose so you do not pearl the drop.",
-    rails:
-      "Soft up front, harder in the back, refined: it forgives and still lets light riders turn.",
-    bottom: "Single to double and vee in the tail.",
-    fins: "Five-fin (twin, twin + trailer, thruster or quad).",
-    body: "Not a softboard. A wide outline from nose to tail to paddle and stay stable; refined rails so it does not feel dead. The Dream Machine is a more performance, shorter groveler; the Floaty is the small-wave tank: more liters, more forgiveness, still turns.\n\nOver 6' it goes custom.",
-    sizing:
-      "Progressing novice: at your height or +2\". Rail-to-rail grovel: 6\" shorter than the pro model, or 4–6\" under your height, with 3–5 L extra. Cruiser: ~10 L more than your good-wave board.",
-  },
   "diamond-fish": {
     description:
       "Diamond-line fish: wide swallow, easy speed and a rail that still turns.",
