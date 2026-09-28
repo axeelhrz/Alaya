@@ -208,6 +208,10 @@ const boardEn: Record<string, BoardEn> = {
   vlad: {
     description: "Resin swallow: speed and a loose tail.",
   },
+  "dirty-bird": {
+    description:
+      "Swallow fish with a red, yellow and black graphic: easy speed and a loose tail.",
+  },
   "t-33": {
     description: "Pro-Lite: everyday performance with a competition pad and glass.",
   },
@@ -273,9 +277,6 @@ const boardEn: Record<string, BoardEn> = {
   },
   "black-block": {
     description: "Shortboard with a black block in the tail.",
-  },
-  checker: {
-    description: "Orange and grey checkered shortboard.",
   },
   "orange-rail": {
     description: "White shortboard with an orange rail.",
