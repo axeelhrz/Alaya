@@ -295,6 +295,20 @@ export const boards: Board[] = [
     ],
   },
   {
+    slug: "classic-mid-pin",
+    name: "Classic Mid Pin",
+    category: "Mid-Length",
+    categorySlug: "mid",
+    shaper: "Roberts",
+    dimensions: "7'0\" – 9'6\"",
+    description:
+      "Mid pin clásica: outline limpio, cola fina y glide de trim.",
+    image: "/images/boards/roberts/catalog/89b9645f-8361-43ee-94f7-30412f0e2d4e-front.png",
+    back: "/images/boards/roberts/catalog/89b9645f-8361-43ee-94f7-30412f0e2d4e-back.png",
+    composite: "/images/boards/roberts/catalog/89b9645f-8361-43ee-94f7-30412f0e2d4e-composite.png",
+    related: ["modern-mid", "the-ill", "pin-master"],
+  },
+  {
     slug: "army-knife",
     name: "Army Knife",
     category: "Fish / Twin",
@@ -880,6 +894,20 @@ export const boards: Board[] = [
     related: ["jackal", "vlad", "turbo-charger"],
   },
   {
+    slug: "turbo-diesel",
+    name: "Turbo Diesel",
+    category: "Shortboard",
+    categorySlug: "shortboard",
+    shaper: "Roberts",
+    dimensions: "5'8\" – 6'4\"",
+    description:
+      "Blanca con logo azul y carbono en el tail: drive y speed en el pocket.",
+    image: "/images/boards/roberts/catalog/026aae90-b60e-486f-9523-8c301f5ebc9d-front.png",
+    back: "/images/boards/roberts/catalog/026aae90-b60e-486f-9523-8c301f5ebc9d-back.png",
+    composite: "/images/boards/roberts/catalog/026aae90-b60e-486f-9523-8c301f5ebc9d-composite.png",
+    related: ["star-chip", "turbo-charger", "modern-80s-fade"],
+  },
+  {
     slug: "turbo-charger",
     name: "Turbo Charger",
     category: "Shortboard",
@@ -891,7 +919,7 @@ export const boards: Board[] = [
     image: "/images/boards/roberts/catalog/dcfb7798-bfda-445f-9061-09c2e4dc21b1-front.png",
     back: "/images/boards/roberts/catalog/dcfb7798-bfda-445f-9061-09c2e4dc21b1-back.png",
     composite: "/images/boards/roberts/catalog/dcfb7798-bfda-445f-9061-09c2e4dc21b1-composite.png",
-    related: ["star-chip", "modern-80s", "gsd"],
+    related: ["turbo-diesel", "star-chip", "modern-80s"],
   },
   {
     slug: "jackal",
@@ -1177,7 +1205,6 @@ const aliases: Record<string, string> = {
   "blue-mist": "army-knife",
   floaty: "dream-maker",
   hex: "star-chip",
-  "turbo-diesel": "star-chip",
   "orange-rail": "fun-1",
   "white-daily": "black-block",
 };

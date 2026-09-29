@@ -138,6 +138,9 @@ const boardEn: Record<string, BoardEn> = {
     sizing:
       "Performance feel + flow: about 4–8\" over your height. More classic mid: 8–12\" over (the sweet spot is often +10\").",
   },
+  "classic-mid-pin": {
+    description: "Classic mid pin: clean outline, a narrow tail and trim glide.",
+  },
   "army-knife": {
     description:
       "The quiver knife: straight-line speed and a tail that still turns.",
@@ -301,6 +304,10 @@ const boardEn: Record<string, BoardEn> = {
   },
   "star-chip": {
     description: "Shortboard with a carbon tail and blue fins.",
+  },
+  "turbo-diesel": {
+    description:
+      "White with a blue logo and carbon in the tail: drive and speed in the pocket.",
   },
   "turbo-charger": {
     description:
