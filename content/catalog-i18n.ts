@@ -208,6 +208,9 @@ const boardEn: Record<string, BoardEn> = {
   anything: {
     description: "All-rounder: one outline for the weekly grind.",
   },
+  "dreamcatcher-plus": {
+    description: "Dreamcatcher Plus: an all-rounder with more range in the quiver.",
+  },
   "the-ill": {
     description: "Mid with a fade and a long outline: paddle and flow.",
   },
@@ -296,13 +299,20 @@ const boardEn: Record<string, BoardEn> = {
   "orange-mark": {
     description: "White shortboard, orange logo.",
   },
-  "turbo-diesel": {
-    description:
-      "White swallow with a blue logo and carbon in the tail: speed and drive.",
+  "star-chip": {
+    description: "Shortboard with a carbon tail and blue fins.",
   },
   "turbo-charger": {
     description:
       "Yellow-orange geometric graphic and a tail pad: speed and turns in the pocket.",
+  },
+  jackal: {
+    description:
+      "White swallow with a blue logo and stripes on the tail: speed and a loose tail.",
+  },
+  vindicator: {
+    description:
+      "Blue graphic with a carbon stripe and a bullseye on the deck: pocket and rail.",
   },
   "carbon-tail": {
     description: "Shortboard with carbon panels in the tail.",
@@ -312,6 +322,21 @@ const boardEn: Record<string, BoardEn> = {
   },
   "orange-rail": {
     description: "White shortboard with an orange rail.",
+  },
+  "dream-maker": {
+    description:
+      "Wide and full of liters, but fast. The groveler when you really want to float.",
+    wave: "Flat or slow faces. Summer slop.",
+    rider:
+      "If you are moving down in length and still need easy paddle. Also a groveler for heavier surfers or groms. You can learn on it.",
+    rocker: "Low for paddle and speed; a soft flip in the nose so you do not pearl the drop.",
+    rails:
+      "Soft up front, harder in the back, refined: it forgives and still lets light riders turn.",
+    bottom: "Single to double and vee in the tail.",
+    fins: "Five-fin (twin, twin + trailer, thruster or quad).",
+    body: "Not a softboard. A wide outline from nose to tail to paddle and stay stable; refined rails so it does not feel dead. The Dream Machine is a more performance, shorter groveler; the Dream Maker is the small-wave tank: more liters, more forgiveness, still turns.\n\nOver 6' it goes custom.",
+    sizing:
+      "Progressing novice: at your height or +2\". Rail-to-rail grovel: 6\" shorter than the pro model, or 4–6\" under your height, with 3–5 L extra. Cruiser: ~10 L more than your good-wave board.",
   },
   "red-rail": {
     description: "Shortboard with a red rail and red fins.",
