@@ -112,6 +112,18 @@ const boardEn: Record<string, BoardEn> = {
     sizing:
       "Ordered to measure by weight, level and the swell you are going to. In the booking we tune length, liters and fin setup.",
   },
+  "g-step-up": {
+    description:
+      "Performance step-up: extra curve for punchy swell and vertical sections.",
+  },
+  "pin-master": {
+    description:
+      "Pin tail with orange and grey blocks: hold on a steep face and drive on the line.",
+  },
+  "woolly-mammoth": {
+    description:
+      "Lime-green pin tail with a wide stringer: hold in serious swell and drive on the line.",
+  },
   "modern-mid": {
     description:
       "Between a mid and a Dreamcatcher: mid paddle, a more sensitive rail.",
@@ -205,6 +217,17 @@ const boardEn: Record<string, BoardEn> = {
   "modern-80s": {
     description: "Neon graphic, period rocker and a current rail.",
   },
+  "modern-gem": {
+    description:
+      "White nose and a green-turquoise splash on the tail: modern outline and drive.",
+  },
+  "the-lip": {
+    description: "Shortboard for a vertical section and the lip.",
+  },
+  "meat-cleaver": {
+    description:
+      "Hybrid with a white nose and a red-orange tint on the tail: drive and a short outline.",
+  },
   vlad: {
     description: "Resin swallow: speed and a loose tail.",
   },
@@ -233,9 +256,6 @@ const boardEn: Record<string, BoardEn> = {
   "choice-neon": {
     description: "Choice in yellow: quick response and a precise rail.",
   },
-  "ill-fade": {
-    description: "The iLL with a fade in the tail: paddle and flow.",
-  },
   "monks-shield": {
     description: "Monks: performance with a shield and a carbon rail.",
   },
@@ -245,8 +265,12 @@ const boardEn: Record<string, BoardEn> = {
   "gsd-ink": {
     description: "GSD ink: high performance for punchy swell.",
   },
-  "two-zero-classic": {
-    description: "Classic Two Zero: triangle logo and a loose tail.",
+  invader: {
+    description:
+      "White pin tail with a Roberts logo: a clean line and hold on a steep face.",
+  },
+  twinvader: {
+    description: "Swallow with a blue-to-beige fade: twin speed and an open tail.",
   },
   "dream-machine-white": {
     description: "Dream Machine in white: summer groveler.",
@@ -272,8 +296,13 @@ const boardEn: Record<string, BoardEn> = {
   "orange-mark": {
     description: "White shortboard, orange logo.",
   },
-  hex: {
-    description: "Shortboard with a carbon tail and blue fins.",
+  "turbo-diesel": {
+    description:
+      "White swallow with a blue logo and carbon in the tail: speed and drive.",
+  },
+  "turbo-charger": {
+    description:
+      "Yellow-orange geometric graphic and a tail pad: speed and turns in the pocket.",
   },
   "carbon-tail": {
     description: "Shortboard with carbon panels in the tail.",
