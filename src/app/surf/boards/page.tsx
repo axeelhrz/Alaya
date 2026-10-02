@@ -6,9 +6,11 @@ export const metadata: Metadata = {
   description: "Alaya board catalogue: promodels and custom.",
 };
 
-type Props = { searchParams: Promise<{ cat?: string; page?: string }> };
+type Props = {
+  searchParams: Promise<{ cat?: string; page?: string; q?: string }>;
+};
 
 export default async function BoardsPage({ searchParams }: Props) {
-  const { cat, page } = await searchParams;
-  return <BoardsHub cat={cat} pageParam={page} />;
+  const { cat, page, q } = await searchParams;
+  return <BoardsHub cat={cat} pageParam={page} initialQuery={q} />;
 }

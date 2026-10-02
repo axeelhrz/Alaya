@@ -133,8 +133,11 @@ export const messages = {
     },
     boards: {
       all: "All Boards",
+      openSearch: "Open search",
+      closeSearch: "Close search",
       searchPlaceholder: "Search by name…",
       searchEmpty: "No boards match your search.",
+      searchViewAll: "View all results",
       related: "Related boards",
       book: "Book",
       specs: "Specs",
@@ -348,8 +351,11 @@ export const messages = {
     },
     boards: {
       all: "Todas las tablas",
+      openSearch: "Abrir búsqueda",
+      closeSearch: "Cerrar búsqueda",
       searchPlaceholder: "Buscar por nombre…",
       searchEmpty: "Ninguna tabla coincide con la búsqueda.",
+      searchViewAll: "Ver todos los resultados",
       related: "Tablas relacionadas",
       book: "Pide cita",
       specs: "Especificaciones",

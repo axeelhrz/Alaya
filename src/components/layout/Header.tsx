@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useLocale } from "@/components/i18n/LocaleContext";
+import { HeaderSearch } from "@/components/layout/HeaderSearch";
 import { Logo } from "@/components/ui/Logo";
 import { boardCategories } from "../../../content/boards";
 import { shapers } from "../../../content/shapers";
@@ -58,6 +59,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [surfOpen, setSurfOpen] = useState(false);
   const [mobileSurfOpen, setMobileSurfOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const links = [
     { href: "/new", label: t.nav.new },
     { href: "/surf", label: t.nav.surf, mega: true },
@@ -77,11 +79,11 @@ export function Header() {
   ];
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    document.body.style.overflow = open || searchOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [open]);
+  }, [open, searchOpen]);
 
   useEffect(() => {
     if (!open) setMobileSurfOpen(false);
@@ -93,47 +95,60 @@ export function Header() {
     <>
       <header
         className={`site-header fixed inset-x-0 top-0 z-[60] bg-alaya-black text-white ${
-          surfOpen ? "is-surf-open" : ""
+          surfOpen && !searchOpen ? "is-surf-open" : ""
         }`}
         onMouseLeave={() => setSurfOpen(false)}
       >
         <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between gap-3 px-4 sm:h-16 sm:gap-6 md:px-8">
           <Logo light onClick={() => setOpen(false)} />
 
-          <nav className="hidden min-w-0 items-center gap-4 md:flex lg:gap-8">
-            {links.map((link) =>
-              link.mega ? (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="surf-trigger header-link shrink-0"
-                  onMouseEnter={() => setSurfOpen(true)}
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="header-link shrink-0"
-                  onMouseEnter={() => setSurfOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ),
-            )}
-            <LocaleSwitch className="header-link hidden shrink-0 text-white/70 md:inline" />
-          </nav>
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3 md:gap-6">
+            <nav className="hidden min-w-0 items-center gap-4 md:flex lg:gap-8">
+              {links.map((link) =>
+                link.mega ? (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="surf-trigger header-link shrink-0"
+                    onMouseEnter={() => setSurfOpen(true)}
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="header-link shrink-0"
+                    onMouseEnter={() => setSurfOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ),
+              )}
+              <LocaleSwitch className="header-link hidden shrink-0 text-white/70 md:inline" />
+            </nav>
 
-          <button
-            type="button"
-            className="header-link min-h-11 md:hidden"
-            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
-            aria-expanded={open}
-            onClick={() => setOpen((value) => !value)}
-          >
-            {open ? t.nav.close : t.nav.menu}
-          </button>
+            <HeaderSearch
+              onOpenChange={(next) => {
+                setSearchOpen(next);
+                if (next) {
+                  setOpen(false);
+                  setSurfOpen(false);
+                  setMobileSurfOpen(false);
+                }
+              }}
+            />
+
+            <button
+              type="button"
+              className="header-link min-h-11 md:hidden"
+              aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
+              aria-expanded={open}
+              onClick={() => setOpen((value) => !value)}
+            >
+              {open ? t.nav.close : t.nav.menu}
+            </button>
+          </div>
         </div>
 
         <div

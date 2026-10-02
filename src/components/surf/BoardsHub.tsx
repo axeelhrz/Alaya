@@ -1,41 +1,36 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
-import { boardCategories, filterBoards } from "../../../content/boards";
+import { useEffect, useRef, useState, useMemo } from "react";
+import { boardCategories } from "../../../content/boards";
+import { searchBoards } from "@/lib/boardSearch";
 import { useLocale } from "@/components/i18n/LocaleContext";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { BoardPhoto } from "@/components/surf/BoardPhoto";
+import { CloseIcon, SearchIcon } from "@/components/ui/SearchIcons";
 
 const PAGE_SIZE = 16;
-
-function matchesBoardName(
-  board: { name: string; shaper: string; slug: string },
-  query: string,
-) {
-  const hay = [board.name, board.shaper, board.slug.replace(/-/g, " ")]
-    .join(" ")
-    .toLowerCase();
-  return hay.includes(query);
-}
 
 export function BoardsHub({
   cat,
   pageParam,
+  initialQuery,
 }: {
   cat?: string;
   pageParam?: string;
+  initialQuery?: string;
 }) {
   const { t } = useLocale();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(initialQuery ?? "");
+  const [searchOpen, setSearchOpen] = useState(Boolean(initialQuery?.trim()));
+  const inputRef = useRef<HTMLInputElement>(null);
+  const searchWrapRef = useRef<HTMLDivElement>(null);
   const active = cat && cat !== "all" ? cat : "all";
   const current = boardCategories.find((c) => c.slug === active);
-  const list = useMemo(() => {
-    const base = filterBoards(active);
-    const q = query.trim().toLowerCase();
-    if (!q) return base;
-    return base.filter((board) => matchesBoardName(board, q));
-  }, [active, query]);
+  const list = useMemo(
+    () => searchBoards(query, active),
+    [active, query],
+  );
   const searching = query.trim().length > 0;
   const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
   const page = searching
@@ -46,10 +41,49 @@ export function BoardsHub({
   const hrefFor = (nextPage: number) => {
     const params = new URLSearchParams();
     if (active !== "all") params.set("cat", active);
+    if (searching) params.set("q", query.trim());
     if (nextPage > 1) params.set("page", String(nextPage));
-    const q = params.toString();
-    return q ? `/surf/boards?${q}` : "/surf/boards";
+    const built = params.toString();
+    return built ? `/surf/boards?${built}` : "/surf/boards";
   };
+
+  const openSearch = () => setSearchOpen(true);
+
+  const closeSearch = () => {
+    setQuery("");
+    setSearchOpen(false);
+  };
+
+  useEffect(() => {
+    if (initialQuery?.trim()) {
+      setQuery(initialQuery);
+      setSearchOpen(true);
+    }
+  }, [initialQuery]);
+
+  useEffect(() => {
+    if (searchOpen) inputRef.current?.focus();
+  }, [searchOpen]);
+
+  useEffect(() => {
+    if (!searchOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeSearch();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [searchOpen]);
+
+  useEffect(() => {
+    if (!searchOpen) return;
+    const onPointerDown = (event: MouseEvent) => {
+      if (!searchWrapRef.current?.contains(event.target as Node)) {
+        if (!query.trim()) setSearchOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onPointerDown);
+    return () => document.removeEventListener("mousedown", onPointerDown);
+  }, [searchOpen, query]);
 
   return (
     <div className="mx-auto max-w-[1400px] px-4 py-10 sm:px-8 sm:py-14">
@@ -67,28 +101,65 @@ export function BoardsHub({
         />
       </div>
 
-      <nav className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-[0.7rem] uppercase tracking-[0.16em] text-alaya-muted">
-        {boardCategories.map((item) => (
-          <Link
-            key={item.slug}
-            href={item.slug === "all" ? "/surf/boards" : `/surf/boards?cat=${item.slug}`}
-            className={
-              active === item.slug ? "text-alaya-black" : "hover:text-alaya-black"
-            }
-          >
-            {item.slug === "all" ? t.boards.all : item.label}
-          </Link>
-        ))}
-      </nav>
+      <div className="mt-8 flex flex-wrap items-center justify-between gap-x-6 gap-y-4">
+        <nav className="flex flex-wrap gap-x-5 gap-y-2 text-[0.7rem] uppercase tracking-[0.16em] text-alaya-muted">
+          {boardCategories.map((item) => (
+            <Link
+              key={item.slug}
+              href={
+                item.slug === "all"
+                  ? "/surf/boards"
+                  : `/surf/boards?cat=${item.slug}`
+              }
+              className={
+                active === item.slug
+                  ? "text-alaya-black"
+                  : "hover:text-alaya-black"
+              }
+            >
+              {item.slug === "all" ? t.boards.all : item.label}
+            </Link>
+          ))}
+        </nav>
 
-      <input
-        type="search"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder={t.boards.searchPlaceholder}
-        className="input-block is-plain mt-8 max-w-md"
-        aria-label={t.boards.searchPlaceholder}
-      />
+        <div
+          ref={searchWrapRef}
+          className={`boards-search ${searchOpen ? "is-open" : ""}`}
+        >
+          <div className="boards-search__field" aria-hidden={!searchOpen}>
+            <input
+              ref={inputRef}
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={t.boards.searchPlaceholder}
+              className="input-block is-plain boards-search__input"
+              aria-label={t.boards.searchPlaceholder}
+              tabIndex={searchOpen ? 0 : -1}
+            />
+            <button
+              type="button"
+              className="boards-search__toggle"
+              aria-label={t.boards.closeSearch}
+              tabIndex={searchOpen ? 0 : -1}
+              onClick={closeSearch}
+            >
+              <CloseIcon />
+            </button>
+          </div>
+          {!searchOpen ? (
+            <button
+              type="button"
+              className="boards-search__toggle"
+              aria-label={t.boards.openSearch}
+              aria-expanded={false}
+              onClick={openSearch}
+            >
+              <SearchIcon />
+            </button>
+          ) : null}
+        </div>
+      </div>
 
       <div className="mt-14 grid grid-cols-2 gap-x-8 gap-y-16 sm:grid-cols-3 lg:grid-cols-4">
         {shown.length === 0 ? (
