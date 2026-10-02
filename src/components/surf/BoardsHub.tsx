@@ -101,8 +101,8 @@ export function BoardsHub({
         />
       </div>
 
-      <div className="mt-8 flex flex-wrap items-center justify-between gap-x-6 gap-y-4">
-        <nav className="flex flex-wrap gap-x-5 gap-y-2 text-[0.7rem] uppercase tracking-[0.16em] text-alaya-muted">
+      <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-6">
+        <nav className="flex flex-wrap gap-x-4 gap-y-2 text-[0.65rem] uppercase tracking-[0.14em] text-alaya-muted sm:gap-x-5 sm:text-[0.7rem] sm:tracking-[0.16em]">
           {boardCategories.map((item) => (
             <Link
               key={item.slug}
@@ -124,7 +124,7 @@ export function BoardsHub({
 
         <div
           ref={searchWrapRef}
-          className={`boards-search ${searchOpen ? "is-open" : ""}`}
+          className={`boards-search self-end sm:self-auto ${searchOpen ? "is-open w-full sm:w-auto" : ""}`}
         >
           <div className="boards-search__field" aria-hidden={!searchOpen}>
             <input
@@ -161,7 +161,7 @@ export function BoardsHub({
         </div>
       </div>
 
-      <div className="mt-14 grid grid-cols-2 gap-x-8 gap-y-16 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-12 sm:mt-14 sm:gap-x-8 sm:gap-y-16 sm:grid-cols-3 lg:grid-cols-4">
         {shown.length === 0 ? (
           <p className="col-span-full text-sm text-alaya-muted">
             {t.boards.searchEmpty}
@@ -171,12 +171,12 @@ export function BoardsHub({
           <Link
             key={board.slug}
             href={`/surf/boards/${board.slug}`}
-            className="group text-center"
+            className="group min-w-0 text-center"
           >
             <BoardPhoto
               src={board.image}
               alt={board.name}
-              className="h-56 transition duration-500 group-hover:scale-[1.03] sm:h-72"
+              className="h-44 transition duration-500 group-hover:scale-[1.03] sm:h-56 md:h-72"
               sizes="(max-width: 640px) 50vw, 25vw"
             />
             <p className="mt-5 text-[0.7rem] uppercase tracking-[0.14em]">

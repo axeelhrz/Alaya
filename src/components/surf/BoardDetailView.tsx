@@ -21,8 +21,8 @@ export function BoardDetailView({
   const copy = boardCopy(board, locale);
 
   return (
-    <div className="lg:flex">
-      <div className="relative flex min-h-[70vh] items-center justify-center bg-alaya-white lg:sticky lg:top-14 lg:h-[calc(100svh-3.5rem)] lg:w-[48%]">
+    <div className="w-full min-w-0 lg:flex">
+      <div className="relative flex min-h-[55svh] items-center justify-center bg-alaya-white sm:min-h-[65vh] lg:sticky lg:top-14 lg:h-[calc(100svh-3.5rem)] lg:min-h-0 lg:w-[48%]">
         <BoardGallery
           name={board.name}
           image={board.image}
@@ -31,8 +31,8 @@ export function BoardDetailView({
         />
       </div>
 
-      <div className="lg:w-[52%]">
-        <div className="mx-auto max-w-lg px-5 py-12 sm:px-10 sm:py-16">
+      <div className="min-w-0 lg:w-[52%]">
+        <div className="mx-auto w-full max-w-lg px-4 py-10 sm:px-10 sm:py-16">
           <Breadcrumb
             items={[
               { href: "/surf/boards", label: t.nav.boards },

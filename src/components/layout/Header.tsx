@@ -18,8 +18,19 @@ const citaLinks = [
   { href: "/pide-cita?choice=alaya", label: "Alaya Division" },
 ];
 
-function LocaleSwitch({ className = "" }: { className?: string }) {
+function LocaleSwitch({
+  className = "",
+  mobile = false,
+}: {
+  className?: string;
+  mobile?: boolean;
+}) {
   const { locale, toggleLocale, meta, t } = useLocale();
+  const label = mobile
+    ? locale === "en"
+      ? "Español · €"
+      : "English · $"
+    : meta.label;
   return (
     <button
       type="button"
@@ -27,7 +38,7 @@ function LocaleSwitch({ className = "" }: { className?: string }) {
       onClick={toggleLocale}
       aria-label={locale === "en" ? t.locale.switchToEs : t.locale.switchToEn}
     >
-      {meta.label}
+      {label}
     </button>
   );
 }
@@ -186,7 +197,7 @@ export function Header() {
         }`}
         aria-hidden={!open}
       >
-        <nav className="flex flex-col px-4 py-2 pb-16">
+        <nav className="mobile-nav__inner px-4">
           {links.map((link) => {
             const index = mobileIndex++;
             return (
@@ -195,7 +206,7 @@ export function Header() {
                   <>
                     <button
                       type="button"
-                      className="mobile-nav-link header-link flex w-full items-center justify-between border-b border-white/10 py-4 text-left"
+                      className="mobile-nav-link header-link flex w-full min-h-[3.25rem] items-center justify-between border-b border-white/10 py-5 text-left"
                       style={{ "--i": index } as React.CSSProperties}
                       aria-expanded={mobileSurfOpen}
                       tabIndex={open ? 0 : -1}
@@ -241,7 +252,7 @@ export function Header() {
                   <Link
                     href={link.href}
                     tabIndex={open ? 0 : -1}
-                    className="mobile-nav-link header-link block border-b border-white/10 py-4"
+                    className="mobile-nav-link header-link block min-h-[3.25rem] border-b border-white/10 py-5"
                     style={{ "--i": index } as React.CSSProperties}
                     onClick={() => setOpen(false)}
                   >
@@ -251,7 +262,10 @@ export function Header() {
               </div>
             );
           })}
-          <LocaleSwitch className="mobile-nav-link header-link block border-b border-white/10 py-4 text-left text-white/70" />
+          <LocaleSwitch
+            mobile
+            className="mobile-nav-link header-link mt-2 block min-h-[3.25rem] border-b border-white/10 py-5 text-left text-white/70"
+          />
         </nav>
       </div>
     </>

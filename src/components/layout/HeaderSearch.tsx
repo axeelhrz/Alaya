@@ -76,7 +76,7 @@ export function HeaderSearch({ onOpenChange }: Props) {
           />
           <div
             ref={panelRef}
-            className="header-search__panel fixed inset-x-0 top-14 z-[59] border-t border-white/10 bg-alaya-black text-white sm:top-16"
+            className="header-search__panel fixed inset-x-0 top-14 z-[59] max-h-[calc(100dvh-3.5rem)] overflow-y-auto border-t border-white/10 bg-alaya-black text-white sm:top-16 sm:max-h-[calc(100dvh-4rem)]"
             role="dialog"
             aria-modal="true"
             aria-label={t.boards.searchPlaceholder}

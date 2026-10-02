@@ -57,7 +57,9 @@ export function Logo({
       }}
     >
       <FlameMark
-        className={stacked ? "h-14 w-auto sm:h-16" : "h-8 w-auto sm:h-9"}
+        className={
+          stacked ? "h-14 w-auto sm:h-16" : "h-9 w-auto sm:h-10"
+        }
         invert={!light}
       />
       {withWord ? (

@@ -153,10 +153,10 @@ export function HomeCarousel() {
             {slide.line}
           </p>
           <h1
-            className={`mt-3 max-w-[12ch] break-words font-light uppercase leading-[0.95] tracking-[0.12em] sm:text-7xl sm:tracking-[0.18em] md:text-[5.75rem] ${
+            className={`mt-3 max-w-[12ch] break-words font-light uppercase leading-[0.95] tracking-[0.1em] text-[2.35rem] sm:text-7xl sm:tracking-[0.18em] md:text-[5.75rem] ${
               dark
-                ? "text-5xl lg:text-[5.5rem]"
-                : "text-5xl [text-shadow:0_2px_28px_rgba(0,0,0,0.55)] lg:text-[6.75rem]"
+                ? "lg:text-[5.5rem]"
+                : "[text-shadow:0_2px_28px_rgba(0,0,0,0.55)] lg:text-[6.75rem]"
             }`}
           >
             {slide.title}

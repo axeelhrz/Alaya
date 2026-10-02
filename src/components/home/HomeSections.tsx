@@ -16,24 +16,24 @@ export function HomeSections() {
 
   return (
     <>
-      <section className="mx-auto max-w-[1400px] px-4 py-10 sm:px-8 sm:py-14">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 sm:gap-10">
+      <section className="mx-auto w-full max-w-[1400px] px-4 py-10 sm:px-8 sm:py-14">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-4 sm:gap-x-10 sm:gap-y-12">
           {featured.map((board) => (
             <Link
               key={board.slug}
               href={`/surf/boards/${board.slug}`}
-              className="group text-center"
+              className="group min-w-0 text-center"
             >
               <BoardPhoto
                 src={board.image}
                 alt={board.name}
-                className="h-52 transition duration-500 group-hover:scale-[1.03] sm:h-60"
+                className="h-44 transition duration-500 group-hover:scale-[1.03] sm:h-60"
                 sizes="(max-width: 640px) 50vw, 25vw"
               />
-              <p className="mt-4 text-[0.7rem] uppercase tracking-[0.16em]">
+              <p className="mt-3 text-[0.62rem] uppercase tracking-[0.12em] sm:mt-4 sm:text-[0.7rem] sm:tracking-[0.16em]">
                 {board.name}
               </p>
-              <p className="mt-1 text-[0.65rem] text-alaya-muted">
+              <p className="mt-1 text-[0.6rem] text-alaya-muted sm:text-[0.65rem]">
                 {board.shaper}
               </p>
             </Link>
