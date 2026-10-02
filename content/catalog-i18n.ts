@@ -185,6 +185,14 @@ const boardEn: Record<string, BoardEn> = {
     sizing:
       "3–5\" under your height and ~2 L more than your good-wave board. Versus a pro model: 6–8\" shorter, 1 1/2\" wider.",
   },
+  "3df": {
+    description:
+      "Diamond fish with a swallow tail and five-fin: straighter rocker and down-the-line speed.",
+  },
+  "disco-diamond": {
+    description:
+      "Diamond tail and five-fin: small-wave speed from the Diamond line.",
+  },
   "bro-fish": {
     description:
       "Beak fish, liters under the chest and a swallow: classic glide, today's carve.",
@@ -210,6 +218,10 @@ const boardEn: Record<string, BoardEn> = {
   },
   anything: {
     description: "All-rounder: one outline for the weekly grind.",
+  },
+  dreamcatcher: {
+    description:
+      "All-rounder with a pin tail and five-fin: one outline for the weekly grind.",
   },
   "dreamcatcher-plus": {
     description: "Dreamcatcher Plus: an all-rounder with more range in the quiver.",
@@ -321,14 +333,19 @@ const boardEn: Record<string, BoardEn> = {
     description:
       "Blue graphic with a carbon stripe and a bullseye on the deck: pocket and rail.",
   },
-  "carbon-tail": {
-    description: "Shortboard with carbon panels in the tail.",
-  },
   "black-block": {
     description: "Shortboard with a black block in the tail.",
   },
   "orange-rail": {
     description: "White shortboard with an orange rail.",
+  },
+  "mush-machine": {
+    description:
+      "Wide groveler with carbon in the tail: planes in mush and still turns.",
+  },
+  "pool-toy": {
+    description:
+      "Wide swallow and five-fin: a groveler for small surf and pool days.",
   },
   "dream-maker": {
     description:
